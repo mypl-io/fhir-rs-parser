@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Composition_Attester::Composition_Attester;
+use crate::model::Composition_Attester::Composition_AttesterGraphql;
 use crate::model::Composition_Event::Composition_Event;
+use crate::model::Composition_Event::Composition_EventGraphql;
 use crate::model::Composition_RelatesTo::Composition_RelatesTo;
+use crate::model::Composition_RelatesTo::Composition_RelatesToGraphql;
 use crate::model::Composition_Section::Composition_Section;
+use crate::model::Composition_Section::Composition_SectionGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -683,6 +696,39 @@ impl CompositionBuilder {
         self.value["title"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CompositionGraphql {
+    _confidentiality: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    attester: Option<Vec<Composition_AttesterGraphql>>,
+    author: Vec<ReferenceGraphql>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    confidentiality: Option<String>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    custodian: Option<ReferenceGraphql>,
+    date: Option<String>,
+    encounter: Option<ReferenceGraphql>,
+    event: Option<Vec<Composition_EventGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    relates_to: Option<Vec<Composition_RelatesToGraphql>>,
+    section: Option<Vec<Composition_SectionGraphql>>,
+    status: Option<CompositionStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    fhir_type: CodeableConceptGraphql,
 }
 
 #[derive(Debug)]

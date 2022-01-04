@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DiagnosticReport_Media::DiagnosticReport_Media;
+use crate::model::DiagnosticReport_Media::DiagnosticReport_MediaGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -801,6 +813,43 @@ impl DiagnosticReportBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DiagnosticReportGraphql {
+    _conclusion: Option<ElementGraphql>,
+    _effective_date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _issued: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    code: CodeableConceptGraphql,
+    conclusion: Option<String>,
+    conclusion_code: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    effective_date_time: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    imaging_study: Option<Vec<ReferenceGraphql>>,
+    implicit_rules: Option<String>,
+    issued: Option<String>,
+    language: Option<String>,
+    media: Option<Vec<DiagnosticReport_MediaGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    performer: Option<Vec<ReferenceGraphql>>,
+    presented_form: Option<Vec<AttachmentGraphql>>,
+    result: Option<Vec<ReferenceGraphql>>,
+    results_interpreter: Option<Vec<ReferenceGraphql>>,
+    specimen: Option<Vec<ReferenceGraphql>>,
+    status: Option<DiagnosticReportStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

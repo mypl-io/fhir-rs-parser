@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::OperationOutcome_Issue::OperationOutcome_Issue;
+use crate::model::OperationOutcome_Issue::OperationOutcome_IssueGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -305,4 +312,19 @@ impl OperationOutcomeBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct OperationOutcomeGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    issue: Vec<OperationOutcome_IssueGraphql>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

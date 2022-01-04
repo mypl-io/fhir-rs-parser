@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SubstanceReferenceInformation_Classification::SubstanceReferenceInformation_Classification;
+use crate::model::SubstanceReferenceInformation_Classification::SubstanceReferenceInformation_ClassificationGraphql;
 use crate::model::SubstanceReferenceInformation_Gene::SubstanceReferenceInformation_Gene;
+use crate::model::SubstanceReferenceInformation_Gene::SubstanceReferenceInformation_GeneGraphql;
 use crate::model::SubstanceReferenceInformation_GeneElement::SubstanceReferenceInformation_GeneElement;
+use crate::model::SubstanceReferenceInformation_GeneElement::SubstanceReferenceInformation_GeneElementGraphql;
 use crate::model::SubstanceReferenceInformation_Target::SubstanceReferenceInformation_Target;
+use crate::model::SubstanceReferenceInformation_Target::SubstanceReferenceInformation_TargetGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -444,4 +454,24 @@ impl SubstanceReferenceInformationBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceReferenceInformationGraphql {
+    _comment: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    classification: Option<Vec<SubstanceReferenceInformation_ClassificationGraphql>>,
+    comment: Option<String>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    gene: Option<Vec<SubstanceReferenceInformation_GeneGraphql>>,
+    gene_element: Option<Vec<SubstanceReferenceInformation_GeneElementGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    target: Option<Vec<SubstanceReferenceInformation_TargetGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

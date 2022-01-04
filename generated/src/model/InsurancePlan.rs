@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::InsurancePlan_Contact::InsurancePlan_Contact;
+use crate::model::InsurancePlan_Contact::InsurancePlan_ContactGraphql;
 use crate::model::InsurancePlan_Coverage::InsurancePlan_Coverage;
+use crate::model::InsurancePlan_Coverage::InsurancePlan_CoverageGraphql;
 use crate::model::InsurancePlan_Plan::InsurancePlan_Plan;
+use crate::model::InsurancePlan_Plan::InsurancePlan_PlanGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -664,6 +677,37 @@ impl InsurancePlanBuilder {
         self.value["type"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct InsurancePlanGraphql {
+    _alias: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    administered_by: Option<ReferenceGraphql>,
+    alias: Option<Vec<String>>,
+    contact: Option<Vec<InsurancePlan_ContactGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    coverage: Option<Vec<InsurancePlan_CoverageGraphql>>,
+    coverage_area: Option<Vec<ReferenceGraphql>>,
+    endpoint: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    network: Option<Vec<ReferenceGraphql>>,
+    owned_by: Option<ReferenceGraphql>,
+    period: Option<PeriodGraphql>,
+    plan: Option<Vec<InsurancePlan_PlanGraphql>>,
+    status: Option<InsurancePlanStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
 #[derive(Debug)]

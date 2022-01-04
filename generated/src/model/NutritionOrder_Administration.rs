@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -231,4 +236,15 @@ impl NutritionOrder_AdministrationBuilder {
         self.value["schedule"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct NutritionOrder_AdministrationGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    rate_quantity: Option<QuantityGraphql>,
+    rate_ratio: Option<RatioGraphql>,
+    schedule: Option<TimingGraphql>,
 }

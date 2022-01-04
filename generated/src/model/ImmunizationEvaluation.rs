@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -718,4 +727,41 @@ impl ImmunizationEvaluationBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImmunizationEvaluationGraphql {
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _dose_number_positive_int: Option<ElementGraphql>,
+    _dose_number_string: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _series: Option<ElementGraphql>,
+    _series_doses_positive_int: Option<ElementGraphql>,
+    _series_doses_string: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    authority: Option<ReferenceGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    description: Option<String>,
+    dose_number_positive_int: Option<f64>,
+    dose_number_string: Option<String>,
+    dose_status: CodeableConceptGraphql,
+    dose_status_reason: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    immunization_event: ReferenceGraphql,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    patient: ReferenceGraphql,
+    series: Option<String>,
+    series_doses_positive_int: Option<f64>,
+    series_doses_string: Option<String>,
+    status: Option<String>,
+    target_disease: CodeableConceptGraphql,
+    text: Option<NarrativeGraphql>,
 }

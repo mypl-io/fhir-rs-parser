@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::VisionPrescription_Prism::VisionPrescription_Prism;
+use crate::model::VisionPrescription_Prism::VisionPrescription_PrismGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -625,6 +632,37 @@ impl VisionPrescription_LensSpecificationBuilder {
         self.value["sphere"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct VisionPrescription_LensSpecificationGraphql {
+    _add: Option<ElementGraphql>,
+    _axis: Option<ElementGraphql>,
+    _back_curve: Option<ElementGraphql>,
+    _brand: Option<ElementGraphql>,
+    _color: Option<ElementGraphql>,
+    _cylinder: Option<ElementGraphql>,
+    _diameter: Option<ElementGraphql>,
+    _eye: Option<ElementGraphql>,
+    _power: Option<ElementGraphql>,
+    _sphere: Option<ElementGraphql>,
+    add: Option<f64>,
+    axis: Option<i64>,
+    back_curve: Option<f64>,
+    brand: Option<String>,
+    color: Option<String>,
+    cylinder: Option<f64>,
+    diameter: Option<f64>,
+    duration: Option<QuantityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    eye: Option<VisionPrescription_LensSpecificationEyeGraphql>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    power: Option<f64>,
+    prism: Option<Vec<VisionPrescription_PrismGraphql>>,
+    product: CodeableConceptGraphql,
+    sphere: Option<f64>,
 }
 
 #[derive(Debug)]

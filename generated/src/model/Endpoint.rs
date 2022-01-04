@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -610,6 +622,36 @@ impl EndpointBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EndpointGraphql {
+    _address: Option<ElementGraphql>,
+    _header: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _payload_mime_type: Option<Vec<ElementGraphql>>,
+    _status: Option<ElementGraphql>,
+    address: Option<String>,
+    connection_type: CodingGraphql,
+    contact: Option<Vec<ContactPointGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    header: Option<Vec<String>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    managing_organization: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    payload_mime_type: Option<Vec<String>>,
+    payload_type: Vec<CodeableConceptGraphql>,
+    period: Option<PeriodGraphql>,
+    status: Option<EndpointStatusGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

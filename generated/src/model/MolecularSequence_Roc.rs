@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -449,4 +452,25 @@ impl MolecularSequence_RocBuilder {
         self.value["sensitivity"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MolecularSequence_RocGraphql {
+    _f_measure: Option<Vec<ElementGraphql>>,
+    _num_f_n: Option<Vec<ElementGraphql>>,
+    _num_f_p: Option<Vec<ElementGraphql>>,
+    _num_t_p: Option<Vec<ElementGraphql>>,
+    _precision: Option<Vec<ElementGraphql>>,
+    _score: Option<Vec<ElementGraphql>>,
+    _sensitivity: Option<Vec<ElementGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    f_measure: Option<Vec<f64>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    num_f_n: Option<Vec<i64>>,
+    num_f_p: Option<Vec<i64>>,
+    num_t_p: Option<Vec<i64>>,
+    precision: Option<Vec<f64>>,
+    score: Option<Vec<i64>>,
+    sensitivity: Option<Vec<f64>>,
 }

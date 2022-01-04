@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -285,4 +289,19 @@ impl ClaimResponse_InsuranceBuilder {
         self.value["sequence"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponse_InsuranceGraphql {
+    _business_arrangement: Option<ElementGraphql>,
+    _focal: Option<ElementGraphql>,
+    _sequence: Option<ElementGraphql>,
+    business_arrangement: Option<String>,
+    claim_response: Option<ReferenceGraphql>,
+    coverage: ReferenceGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focal: Option<bool>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    sequence: Option<i64>,
 }

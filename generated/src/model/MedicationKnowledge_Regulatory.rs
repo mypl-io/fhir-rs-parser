@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicationKnowledge_MaxDispense::MedicationKnowledge_MaxDispense;
+use crate::model::MedicationKnowledge_MaxDispense::MedicationKnowledge_MaxDispenseGraphql;
 use crate::model::MedicationKnowledge_Schedule::MedicationKnowledge_Schedule;
+use crate::model::MedicationKnowledge_Schedule::MedicationKnowledge_ScheduleGraphql;
 use crate::model::MedicationKnowledge_Substitution::MedicationKnowledge_Substitution;
+use crate::model::MedicationKnowledge_Substitution::MedicationKnowledge_SubstitutionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -227,4 +233,15 @@ impl MedicationKnowledge_RegulatoryBuilder {
         self.value["substitution"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationKnowledge_RegulatoryGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max_dispense: Option<MedicationKnowledge_MaxDispenseGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    regulatory_authority: ReferenceGraphql,
+    schedule: Option<Vec<MedicationKnowledge_ScheduleGraphql>>,
+    substitution: Option<Vec<MedicationKnowledge_SubstitutionGraphql>>,
 }

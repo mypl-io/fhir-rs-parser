@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -187,6 +190,16 @@ impl CapabilityStatement_SupportedMessageBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CapabilityStatement_SupportedMessageGraphql {
+    _mode: Option<ElementGraphql>,
+    definition: String,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    mode: Option<CapabilityStatement_SupportedMessageModeGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
 #[derive(Debug)]

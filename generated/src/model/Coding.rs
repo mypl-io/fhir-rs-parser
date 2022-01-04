@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -272,4 +275,20 @@ impl CodingBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CodingGraphql {
+    _code: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    _system: Option<ElementGraphql>,
+    _user_selected: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    code: Option<String>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    system: Option<String>,
+    user_selected: Option<bool>,
+    version: Option<String>,
 }

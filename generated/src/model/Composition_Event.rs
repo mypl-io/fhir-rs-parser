@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -216,4 +221,14 @@ impl Composition_EventBuilder {
         self.value["period"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Composition_EventGraphql {
+    code: Option<Vec<CodeableConceptGraphql>>,
+    detail: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<PeriodGraphql>,
 }

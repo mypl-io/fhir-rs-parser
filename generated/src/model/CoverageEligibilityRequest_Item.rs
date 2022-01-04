@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::CoverageEligibilityRequest_Diagnosis::CoverageEligibilityRequest_Diagnosis;
+use crate::model::CoverageEligibilityRequest_Diagnosis::CoverageEligibilityRequest_DiagnosisGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -420,4 +428,22 @@ impl CoverageEligibilityRequest_ItemBuilder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CoverageEligibilityRequest_ItemGraphql {
+    _supporting_info_sequence: Option<Vec<ElementGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    detail: Option<Vec<ReferenceGraphql>>,
+    diagnosis: Option<Vec<CoverageEligibilityRequest_DiagnosisGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    facility: Option<ReferenceGraphql>,
+    id: Option<String>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    product_or_service: Option<CodeableConceptGraphql>,
+    provider: Option<ReferenceGraphql>,
+    quantity: Option<QuantityGraphql>,
+    supporting_info_sequence: Option<Vec<i64>>,
+    unit_price: Option<MoneyGraphql>,
 }

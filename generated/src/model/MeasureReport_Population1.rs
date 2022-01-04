@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -219,4 +224,15 @@ impl MeasureReport_Population1Builder {
         self.value["subjectResults"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MeasureReport_Population1Graphql {
+    _count: Option<ElementGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    count: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    subject_results: Option<ReferenceGraphql>,
 }

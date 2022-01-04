@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::MolecularSequence_Quality::MolecularSequence_Quality;
+use crate::model::MolecularSequence_Quality::MolecularSequence_QualityGraphql;
 use crate::model::MolecularSequence_ReferenceSeq::MolecularSequence_ReferenceSeq;
+use crate::model::MolecularSequence_ReferenceSeq::MolecularSequence_ReferenceSeqGraphql;
 use crate::model::MolecularSequence_Repository::MolecularSequence_Repository;
+use crate::model::MolecularSequence_Repository::MolecularSequence_RepositoryGraphql;
 use crate::model::MolecularSequence_StructureVariant::MolecularSequence_StructureVariant;
+use crate::model::MolecularSequence_StructureVariant::MolecularSequence_StructureVariantGraphql;
 use crate::model::MolecularSequence_Variant::MolecularSequence_Variant;
+use crate::model::MolecularSequence_Variant::MolecularSequence_VariantGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -722,6 +736,40 @@ impl MolecularSequenceBuilder {
         self.value["variant"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MolecularSequenceGraphql {
+    _coordinate_system: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _observed_seq: Option<ElementGraphql>,
+    _read_coverage: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    coordinate_system: Option<i64>,
+    device: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    observed_seq: Option<String>,
+    patient: Option<ReferenceGraphql>,
+    performer: Option<ReferenceGraphql>,
+    pointer: Option<Vec<ReferenceGraphql>>,
+    quality: Option<Vec<MolecularSequence_QualityGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    read_coverage: Option<i64>,
+    reference_seq: Option<MolecularSequence_ReferenceSeqGraphql>,
+    repository: Option<Vec<MolecularSequence_RepositoryGraphql>>,
+    specimen: Option<ReferenceGraphql>,
+    structure_variant: Option<Vec<MolecularSequence_StructureVariantGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<MolecularSequenceTypeGraphql>,
+    variant: Option<Vec<MolecularSequence_VariantGraphql>>,
 }
 
 #[derive(Debug)]

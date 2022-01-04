@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -203,4 +207,14 @@ impl MedicinalProductIndication_OtherTherapyBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductIndication_OtherTherapyGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    medication_codeable_concept: Option<CodeableConceptGraphql>,
+    medication_reference: Option<ReferenceGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    therapy_relationship_type: CodeableConceptGraphql,
 }

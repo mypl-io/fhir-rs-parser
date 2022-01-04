@@ -146,6 +146,7 @@ use crate::model::TestScript::TestScript;
 use crate::model::ValueSet::ValueSet;
 use crate::model::VerificationResult::VerificationResult;
 use crate::model::VisionPrescription::VisionPrescription;
+use async_graphql::*;
 use serde_json::value::Value;
 use std::borrow::Cow;
 

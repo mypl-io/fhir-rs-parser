@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -180,4 +184,14 @@ impl TestScript_OriginBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_OriginGraphql {
+    _index: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    index: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    profile: CodingGraphql,
 }

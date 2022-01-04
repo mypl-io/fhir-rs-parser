@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::EffectEvidenceSynthesis_PrecisionEstimate::EffectEvidenceSynthesis_PrecisionEstimate;
+use crate::model::EffectEvidenceSynthesis_PrecisionEstimate::EffectEvidenceSynthesis_PrecisionEstimateGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -321,4 +326,19 @@ impl EffectEvidenceSynthesis_EffectEstimateBuilder {
         self.value["variantState"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EffectEvidenceSynthesis_EffectEstimateGraphql {
+    _description: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    precision_estimate: Option<Vec<EffectEvidenceSynthesis_PrecisionEstimateGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    unit_of_measure: Option<CodeableConceptGraphql>,
+    value: Option<f64>,
+    variant_state: Option<CodeableConceptGraphql>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -214,4 +218,14 @@ impl SubstanceSpecification_MolecularWeightBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_MolecularWeightGraphql {
+    amount: Option<QuantityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

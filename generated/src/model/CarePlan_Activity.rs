@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CarePlan_Detail::CarePlan_Detail;
+use crate::model::CarePlan_Detail::CarePlan_DetailGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -265,4 +271,16 @@ impl CarePlan_ActivityBuilder {
         self.value["reference"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CarePlan_ActivityGraphql {
+    detail: Option<CarePlan_DetailGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome_codeable_concept: Option<Vec<CodeableConceptGraphql>>,
+    outcome_reference: Option<Vec<ReferenceGraphql>>,
+    progress: Option<Vec<AnnotationGraphql>>,
+    reference: Option<ReferenceGraphql>,
 }

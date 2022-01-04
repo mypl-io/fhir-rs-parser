@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MedicinalProductAuthorization_JurisdictionalAuthorization::MedicinalProductAuthorization_JurisdictionalAuthorization;
+use crate::model::MedicinalProductAuthorization_JurisdictionalAuthorization::MedicinalProductAuthorization_JurisdictionalAuthorizationGraphql;
 use crate::model::MedicinalProductAuthorization_Procedure::MedicinalProductAuthorization_Procedure;
+use crate::model::MedicinalProductAuthorization_Procedure::MedicinalProductAuthorization_ProcedureGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -764,4 +776,39 @@ impl MedicinalProductAuthorizationBuilder {
         self.value["validityPeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductAuthorizationGraphql {
+    _date_of_first_authorization: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _international_birth_date: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _restore_date: Option<ElementGraphql>,
+    _status_date: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    country: Option<Vec<CodeableConceptGraphql>>,
+    data_exclusivity_period: Option<PeriodGraphql>,
+    date_of_first_authorization: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    holder: Option<ReferenceGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    international_birth_date: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    jurisdictional_authorization:
+        Option<Vec<MedicinalProductAuthorization_JurisdictionalAuthorizationGraphql>>,
+    language: Option<String>,
+    legal_basis: Option<CodeableConceptGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    procedure: Option<MedicinalProductAuthorization_ProcedureGraphql>,
+    regulator: Option<ReferenceGraphql>,
+    restore_date: Option<String>,
+    status: Option<CodeableConceptGraphql>,
+    status_date: Option<String>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    validity_period: Option<PeriodGraphql>,
 }

@@ -1,6 +1,8 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -93,4 +95,10 @@ impl ElementBuilder {
         self.value["id"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ElementGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
 }

@@ -1,24 +1,44 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::DeviceDefinition_Capability::DeviceDefinition_Capability;
+use crate::model::DeviceDefinition_Capability::DeviceDefinition_CapabilityGraphql;
 use crate::model::DeviceDefinition_DeviceName::DeviceDefinition_DeviceName;
+use crate::model::DeviceDefinition_DeviceName::DeviceDefinition_DeviceNameGraphql;
 use crate::model::DeviceDefinition_Material::DeviceDefinition_Material;
+use crate::model::DeviceDefinition_Material::DeviceDefinition_MaterialGraphql;
 use crate::model::DeviceDefinition_Property::DeviceDefinition_Property;
+use crate::model::DeviceDefinition_Property::DeviceDefinition_PropertyGraphql;
 use crate::model::DeviceDefinition_Specialization::DeviceDefinition_Specialization;
+use crate::model::DeviceDefinition_Specialization::DeviceDefinition_SpecializationGraphql;
 use crate::model::DeviceDefinition_UdiDeviceIdentifier::DeviceDefinition_UdiDeviceIdentifier;
+use crate::model::DeviceDefinition_UdiDeviceIdentifier::DeviceDefinition_UdiDeviceIdentifierGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ProdCharacteristic::ProdCharacteristic;
+use crate::model::ProdCharacteristic::ProdCharacteristicGraphql;
 use crate::model::ProductShelfLife::ProductShelfLife;
+use crate::model::ProductShelfLife::ProductShelfLifeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -927,4 +947,46 @@ impl DeviceDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DeviceDefinitionGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _manufacturer_string: Option<ElementGraphql>,
+    _model_number: Option<ElementGraphql>,
+    _online_information: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<Vec<ElementGraphql>>,
+    capability: Option<Vec<DeviceDefinition_CapabilityGraphql>>,
+    contact: Option<Vec<ContactPointGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    device_name: Option<Vec<DeviceDefinition_DeviceNameGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    language_code: Option<Vec<CodeableConceptGraphql>>,
+    manufacturer_reference: Option<ReferenceGraphql>,
+    manufacturer_string: Option<String>,
+    material: Option<Vec<DeviceDefinition_MaterialGraphql>>,
+    meta: Option<MetaGraphql>,
+    model_number: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    online_information: Option<String>,
+    owner: Option<ReferenceGraphql>,
+    parent_device: Option<ReferenceGraphql>,
+    physical_characteristics: Option<ProdCharacteristicGraphql>,
+    property: Option<Vec<DeviceDefinition_PropertyGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    safety: Option<Vec<CodeableConceptGraphql>>,
+    shelf_life_storage: Option<Vec<ProductShelfLifeGraphql>>,
+    specialization: Option<Vec<DeviceDefinition_SpecializationGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    udi_device_identifier: Option<Vec<DeviceDefinition_UdiDeviceIdentifierGraphql>>,
+    url: Option<String>,
+    version: Option<Vec<String>>,
 }

@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -174,4 +177,13 @@ impl MedicinalProductPharmaceutical_CharacteristicsBuilder {
         self.value["status"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPharmaceutical_CharacteristicsGraphql {
+    code: CodeableConceptGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    status: Option<CodeableConceptGraphql>,
 }

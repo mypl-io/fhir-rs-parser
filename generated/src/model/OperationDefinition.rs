@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::OperationDefinition_Overload::OperationDefinition_Overload;
+use crate::model::OperationDefinition_Overload::OperationDefinition_OverloadGraphql;
 use crate::model::OperationDefinition_Parameter::OperationDefinition_Parameter;
+use crate::model::OperationDefinition_Parameter::OperationDefinition_ParameterGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1133,6 +1144,64 @@ impl OperationDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct OperationDefinitionGraphql {
+    _affects_state: Option<ElementGraphql>,
+    _code: Option<ElementGraphql>,
+    _comment: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instance: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _resource: Option<Vec<ElementGraphql>>,
+    _status: Option<ElementGraphql>,
+    _system: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    affects_state: Option<bool>,
+    base: Option<String>,
+    code: Option<String>,
+    comment: Option<String>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    description: Option<String>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    input_profile: Option<String>,
+    instance: Option<bool>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    kind: Option<OperationDefinitionKindGraphql>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    output_profile: Option<String>,
+    overload: Option<Vec<OperationDefinition_OverloadGraphql>>,
+    parameter: Option<Vec<OperationDefinition_ParameterGraphql>>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    resource: Option<Vec<String>>,
+    status: Option<OperationDefinitionStatusGraphql>,
+    system: Option<bool>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    fhir_type: Option<bool>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

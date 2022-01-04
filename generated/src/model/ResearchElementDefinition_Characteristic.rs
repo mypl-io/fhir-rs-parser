@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DataRequirement::DataRequirement;
+use crate::model::DataRequirement::DataRequirementGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Expression::Expression;
+use crate::model::Expression::ExpressionGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -793,6 +803,44 @@ impl ResearchElementDefinition_CharacteristicBuilder {
         self.value["usageContext"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ResearchElementDefinition_CharacteristicGraphql {
+    _definition_canonical: Option<ElementGraphql>,
+    _exclude: Option<ElementGraphql>,
+    _participant_effective_date_time: Option<ElementGraphql>,
+    _participant_effective_description: Option<ElementGraphql>,
+    _participant_effective_group_measure: Option<ElementGraphql>,
+    _study_effective_date_time: Option<ElementGraphql>,
+    _study_effective_description: Option<ElementGraphql>,
+    _study_effective_group_measure: Option<ElementGraphql>,
+    definition_canonical: Option<String>,
+    definition_codeable_concept: Option<CodeableConceptGraphql>,
+    definition_data_requirement: Option<DataRequirementGraphql>,
+    definition_expression: Option<ExpressionGraphql>,
+    exclude: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    participant_effective_date_time: Option<String>,
+    participant_effective_description: Option<String>,
+    participant_effective_duration: Option<DurationGraphql>,
+    participant_effective_group_measure:
+        Option<ResearchElementDefinition_CharacteristicParticipantEffectiveGroupMeasureGraphql>,
+    participant_effective_period: Option<PeriodGraphql>,
+    participant_effective_time_from_start: Option<DurationGraphql>,
+    participant_effective_timing: Option<TimingGraphql>,
+    study_effective_date_time: Option<String>,
+    study_effective_description: Option<String>,
+    study_effective_duration: Option<DurationGraphql>,
+    study_effective_group_measure:
+        Option<ResearchElementDefinition_CharacteristicStudyEffectiveGroupMeasureGraphql>,
+    study_effective_period: Option<PeriodGraphql>,
+    study_effective_time_from_start: Option<DurationGraphql>,
+    study_effective_timing: Option<TimingGraphql>,
+    unit_of_measure: Option<CodeableConceptGraphql>,
+    usage_context: Option<Vec<UsageContextGraphql>>,
 }
 
 #[derive(Debug)]

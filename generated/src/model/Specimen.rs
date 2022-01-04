@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Specimen_Collection::Specimen_Collection;
+use crate::model::Specimen_Collection::Specimen_CollectionGraphql;
 use crate::model::Specimen_Container::Specimen_Container;
+use crate::model::Specimen_Container::Specimen_ContainerGraphql;
 use crate::model::Specimen_Processing::Specimen_Processing;
+use crate::model::Specimen_Processing::Specimen_ProcessingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -607,6 +620,35 @@ impl SpecimenBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SpecimenGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _received_time: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    accession_identifier: Option<IdentifierGraphql>,
+    collection: Option<Specimen_CollectionGraphql>,
+    condition: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    container: Option<Vec<Specimen_ContainerGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    parent: Option<Vec<ReferenceGraphql>>,
+    processing: Option<Vec<Specimen_ProcessingGraphql>>,
+    received_time: Option<String>,
+    request: Option<Vec<ReferenceGraphql>>,
+    status: Option<SpecimenStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

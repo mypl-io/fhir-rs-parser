@@ -1,23 +1,42 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::ClaimResponse_AddItem::ClaimResponse_AddItem;
+use crate::model::ClaimResponse_AddItem::ClaimResponse_AddItemGraphql;
 use crate::model::ClaimResponse_Adjudication::ClaimResponse_Adjudication;
+use crate::model::ClaimResponse_Adjudication::ClaimResponse_AdjudicationGraphql;
 use crate::model::ClaimResponse_Error::ClaimResponse_Error;
+use crate::model::ClaimResponse_Error::ClaimResponse_ErrorGraphql;
 use crate::model::ClaimResponse_Insurance::ClaimResponse_Insurance;
+use crate::model::ClaimResponse_Insurance::ClaimResponse_InsuranceGraphql;
 use crate::model::ClaimResponse_Item::ClaimResponse_Item;
+use crate::model::ClaimResponse_Item::ClaimResponse_ItemGraphql;
 use crate::model::ClaimResponse_Payment::ClaimResponse_Payment;
+use crate::model::ClaimResponse_Payment::ClaimResponse_PaymentGraphql;
 use crate::model::ClaimResponse_ProcessNote::ClaimResponse_ProcessNote;
+use crate::model::ClaimResponse_ProcessNote::ClaimResponse_ProcessNoteGraphql;
 use crate::model::ClaimResponse_Total::ClaimResponse_Total;
+use crate::model::ClaimResponse_Total::ClaimResponse_TotalGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -960,4 +979,51 @@ impl ClaimResponseBuilder {
         self.value["use"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponseGraphql {
+    _created: Option<ElementGraphql>,
+    _disposition: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _outcome: Option<ElementGraphql>,
+    _pre_auth_ref: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    add_item: Option<Vec<ClaimResponse_AddItemGraphql>>,
+    adjudication: Option<Vec<ClaimResponse_AdjudicationGraphql>>,
+    communication_request: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    created: Option<String>,
+    disposition: Option<String>,
+    error: Option<Vec<ClaimResponse_ErrorGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    form: Option<AttachmentGraphql>,
+    form_code: Option<CodeableConceptGraphql>,
+    funds_reserve: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    insurance: Option<Vec<ClaimResponse_InsuranceGraphql>>,
+    insurer: ReferenceGraphql,
+    item: Option<Vec<ClaimResponse_ItemGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome: Option<String>,
+    patient: ReferenceGraphql,
+    payee_type: Option<CodeableConceptGraphql>,
+    payment: Option<ClaimResponse_PaymentGraphql>,
+    pre_auth_period: Option<PeriodGraphql>,
+    pre_auth_ref: Option<String>,
+    process_note: Option<Vec<ClaimResponse_ProcessNoteGraphql>>,
+    request: Option<ReferenceGraphql>,
+    requestor: Option<ReferenceGraphql>,
+    status: Option<String>,
+    sub_type: Option<CodeableConceptGraphql>,
+    text: Option<NarrativeGraphql>,
+    total: Option<Vec<ClaimResponse_TotalGraphql>>,
+    fhir_type: CodeableConceptGraphql,
+    fhir_use: Option<String>,
 }

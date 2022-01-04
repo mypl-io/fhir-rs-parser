@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -218,4 +222,17 @@ impl AnnotationBuilder {
         self.value["time"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AnnotationGraphql {
+    _author_string: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    _time: Option<ElementGraphql>,
+    author_reference: Option<ReferenceGraphql>,
+    author_string: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    text: Option<String>,
+    time: Option<String>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ValueSet_Designation::ValueSet_Designation;
+use crate::model::ValueSet_Designation::ValueSet_DesignationGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -234,4 +238,16 @@ impl ValueSet_ConceptBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ValueSet_ConceptGraphql {
+    _code: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    code: Option<String>,
+    designation: Option<Vec<ValueSet_DesignationGraphql>>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }

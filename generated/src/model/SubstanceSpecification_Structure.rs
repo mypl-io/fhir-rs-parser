@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::SubstanceSpecification_Isotope::SubstanceSpecification_Isotope;
+use crate::model::SubstanceSpecification_Isotope::SubstanceSpecification_IsotopeGraphql;
 use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeight;
+use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeightGraphql;
 use crate::model::SubstanceSpecification_Representation::SubstanceSpecification_Representation;
+use crate::model::SubstanceSpecification_Representation::SubstanceSpecification_RepresentationGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -375,4 +383,21 @@ impl SubstanceSpecification_StructureBuilder {
         self.value["stereochemistry"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_StructureGraphql {
+    _molecular_formula: Option<ElementGraphql>,
+    _molecular_formula_by_moiety: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    isotope: Option<Vec<SubstanceSpecification_IsotopeGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    molecular_formula: Option<String>,
+    molecular_formula_by_moiety: Option<String>,
+    molecular_weight: Option<SubstanceSpecification_MolecularWeightGraphql>,
+    optical_activity: Option<CodeableConceptGraphql>,
+    representation: Option<Vec<SubstanceSpecification_RepresentationGraphql>>,
+    source: Option<Vec<ReferenceGraphql>>,
+    stereochemistry: Option<CodeableConceptGraphql>,
 }

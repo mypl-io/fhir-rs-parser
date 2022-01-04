@@ -1,20 +1,36 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Device_DeviceName::Device_DeviceName;
+use crate::model::Device_DeviceName::Device_DeviceNameGraphql;
 use crate::model::Device_Property::Device_Property;
+use crate::model::Device_Property::Device_PropertyGraphql;
 use crate::model::Device_Specialization::Device_Specialization;
+use crate::model::Device_Specialization::Device_SpecializationGraphql;
 use crate::model::Device_UdiCarrier::Device_UdiCarrier;
+use crate::model::Device_UdiCarrier::Device_UdiCarrierGraphql;
 use crate::model::Device_Version::Device_Version;
+use crate::model::Device_Version::Device_VersionGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1007,6 +1023,56 @@ impl DeviceBuilder {
         self.value["version"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DeviceGraphql {
+    _distinct_identifier: Option<ElementGraphql>,
+    _expiration_date: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _lot_number: Option<ElementGraphql>,
+    _manufacture_date: Option<ElementGraphql>,
+    _manufacturer: Option<ElementGraphql>,
+    _model_number: Option<ElementGraphql>,
+    _part_number: Option<ElementGraphql>,
+    _serial_number: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    contact: Option<Vec<ContactPointGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    definition: Option<ReferenceGraphql>,
+    device_name: Option<Vec<Device_DeviceNameGraphql>>,
+    distinct_identifier: Option<String>,
+    expiration_date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    lot_number: Option<String>,
+    manufacture_date: Option<String>,
+    manufacturer: Option<String>,
+    meta: Option<MetaGraphql>,
+    model_number: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    owner: Option<ReferenceGraphql>,
+    parent: Option<ReferenceGraphql>,
+    part_number: Option<String>,
+    patient: Option<ReferenceGraphql>,
+    property: Option<Vec<Device_PropertyGraphql>>,
+    safety: Option<Vec<CodeableConceptGraphql>>,
+    serial_number: Option<String>,
+    specialization: Option<Vec<Device_SpecializationGraphql>>,
+    status: Option<DeviceStatusGraphql>,
+    status_reason: Option<Vec<CodeableConceptGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    udi_carrier: Option<Vec<Device_UdiCarrierGraphql>>,
+    url: Option<String>,
+    version: Option<Vec<Device_VersionGraphql>>,
 }
 
 #[derive(Debug)]

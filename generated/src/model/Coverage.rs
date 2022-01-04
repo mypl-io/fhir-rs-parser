@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coverage_Class::Coverage_Class;
+use crate::model::Coverage_Class::Coverage_ClassGraphql;
 use crate::model::Coverage_CostToBeneficiary::Coverage_CostToBeneficiary;
+use crate::model::Coverage_CostToBeneficiary::Coverage_CostToBeneficiaryGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -736,4 +748,41 @@ impl CoverageBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CoverageGraphql {
+    _dependent: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _network: Option<ElementGraphql>,
+    _order: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subrogation: Option<ElementGraphql>,
+    _subscriber_id: Option<ElementGraphql>,
+    beneficiary: ReferenceGraphql,
+    class: Option<Vec<Coverage_ClassGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    contract: Option<Vec<ReferenceGraphql>>,
+    cost_to_beneficiary: Option<Vec<Coverage_CostToBeneficiaryGraphql>>,
+    dependent: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    network: Option<String>,
+    order: Option<i64>,
+    payor: Vec<ReferenceGraphql>,
+    period: Option<PeriodGraphql>,
+    policy_holder: Option<ReferenceGraphql>,
+    relationship: Option<CodeableConceptGraphql>,
+    status: Option<String>,
+    subrogation: Option<bool>,
+    subscriber: Option<ReferenceGraphql>,
+    subscriber_id: Option<String>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

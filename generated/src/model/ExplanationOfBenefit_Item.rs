@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_Adjudication;
+use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_AdjudicationGraphql;
 use crate::model::ExplanationOfBenefit_Detail::ExplanationOfBenefit_Detail;
+use crate::model::ExplanationOfBenefit_Detail::ExplanationOfBenefit_DetailGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -936,4 +947,45 @@ impl ExplanationOfBenefit_ItemBuilder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_ItemGraphql {
+    _care_team_sequence: Option<Vec<ElementGraphql>>,
+    _diagnosis_sequence: Option<Vec<ElementGraphql>>,
+    _factor: Option<ElementGraphql>,
+    _information_sequence: Option<Vec<ElementGraphql>>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    _procedure_sequence: Option<Vec<ElementGraphql>>,
+    _sequence: Option<ElementGraphql>,
+    _serviced_date: Option<ElementGraphql>,
+    adjudication: Option<Vec<ExplanationOfBenefit_AdjudicationGraphql>>,
+    body_site: Option<CodeableConceptGraphql>,
+    care_team_sequence: Option<Vec<i64>>,
+    category: Option<CodeableConceptGraphql>,
+    detail: Option<Vec<ExplanationOfBenefit_DetailGraphql>>,
+    diagnosis_sequence: Option<Vec<i64>>,
+    encounter: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    information_sequence: Option<Vec<i64>>,
+    location_address: Option<AddressGraphql>,
+    location_codeable_concept: Option<CodeableConceptGraphql>,
+    location_reference: Option<ReferenceGraphql>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    net: Option<MoneyGraphql>,
+    note_number: Option<Vec<i64>>,
+    procedure_sequence: Option<Vec<i64>>,
+    product_or_service: CodeableConceptGraphql,
+    program_code: Option<Vec<CodeableConceptGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    revenue: Option<CodeableConceptGraphql>,
+    sequence: Option<i64>,
+    serviced_date: Option<String>,
+    serviced_period: Option<PeriodGraphql>,
+    sub_site: Option<Vec<CodeableConceptGraphql>>,
+    udi: Option<Vec<ReferenceGraphql>>,
+    unit_price: Option<MoneyGraphql>,
 }

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CareTeam_Participant::CareTeam_Participant;
+use crate::model::CareTeam_Participant::CareTeam_ParticipantGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -616,6 +629,35 @@ impl CareTeamBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CareTeamGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    managing_organization: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    note: Option<Vec<AnnotationGraphql>>,
+    participant: Option<Vec<CareTeam_ParticipantGraphql>>,
+    period: Option<PeriodGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    status: Option<CareTeamStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    telecom: Option<Vec<ContactPointGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

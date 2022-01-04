@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -440,6 +444,31 @@ impl AddressBuilder {
         self.value["use"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AddressGraphql {
+    _city: Option<ElementGraphql>,
+    _country: Option<ElementGraphql>,
+    _district: Option<ElementGraphql>,
+    _line: Option<Vec<ElementGraphql>>,
+    _postal_code: Option<ElementGraphql>,
+    _state: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    city: Option<String>,
+    country: Option<String>,
+    district: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    line: Option<Vec<String>>,
+    period: Option<PeriodGraphql>,
+    postal_code: Option<String>,
+    state: Option<String>,
+    text: Option<String>,
+    fhir_type: Option<AddressTypeGraphql>,
+    fhir_use: Option<AddressUseGraphql>,
 }
 
 #[derive(Debug)]

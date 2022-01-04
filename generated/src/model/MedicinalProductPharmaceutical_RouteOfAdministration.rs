@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicinalProductPharmaceutical_TargetSpecies::MedicinalProductPharmaceutical_TargetSpecies;
+use crate::model::MedicinalProductPharmaceutical_TargetSpecies::MedicinalProductPharmaceutical_TargetSpeciesGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -308,4 +315,18 @@ impl MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
         self.value["targetSpecies"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPharmaceutical_RouteOfAdministrationGraphql {
+    code: CodeableConceptGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    first_dose: Option<QuantityGraphql>,
+    id: Option<String>,
+    max_dose_per_day: Option<QuantityGraphql>,
+    max_dose_per_treatment_period: Option<RatioGraphql>,
+    max_single_dose: Option<QuantityGraphql>,
+    max_treatment_period: Option<DurationGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    target_species: Option<Vec<MedicinalProductPharmaceutical_TargetSpeciesGraphql>>,
 }

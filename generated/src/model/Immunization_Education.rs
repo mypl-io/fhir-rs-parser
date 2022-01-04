@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -279,4 +282,19 @@ impl Immunization_EducationBuilder {
         self.value["reference"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Immunization_EducationGraphql {
+    _document_type: Option<ElementGraphql>,
+    _presentation_date: Option<ElementGraphql>,
+    _publication_date: Option<ElementGraphql>,
+    _reference: Option<ElementGraphql>,
+    document_type: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    presentation_date: Option<String>,
+    publication_date: Option<String>,
+    reference: Option<String>,
 }

@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Goal_Target::Goal_Target;
+use crate::model::Goal_Target::Goal_TargetGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -700,6 +711,41 @@ impl GoalBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GoalGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _lifecycle_status: Option<ElementGraphql>,
+    _start_date: Option<ElementGraphql>,
+    _status_date: Option<ElementGraphql>,
+    _status_reason: Option<ElementGraphql>,
+    achievement_status: Option<CodeableConceptGraphql>,
+    addresses: Option<Vec<ReferenceGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    description: CodeableConceptGraphql,
+    expressed_by: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    lifecycle_status: Option<GoalLifecycleStatusGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    outcome_code: Option<Vec<CodeableConceptGraphql>>,
+    outcome_reference: Option<Vec<ReferenceGraphql>>,
+    priority: Option<CodeableConceptGraphql>,
+    start_codeable_concept: Option<CodeableConceptGraphql>,
+    start_date: Option<String>,
+    status_date: Option<String>,
+    status_reason: Option<String>,
+    subject: ReferenceGraphql,
+    target: Option<Vec<Goal_TargetGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

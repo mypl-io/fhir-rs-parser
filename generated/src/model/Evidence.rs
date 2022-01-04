@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1119,6 +1133,61 @@ impl EvidenceBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EvidenceGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _short_title: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subtitle: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    approval_date: Option<String>,
+    author: Option<Vec<ContactDetailGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    editor: Option<Vec<ContactDetailGraphql>>,
+    effective_period: Option<PeriodGraphql>,
+    endorser: Option<Vec<ContactDetailGraphql>>,
+    exposure_background: ReferenceGraphql,
+    exposure_variant: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    note: Option<Vec<AnnotationGraphql>>,
+    outcome: Option<Vec<ReferenceGraphql>>,
+    publisher: Option<String>,
+    related_artifact: Option<Vec<RelatedArtifactGraphql>>,
+    reviewer: Option<Vec<ContactDetailGraphql>>,
+    short_title: Option<String>,
+    status: Option<EvidenceStatusGraphql>,
+    subtitle: Option<String>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    topic: Option<Vec<CodeableConceptGraphql>>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

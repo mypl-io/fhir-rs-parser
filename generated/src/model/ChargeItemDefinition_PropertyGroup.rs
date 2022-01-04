@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ChargeItemDefinition_Applicability::ChargeItemDefinition_Applicability;
+use crate::model::ChargeItemDefinition_Applicability::ChargeItemDefinition_ApplicabilityGraphql;
 use crate::model::ChargeItemDefinition_PriceComponent::ChargeItemDefinition_PriceComponent;
+use crate::model::ChargeItemDefinition_PriceComponent::ChargeItemDefinition_PriceComponentGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -200,4 +204,13 @@ impl ChargeItemDefinition_PropertyGroupBuilder {
         self.value["priceComponent"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ChargeItemDefinition_PropertyGroupGraphql {
+    applicability: Option<Vec<ChargeItemDefinition_ApplicabilityGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    price_component: Option<Vec<ChargeItemDefinition_PriceComponentGraphql>>,
 }

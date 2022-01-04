@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -444,4 +452,24 @@ impl SubstanceSpecification_RelationshipBuilder {
         self.value["substanceReference"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_RelationshipGraphql {
+    _amount_string: Option<ElementGraphql>,
+    _is_defining: Option<ElementGraphql>,
+    amount_quantity: Option<QuantityGraphql>,
+    amount_range: Option<RangeGraphql>,
+    amount_ratio: Option<RatioGraphql>,
+    amount_ratio_low_limit: Option<RatioGraphql>,
+    amount_string: Option<String>,
+    amount_type: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    is_defining: Option<bool>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    relationship: Option<CodeableConceptGraphql>,
+    source: Option<Vec<ReferenceGraphql>>,
+    substance_codeable_concept: Option<CodeableConceptGraphql>,
+    substance_reference: Option<ReferenceGraphql>,
 }

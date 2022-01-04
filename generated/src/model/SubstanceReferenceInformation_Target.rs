@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -393,4 +401,22 @@ impl SubstanceReferenceInformation_TargetBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceReferenceInformation_TargetGraphql {
+    _amount_string: Option<ElementGraphql>,
+    amount_quantity: Option<QuantityGraphql>,
+    amount_range: Option<RangeGraphql>,
+    amount_string: Option<String>,
+    amount_type: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    interaction: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    organism: Option<CodeableConceptGraphql>,
+    organism_type: Option<CodeableConceptGraphql>,
+    source: Option<Vec<ReferenceGraphql>>,
+    target: Option<IdentifierGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

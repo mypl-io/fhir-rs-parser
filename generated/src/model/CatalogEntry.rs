@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CatalogEntry_RelatedEntry::CatalogEntry_RelatedEntry;
+use crate::model::CatalogEntry_RelatedEntry::CatalogEntry_RelatedEntryGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -638,6 +649,37 @@ impl CatalogEntryBuilder {
         self.value["validityPeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CatalogEntryGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_updated: Option<ElementGraphql>,
+    _orderable: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _valid_to: Option<ElementGraphql>,
+    additional_characteristic: Option<Vec<CodeableConceptGraphql>>,
+    additional_classification: Option<Vec<CodeableConceptGraphql>>,
+    additional_identifier: Option<Vec<IdentifierGraphql>>,
+    classification: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    last_updated: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    orderable: Option<bool>,
+    referenced_item: ReferenceGraphql,
+    related_entry: Option<Vec<CatalogEntry_RelatedEntryGraphql>>,
+    status: Option<CatalogEntryStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    valid_to: Option<String>,
+    validity_period: Option<PeriodGraphql>,
 }
 
 #[derive(Debug)]

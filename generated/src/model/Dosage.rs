@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Dosage_DoseAndRate::Dosage_DoseAndRate;
+use crate::model::Dosage_DoseAndRate::Dosage_DoseAndRateGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -493,4 +501,29 @@ impl DosageBuilder {
         self.value["timing"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DosageGraphql {
+    _as_needed_boolean: Option<ElementGraphql>,
+    _patient_instruction: Option<ElementGraphql>,
+    _sequence: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    additional_instruction: Option<Vec<CodeableConceptGraphql>>,
+    as_needed_boolean: Option<bool>,
+    as_needed_codeable_concept: Option<CodeableConceptGraphql>,
+    dose_and_rate: Option<Vec<Dosage_DoseAndRateGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max_dose_per_administration: Option<QuantityGraphql>,
+    max_dose_per_lifetime: Option<QuantityGraphql>,
+    max_dose_per_period: Option<RatioGraphql>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    patient_instruction: Option<String>,
+    route: Option<CodeableConceptGraphql>,
+    sequence: Option<i64>,
+    site: Option<CodeableConceptGraphql>,
+    text: Option<String>,
+    timing: Option<TimingGraphql>,
 }

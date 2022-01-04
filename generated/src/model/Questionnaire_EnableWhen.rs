@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -544,6 +550,34 @@ impl Questionnaire_EnableWhenBuilder {
         self.value["question"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Questionnaire_EnableWhenGraphql {
+    _answer_boolean: Option<ElementGraphql>,
+    _answer_date: Option<ElementGraphql>,
+    _answer_date_time: Option<ElementGraphql>,
+    _answer_decimal: Option<ElementGraphql>,
+    _answer_integer: Option<ElementGraphql>,
+    _answer_string: Option<ElementGraphql>,
+    _answer_time: Option<ElementGraphql>,
+    _operator: Option<ElementGraphql>,
+    _question: Option<ElementGraphql>,
+    answer_boolean: Option<bool>,
+    answer_coding: Option<CodingGraphql>,
+    answer_date: Option<String>,
+    answer_date_time: Option<String>,
+    answer_decimal: Option<f64>,
+    answer_integer: Option<f64>,
+    answer_quantity: Option<QuantityGraphql>,
+    answer_reference: Option<ReferenceGraphql>,
+    answer_string: Option<String>,
+    answer_time: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operator: Option<Questionnaire_EnableWhenOperatorGraphql>,
+    question: Option<String>,
 }
 
 #[derive(Debug)]

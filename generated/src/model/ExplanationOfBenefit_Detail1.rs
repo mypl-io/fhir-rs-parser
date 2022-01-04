@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_Adjudication;
+use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_AdjudicationGraphql;
 use crate::model::ExplanationOfBenefit_SubDetail1::ExplanationOfBenefit_SubDetail1;
+use crate::model::ExplanationOfBenefit_SubDetail1::ExplanationOfBenefit_SubDetail1Graphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -389,4 +397,22 @@ impl ExplanationOfBenefit_Detail1Builder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_Detail1Graphql {
+    _factor: Option<ElementGraphql>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    adjudication: Option<Vec<ExplanationOfBenefit_AdjudicationGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    net: Option<MoneyGraphql>,
+    note_number: Option<Vec<i64>>,
+    product_or_service: CodeableConceptGraphql,
+    quantity: Option<QuantityGraphql>,
+    sub_detail: Option<Vec<ExplanationOfBenefit_SubDetail1Graphql>>,
+    unit_price: Option<MoneyGraphql>,
 }

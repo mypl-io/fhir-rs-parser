@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SubstancePolymer_MonomerSet::SubstancePolymer_MonomerSet;
+use crate::model::SubstancePolymer_MonomerSet::SubstancePolymer_MonomerSetGraphql;
 use crate::model::SubstancePolymer_Repeat::SubstancePolymer_Repeat;
+use crate::model::SubstancePolymer_Repeat::SubstancePolymer_RepeatGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -449,4 +458,25 @@ impl SubstancePolymerBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstancePolymerGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _modification: Option<Vec<ElementGraphql>>,
+    class: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copolymer_connectivity: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    geometry: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modification: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    monomer_set: Option<Vec<SubstancePolymer_MonomerSetGraphql>>,
+    repeat: Option<Vec<SubstancePolymer_RepeatGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

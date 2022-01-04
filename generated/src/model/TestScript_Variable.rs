@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -410,4 +413,27 @@ impl TestScript_VariableBuilder {
         self.value["sourceId"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_VariableGraphql {
+    _default_value: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _expression: Option<ElementGraphql>,
+    _header_field: Option<ElementGraphql>,
+    _hint: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _path: Option<ElementGraphql>,
+    _source_id: Option<ElementGraphql>,
+    default_value: Option<String>,
+    description: Option<String>,
+    expression: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    header_field: Option<String>,
+    hint: Option<String>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    path: Option<String>,
+    source_id: Option<String>,
 }

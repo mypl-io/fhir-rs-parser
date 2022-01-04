@@ -1,21 +1,38 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Contract_ContentDefinition::Contract_ContentDefinition;
+use crate::model::Contract_ContentDefinition::Contract_ContentDefinitionGraphql;
 use crate::model::Contract_Friendly::Contract_Friendly;
+use crate::model::Contract_Friendly::Contract_FriendlyGraphql;
 use crate::model::Contract_Legal::Contract_Legal;
+use crate::model::Contract_Legal::Contract_LegalGraphql;
 use crate::model::Contract_Rule::Contract_Rule;
+use crate::model::Contract_Rule::Contract_RuleGraphql;
 use crate::model::Contract_Signer::Contract_Signer;
+use crate::model::Contract_Signer::Contract_SignerGraphql;
 use crate::model::Contract_Term::Contract_Term;
+use crate::model::Contract_Term::Contract_TermGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1241,4 +1258,62 @@ impl ContractBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ContractGraphql {
+    _alias: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<ElementGraphql>,
+    _issued: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subtitle: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    alias: Option<Vec<String>>,
+    applies: Option<PeriodGraphql>,
+    author: Option<ReferenceGraphql>,
+    authority: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    content_definition: Option<Contract_ContentDefinitionGraphql>,
+    content_derivative: Option<CodeableConceptGraphql>,
+    domain: Option<Vec<ReferenceGraphql>>,
+    expiration_type: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    friendly: Option<Vec<Contract_FriendlyGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<ReferenceGraphql>,
+    instantiates_uri: Option<String>,
+    issued: Option<String>,
+    language: Option<String>,
+    legal: Option<Vec<Contract_LegalGraphql>>,
+    legal_state: Option<CodeableConceptGraphql>,
+    legally_binding_attachment: Option<AttachmentGraphql>,
+    legally_binding_reference: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    relevant_history: Option<Vec<ReferenceGraphql>>,
+    rule: Option<Vec<Contract_RuleGraphql>>,
+    scope: Option<CodeableConceptGraphql>,
+    signer: Option<Vec<Contract_SignerGraphql>>,
+    site: Option<Vec<ReferenceGraphql>>,
+    status: Option<String>,
+    sub_type: Option<Vec<CodeableConceptGraphql>>,
+    subject: Option<Vec<ReferenceGraphql>>,
+    subtitle: Option<String>,
+    supporting_info: Option<Vec<ReferenceGraphql>>,
+    term: Option<Vec<Contract_TermGraphql>>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    topic_codeable_concept: Option<CodeableConceptGraphql>,
+    topic_reference: Option<ReferenceGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    url: Option<String>,
+    version: Option<String>,
 }

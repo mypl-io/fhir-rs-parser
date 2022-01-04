@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::InsurancePlan_GeneralCost::InsurancePlan_GeneralCost;
+use crate::model::InsurancePlan_GeneralCost::InsurancePlan_GeneralCostGraphql;
 use crate::model::InsurancePlan_SpecificCost::InsurancePlan_SpecificCost;
+use crate::model::InsurancePlan_SpecificCost::InsurancePlan_SpecificCostGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -286,4 +293,17 @@ impl InsurancePlan_PlanBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct InsurancePlan_PlanGraphql {
+    coverage_area: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    general_cost: Option<Vec<InsurancePlan_GeneralCostGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    network: Option<Vec<ReferenceGraphql>>,
+    specific_cost: Option<Vec<InsurancePlan_SpecificCostGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

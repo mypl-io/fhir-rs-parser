@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExampleScenario_Alternative::ExampleScenario_Alternative;
+use crate::model::ExampleScenario_Alternative::ExampleScenario_AlternativeGraphql;
 use crate::model::ExampleScenario_Operation::ExampleScenario_Operation;
+use crate::model::ExampleScenario_Operation::ExampleScenario_OperationGraphql;
 use crate::model::ExampleScenario_Process::ExampleScenario_Process;
+use crate::model::ExampleScenario_Process::ExampleScenario_ProcessGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -247,4 +253,16 @@ impl ExampleScenario_StepBuilder {
         self.value["process"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExampleScenario_StepGraphql {
+    _pause: Option<ElementGraphql>,
+    alternative: Option<Vec<ExampleScenario_AlternativeGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operation: Option<ExampleScenario_OperationGraphql>,
+    pause: Option<bool>,
+    process: Option<Vec<ExampleScenario_ProcessGraphql>>,
 }

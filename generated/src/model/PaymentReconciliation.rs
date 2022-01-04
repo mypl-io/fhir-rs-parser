@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::PaymentReconciliation_Detail::PaymentReconciliation_Detail;
+use crate::model::PaymentReconciliation_Detail::PaymentReconciliation_DetailGraphql;
 use crate::model::PaymentReconciliation_ProcessNote::PaymentReconciliation_ProcessNote;
+use crate::model::PaymentReconciliation_ProcessNote::PaymentReconciliation_ProcessNoteGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -690,6 +703,40 @@ impl PaymentReconciliationBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PaymentReconciliationGraphql {
+    _created: Option<ElementGraphql>,
+    _disposition: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _outcome: Option<ElementGraphql>,
+    _payment_date: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    created: Option<String>,
+    detail: Option<Vec<PaymentReconciliation_DetailGraphql>>,
+    disposition: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    form_code: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome: Option<PaymentReconciliationOutcomeGraphql>,
+    payment_amount: MoneyGraphql,
+    payment_date: Option<String>,
+    payment_identifier: Option<IdentifierGraphql>,
+    payment_issuer: Option<ReferenceGraphql>,
+    period: Option<PeriodGraphql>,
+    process_note: Option<Vec<PaymentReconciliation_ProcessNoteGraphql>>,
+    request: Option<ReferenceGraphql>,
+    requestor: Option<ReferenceGraphql>,
+    status: Option<String>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

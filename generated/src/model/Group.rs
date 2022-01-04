@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Group_Characteristic::Group_Characteristic;
+use crate::model::Group_Characteristic::Group_CharacteristicGraphql;
 use crate::model::Group_Member::Group_Member;
+use crate::model::Group_Member::Group_MemberGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -574,6 +585,35 @@ impl GroupBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GroupGraphql {
+    _active: Option<ElementGraphql>,
+    _actual: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _quantity: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    active: Option<bool>,
+    actual: Option<bool>,
+    characteristic: Option<Vec<Group_CharacteristicGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    managing_entity: Option<ReferenceGraphql>,
+    member: Option<Vec<Group_MemberGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    quantity: Option<u64>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<GroupTypeGraphql>,
 }
 
 #[derive(Debug)]

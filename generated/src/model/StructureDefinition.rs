@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::StructureDefinition_Context::StructureDefinition_Context;
+use crate::model::StructureDefinition_Context::StructureDefinition_ContextGraphql;
 use crate::model::StructureDefinition_Differential::StructureDefinition_Differential;
+use crate::model::StructureDefinition_Differential::StructureDefinition_DifferentialGraphql;
 use crate::model::StructureDefinition_Mapping::StructureDefinition_Mapping;
+use crate::model::StructureDefinition_Mapping::StructureDefinition_MappingGraphql;
 use crate::model::StructureDefinition_Snapshot::StructureDefinition_Snapshot;
+use crate::model::StructureDefinition_Snapshot::StructureDefinition_SnapshotGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1197,6 +1212,64 @@ impl StructureDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureDefinitionGraphql {
+    _abstract: Option<ElementGraphql>,
+    _context_invariant: Option<Vec<ElementGraphql>>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _derivation: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _fhir_version: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    fhir_abstract: Option<bool>,
+    base_definition: Option<String>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    context: Option<Vec<StructureDefinition_ContextGraphql>>,
+    context_invariant: Option<Vec<String>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    derivation: Option<StructureDefinitionDerivationGraphql>,
+    description: Option<String>,
+    differential: Option<StructureDefinition_DifferentialGraphql>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    fhir_version: Option<StructureDefinitionFhirVersionGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    keyword: Option<Vec<CodingGraphql>>,
+    kind: Option<StructureDefinitionKindGraphql>,
+    language: Option<String>,
+    mapping: Option<Vec<StructureDefinition_MappingGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    snapshot: Option<StructureDefinition_SnapshotGraphql>,
+    status: Option<StructureDefinitionStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    fhir_type: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

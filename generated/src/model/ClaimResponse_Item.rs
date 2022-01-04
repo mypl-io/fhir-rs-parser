@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ClaimResponse_Adjudication::ClaimResponse_Adjudication;
+use crate::model::ClaimResponse_Adjudication::ClaimResponse_AdjudicationGraphql;
 use crate::model::ClaimResponse_Detail::ClaimResponse_Detail;
+use crate::model::ClaimResponse_Detail::ClaimResponse_DetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -270,4 +275,17 @@ impl ClaimResponse_ItemBuilder {
         self.value["noteNumber"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponse_ItemGraphql {
+    _item_sequence: Option<ElementGraphql>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    adjudication: Vec<ClaimResponse_AdjudicationGraphql>,
+    detail: Option<Vec<ClaimResponse_DetailGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    item_sequence: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note_number: Option<Vec<i64>>,
 }

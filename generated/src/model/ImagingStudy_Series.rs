@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ImagingStudy_Instance::ImagingStudy_Instance;
+use crate::model::ImagingStudy_Instance::ImagingStudy_InstanceGraphql;
 use crate::model::ImagingStudy_Performer::ImagingStudy_Performer;
+use crate::model::ImagingStudy_Performer::ImagingStudy_PerformerGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -478,4 +485,28 @@ impl ImagingStudy_SeriesBuilder {
         self.value["uid"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImagingStudy_SeriesGraphql {
+    _description: Option<ElementGraphql>,
+    _number: Option<ElementGraphql>,
+    _number_of_instances: Option<ElementGraphql>,
+    _started: Option<ElementGraphql>,
+    _uid: Option<ElementGraphql>,
+    body_site: Option<CodingGraphql>,
+    description: Option<String>,
+    endpoint: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    instance: Option<Vec<ImagingStudy_InstanceGraphql>>,
+    laterality: Option<CodingGraphql>,
+    modality: CodingGraphql,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    number: Option<u64>,
+    number_of_instances: Option<u64>,
+    performer: Option<Vec<ImagingStudy_PerformerGraphql>>,
+    specimen: Option<Vec<ReferenceGraphql>>,
+    started: Option<String>,
+    uid: Option<String>,
 }

@@ -1,5 +1,6 @@
 extern crate serde;
 extern crate serde_json;
+use async_graphql::*;
 
 pub mod model;
 
@@ -21,11 +22,30 @@ pub fn fhir_parse(string: &str) -> Option<crate::model::ResourceList::ResourceLi
     }
 }
 
+struct Query;
+
+#[Object]
+impl Query {
+    async fn patient(&self, _id: String) -> Result<model::Patient::PatientGraphql> {
+        unreachable!()
+    }
+}
+
 #[cfg(test)]
 mod tests {
+    use super::*;
     use crate::model::*;
     use std::fs;
     use std::time::Instant;
+
+    #[test]
+    fn test_graphql() {
+        let schema = Schema::build(Query, EmptyMutation, EmptySubscription).finish();
+
+        // Print the schema in SDL format
+        // println!("{}", &schema.sdl());
+        fs::write("schema.graphql", &schema.sdl()).expect("Unable to write file");
+    }
 
     #[test]
     fn test_parsing_json_samples() {

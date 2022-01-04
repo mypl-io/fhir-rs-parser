@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MedicationAdministration_Dosage::MedicationAdministration_Dosage;
+use crate::model::MedicationAdministration_Dosage::MedicationAdministration_DosageGraphql;
 use crate::model::MedicationAdministration_Performer::MedicationAdministration_Performer;
+use crate::model::MedicationAdministration_Performer::MedicationAdministration_PerformerGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -883,4 +896,42 @@ impl MedicationAdministrationBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationAdministrationGraphql {
+    _effective_date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates: Option<Vec<ElementGraphql>>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    category: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    context: Option<ReferenceGraphql>,
+    device: Option<Vec<ReferenceGraphql>>,
+    dosage: Option<MedicationAdministration_DosageGraphql>,
+    effective_date_time: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    event_history: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates: Option<Vec<String>>,
+    language: Option<String>,
+    medication_codeable_concept: Option<CodeableConceptGraphql>,
+    medication_reference: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performer: Option<Vec<MedicationAdministration_PerformerGraphql>>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    request: Option<ReferenceGraphql>,
+    status: Option<String>,
+    status_reason: Option<Vec<CodeableConceptGraphql>>,
+    subject: ReferenceGraphql,
+    supporting_information: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -246,4 +250,16 @@ impl BiologicallyDerivedProduct_ManipulationBuilder {
         self.value["timePeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct BiologicallyDerivedProduct_ManipulationGraphql {
+    _description: Option<ElementGraphql>,
+    _time_date_time: Option<ElementGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    time_date_time: Option<String>,
+    time_period: Option<PeriodGraphql>,
 }

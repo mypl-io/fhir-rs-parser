@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -321,6 +324,23 @@ impl GraphDefinition_CompartmentBuilder {
         self.value["use"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GraphDefinition_CompartmentGraphql {
+    _code: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _expression: Option<ElementGraphql>,
+    _rule: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    code: Option<String>,
+    description: Option<String>,
+    expression: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    rule: Option<GraphDefinition_CompartmentRuleGraphql>,
+    fhir_use: Option<GraphDefinition_CompartmentUseGraphql>,
 }
 
 #[derive(Debug)]

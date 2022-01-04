@@ -216,13 +216,13 @@ fn write_string_to_file(contents: &str, path_string: &str) -> bool {
     let path = Path::new(&path_string);
     // Open a file in write-only mode, returns `io::Result<File>`
     let mut file = match File::create(&path) {
-        Err(why) => panic!("couldn't create {}: {}", path_string, why.description()),
+        Err(why) => panic!("couldn't create {}: {}", path_string, why.to_string()),
         Ok(file) => file,
     };
 
     // Write the file contents string to `file`, returns `io::Result<()>`
     match file.write_all(contents.as_bytes()) {
-        Err(why) => panic!("couldn't write to {}: {}", path_string, why.description()),
+        Err(why) => panic!("couldn't write to {}: {}", path_string, why.to_string()),
         Ok(_) => println!("successfully wrote to {}", path_string),
     }
 
@@ -253,8 +253,10 @@ fn generate_trait(
 
     pending_imports.insert("serde_json::value::Value".to_string());
     pending_imports.insert("std::borrow::Cow".to_string());
+    pending_imports.insert("async_graphql::*".to_string());
 
     let mut inner_string = String::new();
+    let mut graphql_string = String::new();
 
     let mut validation_string = String::new();
 
@@ -266,18 +268,28 @@ fn generate_trait(
         inner_string.push_str("  pub(crate) value: Cow<'a, Value>,\n");
         inner_string.push_str("}\n\n");
 
+        graphql_string.push_str("\n#[derive(Debug, SimpleObject, InputObject)]\n");
+        graphql_string.push_str("pub struct ");
+        graphql_string.push_str(name);
+        graphql_string.push_str("Graphql {\n");
+        graphql_string.push_str("}\n\n");
+
         let mut impl_string = String::new();
+        // impl_string.push_str("#[Object]\n");
         impl_string.push_str("impl ");
         impl_string.push_str(name);
         impl_string.push_str("<'_> {\n");
+        // impl_string.push_str("  #[graphql(skip)]\n");
         impl_string.push_str("  pub fn new(value: &Value) -> ");
         impl_string.push_str(name);
         impl_string.push_str(" {\n    ");
         impl_string.push_str(name);
         impl_string.push_str(" { value: Cow::Borrowed(value) }\n  }\n\n");
 
+        // impl_string.push_str("  #[graphql(skip)]\n");
         impl_string.push_str("  pub fn to_json(&self) -> Value { (*self.value).clone() }\n\n");
 
+        // impl_string.push_str("  #[graphql(skip)]\n");
         impl_string.push_str("  pub fn resource(&self) -> Option<");
         impl_string.push_str(name);
         impl_string.push_str("Enum> {\n");
@@ -286,6 +298,7 @@ fn generate_trait(
         impl_string.push_str("    match fhir_type {\n");
 
         let mut validation_string = String::new();
+        // validation_string.push_str("  #[graphql(skip)]\n");
         validation_string.push_str("  pub fn validate(&self) -> bool {\n");
         validation_string.push_str("    if let Some(resource) = self.resource() {\n");
         validation_string.push_str("      match resource {\n");
@@ -349,17 +362,26 @@ fn generate_trait(
         inner_string.push_str("<'a> {\n");
         inner_string.push_str("  pub(crate) value: Cow<'a, Value>,\n}\n\n");
 
+        graphql_string.push_str("\n#[derive(Debug, SimpleObject, InputObject)]\n");
+        graphql_string.push_str("pub struct ");
+        graphql_string.push_str(name);
+        graphql_string.push_str("Graphql {\n");
+
+        // inner_string.push_str("#[Object]\n");
         inner_string.push_str("impl ");
         inner_string.push_str(name);
         inner_string.push_str("<'_> {\n");
+        // inner_string.push_str("  #[graphql(skip)]\n");
         inner_string.push_str("  pub fn new(value: &Value) -> ");
         inner_string.push_str(name);
         inner_string.push_str(" {\n    ");
         inner_string.push_str(name);
         inner_string.push_str(" { value: Cow::Borrowed(value) }\n  }\n\n");
 
+        // inner_string.push_str("  #[graphql(skip)]\n");
         inner_string.push_str("  pub fn to_json(&self) -> Value { (*self.value).clone() }\n\n");
 
+        // validation_string.push_str("  #[graphql(skip)]\n");
         validation_string.push_str("  pub fn validate(&self) -> bool {\n");
 
         let required_property_names: HashSet<String> = match &definition.required {
@@ -423,12 +445,14 @@ fn generate_trait(
                     );
 
                     if let Some(import) = &type_definition.import {
-                        pending_imports.insert(import.clone());
+                        // pending_imports.insert(import.clone());
+                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
                     }
 
                     write_property(
                         &mut inner_string,
                         &mut validation_string,
+                        &mut graphql_string,
                         &mut builder_constructor_definition,
                         &mut builder_constructor_impl,
                         &mut builder_body,
@@ -455,12 +479,14 @@ fn generate_trait(
                     );
 
                     if let Some(import) = &type_definition.import {
-                        pending_imports.insert(import.clone());
+                        // pending_imports.insert(import.clone());
+                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
                     }
 
                     write_property(
                         &mut inner_string,
                         &mut validation_string,
+                        &mut graphql_string,
                         &mut builder_constructor_definition,
                         &mut builder_constructor_impl,
                         &mut builder_body,
@@ -488,11 +514,13 @@ fn generate_trait(
                             builtin_type_to_class_map,
                         );
                         if let Some(import) = &type_definition.import {
-                            pending_imports.insert(import.clone());
+                            // pending_imports.insert(import.clone());
+                            pending_imports.insert(format!("{0}; use {0}Graphql", import));
                         }
                         write_property(
                             &mut inner_string,
                             &mut validation_string,
+                            &mut graphql_string,
                             &mut builder_constructor_definition,
                             &mut builder_constructor_impl,
                             &mut builder_body,
@@ -517,6 +545,7 @@ fn generate_trait(
                         write_property(
                             &mut inner_string,
                             &mut validation_string,
+                            &mut graphql_string,
                             &mut builder_constructor_definition,
                             &mut builder_constructor_impl,
                             &mut builder_body,
@@ -542,11 +571,13 @@ fn generate_trait(
                         builtin_type_to_class_map,
                     );
                     if let Some(import) = &type_definition.import {
-                        pending_imports.insert(import.clone());
+                        // pending_imports.insert(import.clone());
+                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
                     }
                     write_property(
                         &mut inner_string,
                         &mut validation_string,
+                        &mut graphql_string,
                         &mut builder_constructor_definition,
                         &mut builder_constructor_impl,
                         &mut builder_body,
@@ -575,6 +606,7 @@ fn generate_trait(
                     write_property(
                         &mut inner_string,
                         &mut validation_string,
+                        &mut graphql_string,
                         &mut builder_constructor_definition,
                         &mut builder_constructor_impl,
                         &mut builder_body,
@@ -609,6 +641,9 @@ fn generate_trait(
         inner_string.push_str("Builder { value: __value };\n  }\n\n");
         inner_string.push_str(&builder_body);
         inner_string.push_str("\n}\n\n");
+
+        graphql_string.push_str("}\n\n");
+        inner_string.push_str(&graphql_string)
     }
 
     for (enum_name, values) in pending_enums {
@@ -674,6 +709,7 @@ fn generate_trait(
 fn write_property(
     inner_string: &mut String,
     validation_string: &mut String,
+    graphql_string: &mut String,
     builder_constructor_definition: &mut String,
     builder_constructor_impl: &mut String,
     builder_body: &mut String,
@@ -689,24 +725,49 @@ fn write_property(
 ) {
     let sanitized_name = sanitize_property_name(property_name, &property_replacement_map);
 
+    let mut left_type_name = String::new();
+    let mut right_type_name = String::new();
     let mut type_name = String::new();
     let mut non_optional_type_name = String::new();
     {
+        if !required {
+            left_type_name.push_str("Option<");
+        }
         if array {
+            left_type_name.push_str("Vec<");
             non_optional_type_name.push_str("Vec<")
         }
         non_optional_type_name.push_str(&type_definition.name);
+        // non_optional_type_name.push_str("<'_>");
         if array {
-            non_optional_type_name.push_str(">")
+            right_type_name.push_str(">");
+            non_optional_type_name.push_str(">");
         }
+        // if !required {
+        //     type_name.push_str("Option<");
+        // }
+        // type_name.push_str(&non_optional_type_name);
         if !required {
-            type_name.push_str("Option<");
+            right_type_name.push_str(">");
         }
-        type_name.push_str(&non_optional_type_name);
-        if !required {
-            type_name.push_str(">");
-        }
+        type_name.push_str(&left_type_name);
+        type_name.push_str(&type_definition.name);
+        type_name.push_str(&right_type_name);
     }
+
+    graphql_string.push_str(&sanitized_name);
+    graphql_string.push_str(": ");
+    graphql_string.push_str(&left_type_name);
+    if &type_definition.name == "&str" {
+        graphql_string.push_str("String");
+    } else {
+        graphql_string.push_str(&type_definition.name);
+    }
+    if !type_definition.builtin {
+        graphql_string.push_str("Graphql");
+    }
+    graphql_string.push_str(&right_type_name);
+    graphql_string.push_str(",\n");
 
     // Builder
     if required {

@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Contract_Subject::Contract_Subject;
+use crate::model::Contract_Subject::Contract_SubjectGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -834,4 +843,43 @@ impl Contract_ActionBuilder {
         self.value["subject"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Contract_ActionGraphql {
+    _context_link_id: Option<Vec<ElementGraphql>>,
+    _do_not_perform: Option<ElementGraphql>,
+    _link_id: Option<Vec<ElementGraphql>>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _performer_link_id: Option<Vec<ElementGraphql>>,
+    _reason: Option<Vec<ElementGraphql>>,
+    _reason_link_id: Option<Vec<ElementGraphql>>,
+    _requester_link_id: Option<Vec<ElementGraphql>>,
+    _security_label_number: Option<Vec<ElementGraphql>>,
+    context: Option<ReferenceGraphql>,
+    context_link_id: Option<Vec<String>>,
+    do_not_perform: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    intent: CodeableConceptGraphql,
+    link_id: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_period: Option<PeriodGraphql>,
+    occurrence_timing: Option<TimingGraphql>,
+    performer: Option<ReferenceGraphql>,
+    performer_link_id: Option<Vec<String>>,
+    performer_role: Option<CodeableConceptGraphql>,
+    performer_type: Option<Vec<CodeableConceptGraphql>>,
+    reason: Option<Vec<String>>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_link_id: Option<Vec<String>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    requester: Option<Vec<ReferenceGraphql>>,
+    requester_link_id: Option<Vec<String>>,
+    security_label_number: Option<Vec<u64>>,
+    status: CodeableConceptGraphql,
+    subject: Option<Vec<Contract_SubjectGraphql>>,
+    fhir_type: CodeableConceptGraphql,
 }

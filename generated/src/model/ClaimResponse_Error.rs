@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -256,4 +260,18 @@ impl ClaimResponse_ErrorBuilder {
         self.value["subDetailSequence"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponse_ErrorGraphql {
+    _detail_sequence: Option<ElementGraphql>,
+    _item_sequence: Option<ElementGraphql>,
+    _sub_detail_sequence: Option<ElementGraphql>,
+    code: CodeableConceptGraphql,
+    detail_sequence: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    item_sequence: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    sub_detail_sequence: Option<i64>,
 }

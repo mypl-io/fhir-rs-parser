@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ImplementationGuide_Definition::ImplementationGuide_Definition;
+use crate::model::ImplementationGuide_Definition::ImplementationGuide_DefinitionGraphql;
 use crate::model::ImplementationGuide_DependsOn::ImplementationGuide_DependsOn;
+use crate::model::ImplementationGuide_DependsOn::ImplementationGuide_DependsOnGraphql;
 use crate::model::ImplementationGuide_Global::ImplementationGuide_Global;
+use crate::model::ImplementationGuide_Global::ImplementationGuide_GlobalGraphql;
 use crate::model::ImplementationGuide_Manifest::ImplementationGuide_Manifest;
+use crate::model::ImplementationGuide_Manifest::ImplementationGuide_ManifestGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -953,6 +966,52 @@ impl ImplementationGuideBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuideGraphql {
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _fhir_version: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _license: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _package_id: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    definition: Option<ImplementationGuide_DefinitionGraphql>,
+    depends_on: Option<Vec<ImplementationGuide_DependsOnGraphql>>,
+    description: Option<String>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    global: Option<Vec<ImplementationGuide_GlobalGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    license: Option<ImplementationGuideLicenseGraphql>,
+    manifest: Option<ImplementationGuide_ManifestGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    package_id: Option<String>,
+    publisher: Option<String>,
+    status: Option<ImplementationGuideStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

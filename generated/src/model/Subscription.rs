@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Subscription_Channel::Subscription_Channel;
+use crate::model::Subscription_Channel::Subscription_ChannelGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -496,6 +504,32 @@ impl SubscriptionBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubscriptionGraphql {
+    _criteria: Option<ElementGraphql>,
+    _end: Option<ElementGraphql>,
+    _error: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _reason: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    channel: Subscription_ChannelGraphql,
+    contact: Option<Vec<ContactPointGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    criteria: Option<String>,
+    end: Option<String>,
+    error: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    reason: Option<String>,
+    status: Option<SubscriptionStatusGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

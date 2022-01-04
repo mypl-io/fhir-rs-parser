@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -174,4 +177,13 @@ impl MedicinalProductPackaged_BatchIdentifierBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPackaged_BatchIdentifierGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    immediate_packaging: Option<IdentifierGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outer_packaging: IdentifierGraphql,
 }

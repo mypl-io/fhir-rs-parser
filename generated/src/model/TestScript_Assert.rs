@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -923,6 +926,57 @@ impl TestScript_AssertBuilder {
         self.value["warningOnly"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_AssertGraphql {
+    _compare_to_source_expression: Option<ElementGraphql>,
+    _compare_to_source_id: Option<ElementGraphql>,
+    _compare_to_source_path: Option<ElementGraphql>,
+    _content_type: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _direction: Option<ElementGraphql>,
+    _expression: Option<ElementGraphql>,
+    _header_field: Option<ElementGraphql>,
+    _label: Option<ElementGraphql>,
+    _minimum_id: Option<ElementGraphql>,
+    _navigation_links: Option<ElementGraphql>,
+    _operator: Option<ElementGraphql>,
+    _path: Option<ElementGraphql>,
+    _request_method: Option<ElementGraphql>,
+    _request_u_r_l: Option<ElementGraphql>,
+    _resource: Option<ElementGraphql>,
+    _response: Option<ElementGraphql>,
+    _response_code: Option<ElementGraphql>,
+    _source_id: Option<ElementGraphql>,
+    _validate_profile_id: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    _warning_only: Option<ElementGraphql>,
+    compare_to_source_expression: Option<String>,
+    compare_to_source_id: Option<String>,
+    compare_to_source_path: Option<String>,
+    content_type: Option<String>,
+    description: Option<String>,
+    direction: Option<TestScript_AssertDirectionGraphql>,
+    expression: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    header_field: Option<String>,
+    id: Option<String>,
+    label: Option<String>,
+    minimum_id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    navigation_links: Option<bool>,
+    operator: Option<TestScript_AssertOperatorGraphql>,
+    path: Option<String>,
+    request_method: Option<TestScript_AssertRequestMethodGraphql>,
+    request_u_r_l: Option<String>,
+    resource: Option<String>,
+    response: Option<TestScript_AssertResponseGraphql>,
+    response_code: Option<String>,
+    source_id: Option<String>,
+    validate_profile_id: Option<String>,
+    value: Option<String>,
+    warning_only: Option<bool>,
 }
 
 #[derive(Debug)]

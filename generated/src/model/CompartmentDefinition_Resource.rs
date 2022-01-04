@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -261,4 +264,17 @@ impl CompartmentDefinition_ResourceBuilder {
         self.value["param"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CompartmentDefinition_ResourceGraphql {
+    _code: Option<ElementGraphql>,
+    _documentation: Option<ElementGraphql>,
+    _param: Option<Vec<ElementGraphql>>,
+    code: Option<String>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    param: Option<Vec<String>>,
 }

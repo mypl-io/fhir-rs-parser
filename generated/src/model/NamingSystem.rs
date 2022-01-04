@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::NamingSystem_UniqueId::NamingSystem_UniqueId;
+use crate::model::NamingSystem_UniqueId::NamingSystem_UniqueIdGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -694,6 +704,41 @@ impl NamingSystemBuilder {
         self.value["useContext"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct NamingSystemGraphql {
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _responsible: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _usage: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    kind: Option<NamingSystemKindGraphql>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    responsible: Option<String>,
+    status: Option<NamingSystemStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    unique_id: Vec<NamingSystem_UniqueIdGraphql>,
+    usage: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
 }
 
 #[derive(Debug)]

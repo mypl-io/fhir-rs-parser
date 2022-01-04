@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -265,6 +270,19 @@ impl PlanDefinition_RelatedActionBuilder {
         self.value["relationship"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PlanDefinition_RelatedActionGraphql {
+    _action_id: Option<ElementGraphql>,
+    _relationship: Option<ElementGraphql>,
+    action_id: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    offset_duration: Option<DurationGraphql>,
+    offset_range: Option<RangeGraphql>,
+    relationship: Option<PlanDefinition_RelatedActionRelationshipGraphql>,
 }
 
 #[derive(Debug)]

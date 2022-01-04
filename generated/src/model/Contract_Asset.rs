@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Contract_Answer::Contract_Answer;
+use crate::model::Contract_Answer::Contract_AnswerGraphql;
 use crate::model::Contract_Context::Contract_Context;
+use crate::model::Contract_Context::Contract_ContextGraphql;
 use crate::model::Contract_ValuedItem::Contract_ValuedItem;
+use crate::model::Contract_ValuedItem::Contract_ValuedItemGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -567,4 +577,30 @@ impl Contract_AssetBuilder {
         self.value["valuedItem"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Contract_AssetGraphql {
+    _condition: Option<ElementGraphql>,
+    _link_id: Option<Vec<ElementGraphql>>,
+    _security_label_number: Option<Vec<ElementGraphql>>,
+    _text: Option<ElementGraphql>,
+    answer: Option<Vec<Contract_AnswerGraphql>>,
+    condition: Option<String>,
+    context: Option<Vec<Contract_ContextGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    link_id: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<Vec<PeriodGraphql>>,
+    period_type: Option<Vec<CodeableConceptGraphql>>,
+    relationship: Option<CodingGraphql>,
+    scope: Option<CodeableConceptGraphql>,
+    security_label_number: Option<Vec<u64>>,
+    subtype: Option<Vec<CodeableConceptGraphql>>,
+    text: Option<String>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
+    type_reference: Option<Vec<ReferenceGraphql>>,
+    use_period: Option<Vec<PeriodGraphql>>,
+    valued_item: Option<Vec<Contract_ValuedItemGraphql>>,
 }

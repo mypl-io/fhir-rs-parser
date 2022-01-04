@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -278,6 +281,21 @@ impl CodeSystem_PropertyBuilder {
         self.value["uri"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CodeSystem_PropertyGraphql {
+    _code: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _uri: Option<ElementGraphql>,
+    code: Option<String>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<CodeSystem_PropertyTypeGraphql>,
+    uri: Option<String>,
 }
 
 #[derive(Debug)]

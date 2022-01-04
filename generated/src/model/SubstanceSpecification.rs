@@ -1,20 +1,36 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SubstanceSpecification_Code::SubstanceSpecification_Code;
+use crate::model::SubstanceSpecification_Code::SubstanceSpecification_CodeGraphql;
 use crate::model::SubstanceSpecification_Moiety::SubstanceSpecification_Moiety;
+use crate::model::SubstanceSpecification_Moiety::SubstanceSpecification_MoietyGraphql;
 use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeight;
+use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeightGraphql;
 use crate::model::SubstanceSpecification_Name::SubstanceSpecification_Name;
+use crate::model::SubstanceSpecification_Name::SubstanceSpecification_NameGraphql;
 use crate::model::SubstanceSpecification_Property::SubstanceSpecification_Property;
+use crate::model::SubstanceSpecification_Property::SubstanceSpecification_PropertyGraphql;
 use crate::model::SubstanceSpecification_Relationship::SubstanceSpecification_Relationship;
+use crate::model::SubstanceSpecification_Relationship::SubstanceSpecification_RelationshipGraphql;
 use crate::model::SubstanceSpecification_Structure::SubstanceSpecification_Structure;
+use crate::model::SubstanceSpecification_Structure::SubstanceSpecification_StructureGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -767,4 +783,39 @@ impl SubstanceSpecificationBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecificationGraphql {
+    _comment: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    code: Option<Vec<SubstanceSpecification_CodeGraphql>>,
+    comment: Option<String>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    description: Option<String>,
+    domain: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    moiety: Option<Vec<SubstanceSpecification_MoietyGraphql>>,
+    molecular_weight: Option<Vec<SubstanceSpecification_MolecularWeightGraphql>>,
+    name: Option<Vec<SubstanceSpecification_NameGraphql>>,
+    nucleic_acid: Option<ReferenceGraphql>,
+    polymer: Option<ReferenceGraphql>,
+    property: Option<Vec<SubstanceSpecification_PropertyGraphql>>,
+    protein: Option<ReferenceGraphql>,
+    reference_information: Option<ReferenceGraphql>,
+    relationship: Option<Vec<SubstanceSpecification_RelationshipGraphql>>,
+    source: Option<Vec<ReferenceGraphql>>,
+    source_material: Option<ReferenceGraphql>,
+    status: Option<CodeableConceptGraphql>,
+    structure: Option<SubstanceSpecification_StructureGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

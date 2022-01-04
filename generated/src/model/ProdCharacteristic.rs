@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -444,4 +450,25 @@ impl ProdCharacteristicBuilder {
         self.value["width"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ProdCharacteristicGraphql {
+    _color: Option<Vec<ElementGraphql>>,
+    _imprint: Option<Vec<ElementGraphql>>,
+    _shape: Option<ElementGraphql>,
+    color: Option<Vec<String>>,
+    depth: Option<QuantityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    external_diameter: Option<QuantityGraphql>,
+    height: Option<QuantityGraphql>,
+    id: Option<String>,
+    image: Option<Vec<AttachmentGraphql>>,
+    imprint: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    nominal_volume: Option<QuantityGraphql>,
+    scoring: Option<CodeableConceptGraphql>,
+    shape: Option<String>,
+    weight: Option<QuantityGraphql>,
+    width: Option<QuantityGraphql>,
 }

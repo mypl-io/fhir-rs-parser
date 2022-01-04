@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -463,4 +472,26 @@ impl ExplanationOfBenefit_SupportingInfoBuilder {
         self.value["valueString"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_SupportingInfoGraphql {
+    _sequence: Option<ElementGraphql>,
+    _timing_date: Option<ElementGraphql>,
+    _value_boolean: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    category: CodeableConceptGraphql,
+    code: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    reason: Option<CodingGraphql>,
+    sequence: Option<i64>,
+    timing_date: Option<String>,
+    timing_period: Option<PeriodGraphql>,
+    value_attachment: Option<AttachmentGraphql>,
+    value_boolean: Option<bool>,
+    value_quantity: Option<QuantityGraphql>,
+    value_reference: Option<ReferenceGraphql>,
+    value_string: Option<String>,
 }

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Consent_Policy::Consent_Policy;
+use crate::model::Consent_Policy::Consent_PolicyGraphql;
 use crate::model::Consent_Provision::Consent_Provision;
+use crate::model::Consent_Provision::Consent_ProvisionGraphql;
 use crate::model::Consent_Verification::Consent_Verification;
+use crate::model::Consent_Verification::Consent_VerificationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -626,6 +639,36 @@ impl ConsentBuilder {
         self.value["verification"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConsentGraphql {
+    _date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    category: Vec<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date_time: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    organization: Option<Vec<ReferenceGraphql>>,
+    patient: Option<ReferenceGraphql>,
+    performer: Option<Vec<ReferenceGraphql>>,
+    policy: Option<Vec<Consent_PolicyGraphql>>,
+    policy_rule: Option<CodeableConceptGraphql>,
+    provision: Option<Consent_ProvisionGraphql>,
+    scope: CodeableConceptGraphql,
+    source_attachment: Option<AttachmentGraphql>,
+    source_reference: Option<ReferenceGraphql>,
+    status: Option<ConsentStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    verification: Option<Vec<Consent_VerificationGraphql>>,
 }
 
 #[derive(Debug)]

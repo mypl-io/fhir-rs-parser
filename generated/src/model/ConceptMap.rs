@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ConceptMap_Group::ConceptMap_Group;
+use crate::model::ConceptMap_Group::ConceptMap_GroupGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -944,6 +955,55 @@ impl ConceptMapBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConceptMapGraphql {
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _source_canonical: Option<ElementGraphql>,
+    _source_uri: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _target_canonical: Option<ElementGraphql>,
+    _target_uri: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group: Option<Vec<ConceptMap_GroupGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    source_canonical: Option<String>,
+    source_uri: Option<String>,
+    status: Option<ConceptMapStatusGraphql>,
+    target_canonical: Option<String>,
+    target_uri: Option<String>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

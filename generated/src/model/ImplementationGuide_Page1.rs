@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -253,4 +256,17 @@ impl ImplementationGuide_Page1Builder {
         self.value["title"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuide_Page1Graphql {
+    _anchor: Option<Vec<ElementGraphql>>,
+    _name: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    anchor: Option<Vec<String>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    title: Option<String>,
 }

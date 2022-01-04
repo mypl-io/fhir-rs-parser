@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::PlanDefinition_Target::PlanDefinition_Target;
+use crate::model::PlanDefinition_Target::PlanDefinition_TargetGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -295,4 +300,18 @@ impl PlanDefinition_GoalBuilder {
         self.value["target"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PlanDefinition_GoalGraphql {
+    addresses: Option<Vec<CodeableConceptGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    description: CodeableConceptGraphql,
+    documentation: Option<Vec<RelatedArtifactGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    priority: Option<CodeableConceptGraphql>,
+    start: Option<CodeableConceptGraphql>,
+    target: Option<Vec<PlanDefinition_TargetGraphql>>,
 }

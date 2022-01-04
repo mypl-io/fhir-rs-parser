@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -255,4 +258,18 @@ impl ConceptMap_DependsOnBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConceptMap_DependsOnGraphql {
+    _display: Option<ElementGraphql>,
+    _property: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    property: Option<String>,
+    system: Option<String>,
+    value: Option<String>,
 }

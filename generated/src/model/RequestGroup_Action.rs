@@ -1,17 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
+use crate::model::RequestGroup_Action::RequestGroup_Action;
+use crate::model::RequestGroup_Action::RequestGroup_ActionGraphql;
 use crate::model::RequestGroup_Condition::RequestGroup_Condition;
+use crate::model::RequestGroup_Condition::RequestGroup_ConditionGraphql;
 use crate::model::RequestGroup_RelatedAction::RequestGroup_RelatedAction;
+use crate::model::RequestGroup_RelatedAction::RequestGroup_RelatedActionGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -840,4 +855,46 @@ impl RequestGroup_ActionBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RequestGroup_ActionGraphql {
+    _cardinality_behavior: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _grouping_behavior: Option<ElementGraphql>,
+    _precheck_behavior: Option<ElementGraphql>,
+    _prefix: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _required_behavior: Option<ElementGraphql>,
+    _selection_behavior: Option<ElementGraphql>,
+    _text_equivalent: Option<ElementGraphql>,
+    _timing_date_time: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    action: Option<Vec<RequestGroup_ActionGraphql>>,
+    cardinality_behavior: Option<String>,
+    code: Option<Vec<CodeableConceptGraphql>>,
+    condition: Option<Vec<RequestGroup_ConditionGraphql>>,
+    description: Option<String>,
+    documentation: Option<Vec<RelatedArtifactGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    grouping_behavior: Option<String>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    participant: Option<Vec<ReferenceGraphql>>,
+    precheck_behavior: Option<String>,
+    prefix: Option<String>,
+    priority: Option<String>,
+    related_action: Option<Vec<RequestGroup_RelatedActionGraphql>>,
+    required_behavior: Option<String>,
+    resource: Option<ReferenceGraphql>,
+    selection_behavior: Option<String>,
+    text_equivalent: Option<String>,
+    timing_age: Option<AgeGraphql>,
+    timing_date_time: Option<String>,
+    timing_duration: Option<DurationGraphql>,
+    timing_period: Option<PeriodGraphql>,
+    timing_range: Option<RangeGraphql>,
+    timing_timing: Option<TimingGraphql>,
+    title: Option<String>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

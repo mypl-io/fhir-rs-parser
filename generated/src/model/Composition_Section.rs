@@ -1,10 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
+use crate::model::Composition_Section::Composition_Section;
+use crate::model::Composition_Section::Composition_SectionGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -410,4 +418,23 @@ impl Composition_SectionBuilder {
         self.value["title"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Composition_SectionGraphql {
+    _mode: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    author: Option<Vec<ReferenceGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    empty_reason: Option<CodeableConceptGraphql>,
+    entry: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focus: Option<ReferenceGraphql>,
+    id: Option<String>,
+    mode: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    ordered_by: Option<CodeableConceptGraphql>,
+    section: Option<Vec<Composition_SectionGraphql>>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
 }

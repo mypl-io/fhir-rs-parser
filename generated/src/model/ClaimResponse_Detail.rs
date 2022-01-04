@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ClaimResponse_Adjudication::ClaimResponse_Adjudication;
+use crate::model::ClaimResponse_Adjudication::ClaimResponse_AdjudicationGraphql;
 use crate::model::ClaimResponse_SubDetail::ClaimResponse_SubDetail;
+use crate::model::ClaimResponse_SubDetail::ClaimResponse_SubDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -270,4 +275,17 @@ impl ClaimResponse_DetailBuilder {
         self.value["subDetail"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponse_DetailGraphql {
+    _detail_sequence: Option<ElementGraphql>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    adjudication: Vec<ClaimResponse_AdjudicationGraphql>,
+    detail_sequence: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note_number: Option<Vec<i64>>,
+    sub_detail: Option<Vec<ClaimResponse_SubDetailGraphql>>,
 }

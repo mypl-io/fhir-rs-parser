@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -288,6 +291,21 @@ impl Subscription_ChannelBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Subscription_ChannelGraphql {
+    _endpoint: Option<ElementGraphql>,
+    _header: Option<Vec<ElementGraphql>>,
+    _payload: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    endpoint: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    header: Option<Vec<String>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    payload: Option<String>,
+    fhir_type: Option<Subscription_ChannelTypeGraphql>,
 }
 
 #[derive(Debug)]

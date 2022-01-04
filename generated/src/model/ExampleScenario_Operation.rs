@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExampleScenario_ContainedInstance::ExampleScenario_ContainedInstance;
+use crate::model::ExampleScenario_ContainedInstance::ExampleScenario_ContainedInstanceGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -469,4 +473,29 @@ impl ExampleScenario_OperationBuilder {
         self.value["type"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExampleScenario_OperationGraphql {
+    _description: Option<ElementGraphql>,
+    _initiator: Option<ElementGraphql>,
+    _initiator_active: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _number: Option<ElementGraphql>,
+    _receiver: Option<ElementGraphql>,
+    _receiver_active: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    initiator: Option<String>,
+    initiator_active: Option<bool>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    number: Option<String>,
+    receiver: Option<String>,
+    receiver_active: Option<bool>,
+    request: Option<ExampleScenario_ContainedInstanceGraphql>,
+    response: Option<ExampleScenario_ContainedInstanceGraphql>,
+    fhir_type: Option<String>,
 }

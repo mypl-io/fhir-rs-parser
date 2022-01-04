@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -255,4 +261,17 @@ impl Dosage_DoseAndRateBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Dosage_DoseAndRateGraphql {
+    dose_quantity: Option<QuantityGraphql>,
+    dose_range: Option<RangeGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    rate_quantity: Option<QuantityGraphql>,
+    rate_range: Option<RangeGraphql>,
+    rate_ratio: Option<RatioGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

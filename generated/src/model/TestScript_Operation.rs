@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::TestScript_RequestHeader::TestScript_RequestHeader;
+use crate::model::TestScript_RequestHeader::TestScript_RequestHeaderGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -705,6 +710,45 @@ impl TestScript_OperationBuilder {
         self.value["url"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_OperationGraphql {
+    _accept: Option<ElementGraphql>,
+    _content_type: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _destination: Option<ElementGraphql>,
+    _encode_request_url: Option<ElementGraphql>,
+    _label: Option<ElementGraphql>,
+    _method: Option<ElementGraphql>,
+    _origin: Option<ElementGraphql>,
+    _params: Option<ElementGraphql>,
+    _request_id: Option<ElementGraphql>,
+    _resource: Option<ElementGraphql>,
+    _response_id: Option<ElementGraphql>,
+    _source_id: Option<ElementGraphql>,
+    _target_id: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    accept: Option<String>,
+    content_type: Option<String>,
+    description: Option<String>,
+    destination: Option<i64>,
+    encode_request_url: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    label: Option<String>,
+    method: Option<TestScript_OperationMethodGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    origin: Option<i64>,
+    params: Option<String>,
+    request_header: Option<Vec<TestScript_RequestHeaderGraphql>>,
+    request_id: Option<String>,
+    resource: Option<String>,
+    response_id: Option<String>,
+    source_id: Option<String>,
+    target_id: Option<String>,
+    fhir_type: Option<CodingGraphql>,
+    url: Option<String>,
 }
 
 #[derive(Debug)]

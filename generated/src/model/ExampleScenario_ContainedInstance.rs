@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -217,4 +220,15 @@ impl ExampleScenario_ContainedInstanceBuilder {
         self.value["versionId"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExampleScenario_ContainedInstanceGraphql {
+    _resource_id: Option<ElementGraphql>,
+    _version_id: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    resource_id: Option<String>,
+    version_id: Option<String>,
 }

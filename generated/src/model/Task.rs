@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Task_Input::Task_Input;
+use crate::model::Task_Input::Task_InputGraphql;
 use crate::model::Task_Output::Task_Output;
+use crate::model::Task_Output::Task_OutputGraphql;
 use crate::model::Task_Restriction::Task_Restriction;
+use crate::model::Task_Restriction::Task_RestrictionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1053,6 +1067,58 @@ impl TaskBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TaskGraphql {
+    _authored_on: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<ElementGraphql>,
+    _intent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_modified: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    authored_on: Option<String>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    business_status: Option<CodeableConceptGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    description: Option<String>,
+    encounter: Option<ReferenceGraphql>,
+    execution_period: Option<PeriodGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focus: Option<ReferenceGraphql>,
+    fhir_for: Option<ReferenceGraphql>,
+    group_identifier: Option<IdentifierGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    input: Option<Vec<Task_InputGraphql>>,
+    instantiates_canonical: Option<String>,
+    instantiates_uri: Option<String>,
+    insurance: Option<Vec<ReferenceGraphql>>,
+    intent: Option<TaskIntentGraphql>,
+    language: Option<String>,
+    last_modified: Option<String>,
+    location: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    output: Option<Vec<Task_OutputGraphql>>,
+    owner: Option<ReferenceGraphql>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performer_type: Option<Vec<CodeableConceptGraphql>>,
+    priority: Option<String>,
+    reason_code: Option<CodeableConceptGraphql>,
+    reason_reference: Option<ReferenceGraphql>,
+    relevant_history: Option<Vec<ReferenceGraphql>>,
+    requester: Option<ReferenceGraphql>,
+    restriction: Option<Task_RestrictionGraphql>,
+    status: Option<TaskStatusGraphql>,
+    status_reason: Option<CodeableConceptGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -295,4 +298,19 @@ impl Location_HoursOfOperationBuilder {
         self.value["openingTime"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Location_HoursOfOperationGraphql {
+    _all_day: Option<ElementGraphql>,
+    _closing_time: Option<ElementGraphql>,
+    _days_of_week: Option<Vec<ElementGraphql>>,
+    _opening_time: Option<ElementGraphql>,
+    all_day: Option<bool>,
+    closing_time: Option<String>,
+    days_of_week: Option<Vec<String>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    opening_time: Option<String>,
 }

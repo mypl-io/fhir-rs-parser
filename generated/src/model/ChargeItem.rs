@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::ChargeItem_Performer::ChargeItem_Performer;
+use crate::model::ChargeItem_Performer::ChargeItem_PerformerGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -998,6 +1013,55 @@ impl ChargeItemBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ChargeItemGraphql {
+    _definition_uri: Option<Vec<ElementGraphql>>,
+    _entered_date: Option<ElementGraphql>,
+    _factor_override: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _override_reason: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    account: Option<Vec<ReferenceGraphql>>,
+    bodysite: Option<Vec<CodeableConceptGraphql>>,
+    code: CodeableConceptGraphql,
+    contained: Option<Vec<ResourceListGraphql>>,
+    context: Option<ReferenceGraphql>,
+    cost_center: Option<ReferenceGraphql>,
+    definition_canonical: Option<Vec<String>>,
+    definition_uri: Option<Vec<String>>,
+    entered_date: Option<String>,
+    enterer: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor_override: Option<f64>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_period: Option<PeriodGraphql>,
+    occurrence_timing: Option<TimingGraphql>,
+    override_reason: Option<String>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performer: Option<Vec<ChargeItem_PerformerGraphql>>,
+    performing_organization: Option<ReferenceGraphql>,
+    price_override: Option<MoneyGraphql>,
+    product_codeable_concept: Option<CodeableConceptGraphql>,
+    product_reference: Option<ReferenceGraphql>,
+    quantity: Option<QuantityGraphql>,
+    reason: Option<Vec<CodeableConceptGraphql>>,
+    requesting_organization: Option<ReferenceGraphql>,
+    service: Option<Vec<ReferenceGraphql>>,
+    status: Option<ChargeItemStatusGraphql>,
+    subject: ReferenceGraphql,
+    supporting_information: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

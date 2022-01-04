@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -202,4 +205,15 @@ impl Medication_BatchBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Medication_BatchGraphql {
+    _expiration_date: Option<ElementGraphql>,
+    _lot_number: Option<ElementGraphql>,
+    expiration_date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    lot_number: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }

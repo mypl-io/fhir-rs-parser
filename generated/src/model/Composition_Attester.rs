@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -232,6 +236,18 @@ impl Composition_AttesterBuilder {
         self.value["time"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Composition_AttesterGraphql {
+    _mode: Option<ElementGraphql>,
+    _time: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    mode: Option<Composition_AttesterModeGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    party: Option<ReferenceGraphql>,
+    time: Option<String>,
 }
 
 #[derive(Debug)]

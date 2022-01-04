@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -353,6 +357,25 @@ impl HumanNameBuilder {
         self.value["use"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct HumanNameGraphql {
+    _family: Option<ElementGraphql>,
+    _given: Option<Vec<ElementGraphql>>,
+    _prefix: Option<Vec<ElementGraphql>>,
+    _suffix: Option<Vec<ElementGraphql>>,
+    _text: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    family: Option<String>,
+    given: Option<Vec<String>>,
+    id: Option<String>,
+    period: Option<PeriodGraphql>,
+    prefix: Option<Vec<String>>,
+    suffix: Option<Vec<String>>,
+    text: Option<String>,
+    fhir_use: Option<HumanNameUseGraphql>,
 }
 
 #[derive(Debug)]

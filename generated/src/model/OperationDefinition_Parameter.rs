@@ -1,9 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::OperationDefinition_Binding::OperationDefinition_Binding;
+use crate::model::OperationDefinition_Binding::OperationDefinition_BindingGraphql;
+use crate::model::OperationDefinition_Parameter::OperationDefinition_Parameter;
+use crate::model::OperationDefinition_Parameter::OperationDefinition_ParameterGraphql;
 use crate::model::OperationDefinition_ReferencedFrom::OperationDefinition_ReferencedFrom;
+use crate::model::OperationDefinition_ReferencedFrom::OperationDefinition_ReferencedFromGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -502,6 +509,31 @@ impl OperationDefinition_ParameterBuilder {
         self.value["use"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct OperationDefinition_ParameterGraphql {
+    _documentation: Option<ElementGraphql>,
+    _max: Option<ElementGraphql>,
+    _min: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _search_type: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    binding: Option<OperationDefinition_BindingGraphql>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max: Option<String>,
+    min: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    part: Option<Vec<OperationDefinition_ParameterGraphql>>,
+    referenced_from: Option<Vec<OperationDefinition_ReferencedFromGraphql>>,
+    search_type: Option<OperationDefinition_ParameterSearchTypeGraphql>,
+    target_profile: Option<Vec<String>>,
+    fhir_type: Option<String>,
+    fhir_use: Option<OperationDefinition_ParameterUseGraphql>,
 }
 
 #[derive(Debug)]

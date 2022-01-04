@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -248,4 +253,17 @@ impl InsurancePlan_GeneralCostBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct InsurancePlan_GeneralCostGraphql {
+    _comment: Option<ElementGraphql>,
+    _group_size: Option<ElementGraphql>,
+    comment: Option<String>,
+    cost: Option<MoneyGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group_size: Option<i64>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

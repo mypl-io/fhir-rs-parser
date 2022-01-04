@@ -1,22 +1,40 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Encounter_ClassHistory::Encounter_ClassHistory;
+use crate::model::Encounter_ClassHistory::Encounter_ClassHistoryGraphql;
 use crate::model::Encounter_Diagnosis::Encounter_Diagnosis;
+use crate::model::Encounter_Diagnosis::Encounter_DiagnosisGraphql;
 use crate::model::Encounter_Hospitalization::Encounter_Hospitalization;
+use crate::model::Encounter_Hospitalization::Encounter_HospitalizationGraphql;
 use crate::model::Encounter_Location::Encounter_Location;
+use crate::model::Encounter_Location::Encounter_LocationGraphql;
 use crate::model::Encounter_Participant::Encounter_Participant;
+use crate::model::Encounter_Participant::Encounter_ParticipantGraphql;
 use crate::model::Encounter_StatusHistory::Encounter_StatusHistory;
+use crate::model::Encounter_StatusHistory::Encounter_StatusHistoryGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -846,6 +864,44 @@ impl EncounterBuilder {
         self.value["type"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EncounterGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    account: Option<Vec<ReferenceGraphql>>,
+    appointment: Option<Vec<ReferenceGraphql>>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    class: CodingGraphql,
+    class_history: Option<Vec<Encounter_ClassHistoryGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    diagnosis: Option<Vec<Encounter_DiagnosisGraphql>>,
+    episode_of_care: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    hospitalization: Option<Encounter_HospitalizationGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    length: Option<DurationGraphql>,
+    location: Option<Vec<Encounter_LocationGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    part_of: Option<ReferenceGraphql>,
+    participant: Option<Vec<Encounter_ParticipantGraphql>>,
+    period: Option<PeriodGraphql>,
+    priority: Option<CodeableConceptGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    service_provider: Option<ReferenceGraphql>,
+    service_type: Option<CodeableConceptGraphql>,
+    status: Option<EncounterStatusGraphql>,
+    status_history: Option<Vec<Encounter_StatusHistoryGraphql>>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
 #[derive(Debug)]

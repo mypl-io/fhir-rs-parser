@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicinalProductPharmaceutical_WithdrawalPeriod::MedicinalProductPharmaceutical_WithdrawalPeriod;
+use crate::model::MedicinalProductPharmaceutical_WithdrawalPeriod::MedicinalProductPharmaceutical_WithdrawalPeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -183,4 +187,13 @@ impl MedicinalProductPharmaceutical_TargetSpeciesBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPharmaceutical_TargetSpeciesGraphql {
+    code: CodeableConceptGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    withdrawal_period: Option<Vec<MedicinalProductPharmaceutical_WithdrawalPeriodGraphql>>,
 }

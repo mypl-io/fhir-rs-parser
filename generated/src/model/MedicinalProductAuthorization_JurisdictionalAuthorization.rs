@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -265,4 +270,16 @@ impl MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder {
         self.value["validityPeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductAuthorization_JurisdictionalAuthorizationGraphql {
+    country: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    legal_status_of_supply: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    validity_period: Option<PeriodGraphql>,
 }

@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -303,4 +309,18 @@ impl MedicinalProduct_ManufacturingBusinessOperationBuilder {
         self.value["regulator"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProduct_ManufacturingBusinessOperationGraphql {
+    _effective_date: Option<ElementGraphql>,
+    authorisation_reference_number: Option<IdentifierGraphql>,
+    confidentiality_indicator: Option<CodeableConceptGraphql>,
+    effective_date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    manufacturer: Option<Vec<ReferenceGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operation_type: Option<CodeableConceptGraphql>,
+    regulator: Option<ReferenceGraphql>,
 }

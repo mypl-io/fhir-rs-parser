@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::HumanName::HumanName;
+use crate::model::HumanName::HumanNameGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedPerson_Communication::RelatedPerson_Communication;
+use crate::model::RelatedPerson_Communication::RelatedPerson_CommunicationGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -600,6 +615,35 @@ impl RelatedPersonBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RelatedPersonGraphql {
+    _active: Option<ElementGraphql>,
+    _birth_date: Option<ElementGraphql>,
+    _gender: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    active: Option<bool>,
+    address: Option<Vec<AddressGraphql>>,
+    birth_date: Option<String>,
+    communication: Option<Vec<RelatedPerson_CommunicationGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    gender: Option<RelatedPersonGenderGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<Vec<HumanNameGraphql>>,
+    patient: ReferenceGraphql,
+    period: Option<PeriodGraphql>,
+    photo: Option<Vec<AttachmentGraphql>>,
+    relationship: Option<Vec<CodeableConceptGraphql>>,
+    telecom: Option<Vec<ContactPointGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

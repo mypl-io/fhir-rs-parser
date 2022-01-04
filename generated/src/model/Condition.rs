@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Condition_Evidence::Condition_Evidence;
+use crate::model::Condition_Evidence::Condition_EvidenceGraphql;
 use crate::model::Condition_Stage::Condition_Stage;
+use crate::model::Condition_Stage::Condition_StageGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -899,4 +914,48 @@ impl ConditionBuilder {
         self.value["verificationStatus"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConditionGraphql {
+    _abatement_date_time: Option<ElementGraphql>,
+    _abatement_string: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _onset_date_time: Option<ElementGraphql>,
+    _onset_string: Option<ElementGraphql>,
+    _recorded_date: Option<ElementGraphql>,
+    abatement_age: Option<AgeGraphql>,
+    abatement_date_time: Option<String>,
+    abatement_period: Option<PeriodGraphql>,
+    abatement_range: Option<RangeGraphql>,
+    abatement_string: Option<String>,
+    asserter: Option<ReferenceGraphql>,
+    body_site: Option<Vec<CodeableConceptGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    clinical_status: Option<CodeableConceptGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    evidence: Option<Vec<Condition_EvidenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    onset_age: Option<AgeGraphql>,
+    onset_date_time: Option<String>,
+    onset_period: Option<PeriodGraphql>,
+    onset_range: Option<RangeGraphql>,
+    onset_string: Option<String>,
+    recorded_date: Option<String>,
+    recorder: Option<ReferenceGraphql>,
+    severity: Option<CodeableConceptGraphql>,
+    stage: Option<Vec<Condition_StageGraphql>>,
+    subject: ReferenceGraphql,
+    text: Option<NarrativeGraphql>,
+    verification_status: Option<CodeableConceptGraphql>,
 }

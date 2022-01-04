@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -295,4 +299,20 @@ impl Bundle_ResponseBuilder {
         self.value["status"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Bundle_ResponseGraphql {
+    _etag: Option<ElementGraphql>,
+    _last_modified: Option<ElementGraphql>,
+    _location: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    etag: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    last_modified: Option<String>,
+    location: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome: Option<ResourceListGraphql>,
+    status: Option<String>,
 }

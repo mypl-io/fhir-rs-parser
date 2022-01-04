@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::TerminologyCapabilities_Filter::TerminologyCapabilities_Filter;
+use crate::model::TerminologyCapabilities_Filter::TerminologyCapabilities_FilterGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -382,4 +386,22 @@ impl TerminologyCapabilities_VersionBuilder {
         self.value["property"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TerminologyCapabilities_VersionGraphql {
+    _code: Option<ElementGraphql>,
+    _compositional: Option<ElementGraphql>,
+    _is_default: Option<ElementGraphql>,
+    _language: Option<Vec<ElementGraphql>>,
+    _property: Option<Vec<ElementGraphql>>,
+    code: Option<String>,
+    compositional: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    filter: Option<Vec<TerminologyCapabilities_FilterGraphql>>,
+    id: Option<String>,
+    is_default: Option<bool>,
+    language: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    property: Option<Vec<String>>,
 }

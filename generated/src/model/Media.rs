@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -880,4 +892,49 @@ impl MediaBuilder {
         self.value["width"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MediaGraphql {
+    _created_date_time: Option<ElementGraphql>,
+    _device_name: Option<ElementGraphql>,
+    _duration: Option<ElementGraphql>,
+    _frames: Option<ElementGraphql>,
+    _height: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _issued: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _width: Option<ElementGraphql>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    body_site: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    content: AttachmentGraphql,
+    created_date_time: Option<String>,
+    created_period: Option<PeriodGraphql>,
+    device: Option<ReferenceGraphql>,
+    device_name: Option<String>,
+    duration: Option<f64>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    frames: Option<i64>,
+    height: Option<i64>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    issued: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modality: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    operator: Option<ReferenceGraphql>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    status: Option<String>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    view: Option<CodeableConceptGraphql>,
+    width: Option<i64>,
 }

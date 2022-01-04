@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -581,4 +589,33 @@ impl Contract_ValuedItemBuilder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Contract_ValuedItemGraphql {
+    _effective_time: Option<ElementGraphql>,
+    _factor: Option<ElementGraphql>,
+    _link_id: Option<Vec<ElementGraphql>>,
+    _payment: Option<ElementGraphql>,
+    _payment_date: Option<ElementGraphql>,
+    _points: Option<ElementGraphql>,
+    _security_label_number: Option<Vec<ElementGraphql>>,
+    effective_time: Option<String>,
+    entity_codeable_concept: Option<CodeableConceptGraphql>,
+    entity_reference: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    link_id: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    net: Option<MoneyGraphql>,
+    payment: Option<String>,
+    payment_date: Option<String>,
+    points: Option<f64>,
+    quantity: Option<QuantityGraphql>,
+    recipient: Option<ReferenceGraphql>,
+    responsible: Option<ReferenceGraphql>,
+    security_label_number: Option<Vec<u64>>,
+    unit_price: Option<MoneyGraphql>,
 }

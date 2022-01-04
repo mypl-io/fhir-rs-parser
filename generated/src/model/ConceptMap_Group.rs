@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ConceptMap_Element::ConceptMap_Element;
+use crate::model::ConceptMap_Element::ConceptMap_ElementGraphql;
 use crate::model::ConceptMap_Unmapped::ConceptMap_Unmapped;
+use crate::model::ConceptMap_Unmapped::ConceptMap_UnmappedGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -322,4 +327,21 @@ impl ConceptMap_GroupBuilder {
         self.value["unmapped"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConceptMap_GroupGraphql {
+    _source: Option<ElementGraphql>,
+    _source_version: Option<ElementGraphql>,
+    _target: Option<ElementGraphql>,
+    _target_version: Option<ElementGraphql>,
+    element: Vec<ConceptMap_ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    source: Option<String>,
+    source_version: Option<String>,
+    target: Option<String>,
+    target_version: Option<String>,
+    unmapped: Option<ConceptMap_UnmappedGraphql>,
 }

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Questionnaire_Item::Questionnaire_Item;
+use crate::model::Questionnaire_Item::Questionnaire_ItemGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -997,6 +1010,56 @@ impl QuestionnaireBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct QuestionnaireGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subject_type: Option<Vec<ElementGraphql>>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    approval_date: Option<String>,
+    code: Option<Vec<CodingGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    derived_from: Option<Vec<String>>,
+    description: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    item: Option<Vec<Questionnaire_ItemGraphql>>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    status: Option<QuestionnaireStatusGraphql>,
+    subject_type: Option<Vec<String>>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

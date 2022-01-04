@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MarketingStatus::MarketingStatus;
+use crate::model::MarketingStatus::MarketingStatusGraphql;
 use crate::model::MedicinalProductPackaged_BatchIdentifier::MedicinalProductPackaged_BatchIdentifier;
+use crate::model::MedicinalProductPackaged_BatchIdentifier::MedicinalProductPackaged_BatchIdentifierGraphql;
 use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItem;
+use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItemGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -540,4 +552,28 @@ impl MedicinalProductPackagedBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPackagedGraphql {
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    batch_identifier: Option<Vec<MedicinalProductPackaged_BatchIdentifierGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    legal_status_of_supply: Option<CodeableConceptGraphql>,
+    manufacturer: Option<Vec<ReferenceGraphql>>,
+    marketing_authorization: Option<ReferenceGraphql>,
+    marketing_status: Option<Vec<MarketingStatusGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    package_item: Vec<MedicinalProductPackaged_PackageItemGraphql>,
+    subject: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

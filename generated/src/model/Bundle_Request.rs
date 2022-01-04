@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -344,6 +347,25 @@ impl Bundle_RequestBuilder {
         self.value["url"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Bundle_RequestGraphql {
+    _if_match: Option<ElementGraphql>,
+    _if_modified_since: Option<ElementGraphql>,
+    _if_none_exist: Option<ElementGraphql>,
+    _if_none_match: Option<ElementGraphql>,
+    _method: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    if_match: Option<String>,
+    if_modified_since: Option<String>,
+    if_none_exist: Option<String>,
+    if_none_match: Option<String>,
+    method: Option<Bundle_RequestMethodGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    url: Option<String>,
 }
 
 #[derive(Debug)]

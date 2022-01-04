@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DataRequirement::DataRequirement;
+use crate::model::DataRequirement::DataRequirementGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -757,6 +768,41 @@ impl GuidanceResponseBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GuidanceResponseGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _module_canonical: Option<ElementGraphql>,
+    _module_uri: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    data_requirement: Option<Vec<DataRequirementGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    evaluation_message: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    module_canonical: Option<String>,
+    module_codeable_concept: Option<CodeableConceptGraphql>,
+    module_uri: Option<String>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    output_parameters: Option<ReferenceGraphql>,
+    performer: Option<ReferenceGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    request_identifier: Option<IdentifierGraphql>,
+    result: Option<ReferenceGraphql>,
+    status: Option<GuidanceResponseStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -200,4 +207,15 @@ impl UsageContextBuilder {
         self.value["valueReference"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct UsageContextGraphql {
+    code: CodingGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    value_codeable_concept: Option<CodeableConceptGraphql>,
+    value_quantity: Option<QuantityGraphql>,
+    value_range: Option<RangeGraphql>,
+    value_reference: Option<ReferenceGraphql>,
 }

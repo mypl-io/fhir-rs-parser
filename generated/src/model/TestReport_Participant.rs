@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -240,6 +243,19 @@ impl TestReport_ParticipantBuilder {
         self.value["uri"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestReport_ParticipantGraphql {
+    _display: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _uri: Option<ElementGraphql>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<TestReport_ParticipantTypeGraphql>,
+    uri: Option<String>,
 }
 
 #[derive(Debug)]

@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SearchParameter_Component::SearchParameter_Component;
+use crate::model::SearchParameter_Component::SearchParameter_ComponentGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1167,6 +1177,65 @@ impl SearchParameterBuilder {
         self.value["xpathUsage"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SearchParameterGraphql {
+    _base: Option<Vec<ElementGraphql>>,
+    _chain: Option<Vec<ElementGraphql>>,
+    _code: Option<ElementGraphql>,
+    _comparator: Option<Vec<ElementGraphql>>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _expression: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _modifier: Option<Vec<ElementGraphql>>,
+    _multiple_and: Option<ElementGraphql>,
+    _multiple_or: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _target: Option<Vec<ElementGraphql>>,
+    _type: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    _xpath: Option<ElementGraphql>,
+    _xpath_usage: Option<ElementGraphql>,
+    base: Option<Vec<String>>,
+    chain: Option<Vec<String>>,
+    code: Option<String>,
+    component: Option<Vec<SearchParameter_ComponentGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    derived_from: Option<String>,
+    description: Option<String>,
+    experimental: Option<bool>,
+    expression: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    multiple_and: Option<bool>,
+    multiple_or: Option<bool>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    status: Option<SearchParameterStatusGraphql>,
+    target: Option<Vec<String>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<SearchParameterTypeGraphql>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
+    xpath: Option<String>,
+    xpath_usage: Option<SearchParameterXpathUsageGraphql>,
 }
 
 #[derive(Debug)]

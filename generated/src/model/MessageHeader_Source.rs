@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -294,4 +298,20 @@ impl MessageHeader_SourceBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MessageHeader_SourceGraphql {
+    _endpoint: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _software: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    contact: Option<ContactPointGraphql>,
+    endpoint: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    software: Option<String>,
+    version: Option<String>,
 }

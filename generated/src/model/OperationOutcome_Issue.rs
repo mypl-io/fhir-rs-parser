@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -369,6 +373,24 @@ impl OperationOutcome_IssueBuilder {
         self.value["severity"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct OperationOutcome_IssueGraphql {
+    _code: Option<ElementGraphql>,
+    _diagnostics: Option<ElementGraphql>,
+    _expression: Option<Vec<ElementGraphql>>,
+    _location: Option<Vec<ElementGraphql>>,
+    _severity: Option<ElementGraphql>,
+    code: Option<OperationOutcome_IssueCodeGraphql>,
+    details: Option<CodeableConceptGraphql>,
+    diagnostics: Option<String>,
+    expression: Option<Vec<String>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    location: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    severity: Option<OperationOutcome_IssueSeverityGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -360,4 +368,21 @@ impl FamilyMemberHistory_ConditionBuilder {
         self.value["outcome"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct FamilyMemberHistory_ConditionGraphql {
+    _contributed_to_death: Option<ElementGraphql>,
+    _onset_string: Option<ElementGraphql>,
+    code: CodeableConceptGraphql,
+    contributed_to_death: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    onset_age: Option<AgeGraphql>,
+    onset_period: Option<PeriodGraphql>,
+    onset_range: Option<RangeGraphql>,
+    onset_string: Option<String>,
+    outcome: Option<CodeableConceptGraphql>,
 }

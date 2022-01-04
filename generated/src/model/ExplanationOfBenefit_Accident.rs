@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -246,4 +252,16 @@ impl ExplanationOfBenefit_AccidentBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_AccidentGraphql {
+    _date: Option<ElementGraphql>,
+    date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    location_address: Option<AddressGraphql>,
+    location_reference: Option<ReferenceGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

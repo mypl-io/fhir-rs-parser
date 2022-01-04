@@ -1,8 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::QuestionnaireResponse_Answer::QuestionnaireResponse_Answer;
+use crate::model::QuestionnaireResponse_Answer::QuestionnaireResponse_AnswerGraphql;
+use crate::model::QuestionnaireResponse_Item::QuestionnaireResponse_Item;
+use crate::model::QuestionnaireResponse_Item::QuestionnaireResponse_ItemGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -300,4 +306,19 @@ impl QuestionnaireResponse_ItemBuilder {
         self.value["text"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct QuestionnaireResponse_ItemGraphql {
+    _definition: Option<ElementGraphql>,
+    _link_id: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    answer: Option<Vec<QuestionnaireResponse_AnswerGraphql>>,
+    definition: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    item: Option<Vec<QuestionnaireResponse_ItemGraphql>>,
+    link_id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    text: Option<String>,
 }

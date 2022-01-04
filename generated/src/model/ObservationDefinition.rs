@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ObservationDefinition_QualifiedInterval::ObservationDefinition_QualifiedInterval;
+use crate::model::ObservationDefinition_QualifiedInterval::ObservationDefinition_QualifiedIntervalGraphql;
 use crate::model::ObservationDefinition_QuantitativeDetails::ObservationDefinition_QuantitativeDetails;
+use crate::model::ObservationDefinition_QuantitativeDetails::ObservationDefinition_QuantitativeDetailsGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -636,4 +647,33 @@ impl ObservationDefinitionBuilder {
         self.value["validCodedValueSet"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ObservationDefinitionGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _multiple_results_allowed: Option<ElementGraphql>,
+    _permitted_data_type: Option<Vec<ElementGraphql>>,
+    _preferred_report_name: Option<ElementGraphql>,
+    abnormal_coded_value_set: Option<ReferenceGraphql>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    code: CodeableConceptGraphql,
+    contained: Option<Vec<ResourceListGraphql>>,
+    critical_coded_value_set: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    multiple_results_allowed: Option<bool>,
+    normal_coded_value_set: Option<ReferenceGraphql>,
+    preferred_report_name: Option<String>,
+    qualified_interval: Option<Vec<ObservationDefinition_QualifiedIntervalGraphql>>,
+    quantitative_details: Option<ObservationDefinition_QuantitativeDetailsGraphql>,
+    text: Option<NarrativeGraphql>,
+    valid_coded_value_set: Option<ReferenceGraphql>,
 }

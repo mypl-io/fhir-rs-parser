@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeight;
+use crate::model::SubstanceSpecification_MolecularWeight::SubstanceSpecification_MolecularWeightGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -254,4 +260,16 @@ impl SubstanceSpecification_IsotopeBuilder {
         self.value["substitution"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_IsotopeGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    half_life: Option<QuantityGraphql>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    molecular_weight: Option<SubstanceSpecification_MolecularWeightGraphql>,
+    name: Option<CodeableConceptGraphql>,
+    substitution: Option<CodeableConceptGraphql>,
 }

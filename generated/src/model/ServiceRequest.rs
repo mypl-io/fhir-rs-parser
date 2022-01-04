@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1307,4 +1322,65 @@ impl ServiceRequestBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ServiceRequestGraphql {
+    _as_needed_boolean: Option<ElementGraphql>,
+    _authored_on: Option<ElementGraphql>,
+    _do_not_perform: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _intent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _patient_instruction: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    as_needed_boolean: Option<bool>,
+    as_needed_codeable_concept: Option<CodeableConceptGraphql>,
+    authored_on: Option<String>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    body_site: Option<Vec<CodeableConceptGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    do_not_perform: Option<bool>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    insurance: Option<Vec<ReferenceGraphql>>,
+    intent: Option<String>,
+    language: Option<String>,
+    location_code: Option<Vec<CodeableConceptGraphql>>,
+    location_reference: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_period: Option<PeriodGraphql>,
+    occurrence_timing: Option<TimingGraphql>,
+    order_detail: Option<Vec<CodeableConceptGraphql>>,
+    patient_instruction: Option<String>,
+    performer: Option<Vec<ReferenceGraphql>>,
+    performer_type: Option<CodeableConceptGraphql>,
+    priority: Option<String>,
+    quantity_quantity: Option<QuantityGraphql>,
+    quantity_range: Option<RangeGraphql>,
+    quantity_ratio: Option<RatioGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    relevant_history: Option<Vec<ReferenceGraphql>>,
+    replaces: Option<Vec<ReferenceGraphql>>,
+    requester: Option<ReferenceGraphql>,
+    requisition: Option<IdentifierGraphql>,
+    specimen: Option<Vec<ReferenceGraphql>>,
+    status: Option<String>,
+    subject: ReferenceGraphql,
+    supporting_info: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

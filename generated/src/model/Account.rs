@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Account_Coverage::Account_Coverage;
+use crate::model::Account_Coverage::Account_CoverageGraphql;
 use crate::model::Account_Guarantor::Account_Guarantor;
+use crate::model::Account_Guarantor::Account_GuarantorGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -569,6 +581,34 @@ impl AccountBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AccountGraphql {
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    coverage: Option<Vec<Account_CoverageGraphql>>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    guarantor: Option<Vec<Account_GuarantorGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    owner: Option<ReferenceGraphql>,
+    part_of: Option<ReferenceGraphql>,
+    service_period: Option<PeriodGraphql>,
+    status: Option<AccountStatusGraphql>,
+    subject: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

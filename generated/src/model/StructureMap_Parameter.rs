@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -305,4 +308,21 @@ impl StructureMap_ParameterBuilder {
         self.value["valueString"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_ParameterGraphql {
+    _value_boolean: Option<ElementGraphql>,
+    _value_decimal: Option<ElementGraphql>,
+    _value_id: Option<ElementGraphql>,
+    _value_integer: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    value_boolean: Option<bool>,
+    value_decimal: Option<f64>,
+    value_id: Option<String>,
+    value_integer: Option<f64>,
+    value_string: Option<String>,
 }

@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::CoverageEligibilityResponse_Error::CoverageEligibilityResponse_Error;
+use crate::model::CoverageEligibilityResponse_Error::CoverageEligibilityResponse_ErrorGraphql;
 use crate::model::CoverageEligibilityResponse_Insurance::CoverageEligibilityResponse_Insurance;
+use crate::model::CoverageEligibilityResponse_Insurance::CoverageEligibilityResponse_InsuranceGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -738,6 +750,42 @@ impl CoverageEligibilityResponseBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CoverageEligibilityResponseGraphql {
+    _created: Option<ElementGraphql>,
+    _disposition: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _outcome: Option<ElementGraphql>,
+    _pre_auth_ref: Option<ElementGraphql>,
+    _purpose: Option<Vec<ElementGraphql>>,
+    _serviced_date: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    created: Option<String>,
+    disposition: Option<String>,
+    error: Option<Vec<CoverageEligibilityResponse_ErrorGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    form: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    insurance: Option<Vec<CoverageEligibilityResponse_InsuranceGraphql>>,
+    insurer: ReferenceGraphql,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome: Option<CoverageEligibilityResponseOutcomeGraphql>,
+    patient: ReferenceGraphql,
+    pre_auth_ref: Option<String>,
+    request: ReferenceGraphql,
+    requestor: Option<ReferenceGraphql>,
+    serviced_date: Option<String>,
+    serviced_period: Option<PeriodGraphql>,
+    status: Option<String>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -298,4 +303,21 @@ impl SignatureBuilder {
         self.value["when"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SignatureGraphql {
+    _data: Option<ElementGraphql>,
+    _sig_format: Option<ElementGraphql>,
+    _target_format: Option<ElementGraphql>,
+    _when: Option<ElementGraphql>,
+    data: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    on_behalf_of: Option<ReferenceGraphql>,
+    sig_format: Option<String>,
+    target_format: Option<String>,
+    fhir_type: Vec<CodingGraphql>,
+    when: Option<String>,
+    who: ReferenceGraphql,
 }

@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -374,6 +377,26 @@ impl ElementDefinition_ConstraintBuilder {
         self.value["xpath"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ElementDefinition_ConstraintGraphql {
+    _expression: Option<ElementGraphql>,
+    _human: Option<ElementGraphql>,
+    _key: Option<ElementGraphql>,
+    _requirements: Option<ElementGraphql>,
+    _severity: Option<ElementGraphql>,
+    _xpath: Option<ElementGraphql>,
+    expression: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    human: Option<String>,
+    id: Option<String>,
+    key: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    requirements: Option<String>,
+    severity: Option<ElementDefinition_ConstraintSeverityGraphql>,
+    source: Option<String>,
+    xpath: Option<String>,
 }
 
 #[derive(Debug)]

@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SubstanceSourceMaterial_FractionDescription::SubstanceSourceMaterial_FractionDescription;
+use crate::model::SubstanceSourceMaterial_FractionDescription::SubstanceSourceMaterial_FractionDescriptionGraphql;
 use crate::model::SubstanceSourceMaterial_Organism::SubstanceSourceMaterial_Organism;
+use crate::model::SubstanceSourceMaterial_Organism::SubstanceSourceMaterial_OrganismGraphql;
 use crate::model::SubstanceSourceMaterial_PartDescription::SubstanceSourceMaterial_PartDescription;
+use crate::model::SubstanceSourceMaterial_PartDescription::SubstanceSourceMaterial_PartDescriptionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -716,4 +727,34 @@ impl SubstanceSourceMaterialBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSourceMaterialGraphql {
+    _geographical_location: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _organism_name: Option<ElementGraphql>,
+    _parent_substance_name: Option<Vec<ElementGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    country_of_origin: Option<Vec<CodeableConceptGraphql>>,
+    development_stage: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    fraction_description: Option<Vec<SubstanceSourceMaterial_FractionDescriptionGraphql>>,
+    geographical_location: Option<Vec<String>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    organism: Option<SubstanceSourceMaterial_OrganismGraphql>,
+    organism_id: Option<IdentifierGraphql>,
+    organism_name: Option<String>,
+    parent_substance_id: Option<Vec<IdentifierGraphql>>,
+    parent_substance_name: Option<Vec<String>>,
+    part_description: Option<Vec<SubstanceSourceMaterial_PartDescriptionGraphql>>,
+    source_material_class: Option<CodeableConceptGraphql>,
+    source_material_state: Option<CodeableConceptGraphql>,
+    source_material_type: Option<CodeableConceptGraphql>,
+    text: Option<NarrativeGraphql>,
 }

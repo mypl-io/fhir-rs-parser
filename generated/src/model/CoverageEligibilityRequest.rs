@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::CoverageEligibilityRequest_Insurance::CoverageEligibilityRequest_Insurance;
+use crate::model::CoverageEligibilityRequest_Insurance::CoverageEligibilityRequest_InsuranceGraphql;
 use crate::model::CoverageEligibilityRequest_Item::CoverageEligibilityRequest_Item;
+use crate::model::CoverageEligibilityRequest_Item::CoverageEligibilityRequest_ItemGraphql;
 use crate::model::CoverageEligibilityRequest_SupportingInfo::CoverageEligibilityRequest_SupportingInfo;
+use crate::model::CoverageEligibilityRequest_SupportingInfo::CoverageEligibilityRequest_SupportingInfoGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -678,4 +691,36 @@ impl CoverageEligibilityRequestBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CoverageEligibilityRequestGraphql {
+    _created: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _purpose: Option<Vec<ElementGraphql>>,
+    _serviced_date: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    created: Option<String>,
+    enterer: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    facility: Option<ReferenceGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    insurance: Option<Vec<CoverageEligibilityRequest_InsuranceGraphql>>,
+    insurer: ReferenceGraphql,
+    item: Option<Vec<CoverageEligibilityRequest_ItemGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    patient: ReferenceGraphql,
+    priority: Option<CodeableConceptGraphql>,
+    provider: Option<ReferenceGraphql>,
+    serviced_date: Option<String>,
+    serviced_period: Option<PeriodGraphql>,
+    status: Option<String>,
+    supporting_info: Option<Vec<CoverageEligibilityRequest_SupportingInfoGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

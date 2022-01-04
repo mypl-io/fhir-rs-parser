@@ -1,22 +1,40 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Observation_Component::Observation_Component;
+use crate::model::Observation_Component::Observation_ComponentGraphql;
 use crate::model::Observation_ReferenceRange::Observation_ReferenceRange;
+use crate::model::Observation_ReferenceRange::Observation_ReferenceRangeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::SampledData::SampledData;
+use crate::model::SampledData::SampledDataGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1267,6 +1285,66 @@ impl ObservationBuilder {
         self.value["valueTime"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ObservationGraphql {
+    _effective_date_time: Option<ElementGraphql>,
+    _effective_instant: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _issued: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _value_boolean: Option<ElementGraphql>,
+    _value_date_time: Option<ElementGraphql>,
+    _value_integer: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    _value_time: Option<ElementGraphql>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    body_site: Option<CodeableConceptGraphql>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    code: CodeableConceptGraphql,
+    component: Option<Vec<Observation_ComponentGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    data_absent_reason: Option<CodeableConceptGraphql>,
+    derived_from: Option<Vec<ReferenceGraphql>>,
+    device: Option<ReferenceGraphql>,
+    effective_date_time: Option<String>,
+    effective_instant: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    effective_timing: Option<TimingGraphql>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focus: Option<Vec<ReferenceGraphql>>,
+    has_member: Option<Vec<ReferenceGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    interpretation: Option<Vec<CodeableConceptGraphql>>,
+    issued: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performer: Option<Vec<ReferenceGraphql>>,
+    reference_range: Option<Vec<Observation_ReferenceRangeGraphql>>,
+    specimen: Option<ReferenceGraphql>,
+    status: Option<ObservationStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    value_boolean: Option<bool>,
+    value_codeable_concept: Option<CodeableConceptGraphql>,
+    value_date_time: Option<String>,
+    value_integer: Option<f64>,
+    value_period: Option<PeriodGraphql>,
+    value_quantity: Option<QuantityGraphql>,
+    value_range: Option<RangeGraphql>,
+    value_ratio: Option<RatioGraphql>,
+    value_sampled_data: Option<SampledDataGraphql>,
+    value_string: Option<String>,
+    value_time: Option<String>,
 }
 
 #[derive(Debug)]

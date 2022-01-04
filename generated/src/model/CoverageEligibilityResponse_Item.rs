@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::CoverageEligibilityResponse_Benefit::CoverageEligibilityResponse_Benefit;
+use crate::model::CoverageEligibilityResponse_Benefit::CoverageEligibilityResponse_BenefitGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -566,4 +572,30 @@ impl CoverageEligibilityResponse_ItemBuilder {
         self.value["unit"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CoverageEligibilityResponse_ItemGraphql {
+    _authorization_required: Option<ElementGraphql>,
+    _authorization_url: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _excluded: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    authorization_required: Option<bool>,
+    authorization_supporting: Option<Vec<CodeableConceptGraphql>>,
+    authorization_url: Option<String>,
+    benefit: Option<Vec<CoverageEligibilityResponse_BenefitGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    description: Option<String>,
+    excluded: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    network: Option<CodeableConceptGraphql>,
+    product_or_service: Option<CodeableConceptGraphql>,
+    provider: Option<ReferenceGraphql>,
+    term: Option<CodeableConceptGraphql>,
+    unit: Option<CodeableConceptGraphql>,
 }

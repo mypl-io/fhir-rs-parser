@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CapabilityStatement_Interaction1::CapabilityStatement_Interaction1;
+use crate::model::CapabilityStatement_Interaction1::CapabilityStatement_Interaction1Graphql;
 use crate::model::CapabilityStatement_Operation::CapabilityStatement_Operation;
+use crate::model::CapabilityStatement_Operation::CapabilityStatement_OperationGraphql;
 use crate::model::CapabilityStatement_Resource::CapabilityStatement_Resource;
+use crate::model::CapabilityStatement_Resource::CapabilityStatement_ResourceGraphql;
 use crate::model::CapabilityStatement_SearchParam::CapabilityStatement_SearchParam;
+use crate::model::CapabilityStatement_SearchParam::CapabilityStatement_SearchParamGraphql;
 use crate::model::CapabilityStatement_Security::CapabilityStatement_Security;
+use crate::model::CapabilityStatement_Security::CapabilityStatement_SecurityGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -381,6 +389,23 @@ impl CapabilityStatement_RestBuilder {
         self.value["security"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CapabilityStatement_RestGraphql {
+    _documentation: Option<ElementGraphql>,
+    _mode: Option<ElementGraphql>,
+    compartment: Option<Vec<String>>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    interaction: Option<Vec<CapabilityStatement_Interaction1Graphql>>,
+    mode: Option<CapabilityStatement_RestModeGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operation: Option<Vec<CapabilityStatement_OperationGraphql>>,
+    resource: Option<Vec<CapabilityStatement_ResourceGraphql>>,
+    search_param: Option<Vec<CapabilityStatement_SearchParamGraphql>>,
+    security: Option<CapabilityStatement_SecurityGraphql>,
 }
 
 #[derive(Debug)]

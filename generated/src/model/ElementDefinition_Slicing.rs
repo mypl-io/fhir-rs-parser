@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ElementDefinition_Discriminator::ElementDefinition_Discriminator;
+use crate::model::ElementDefinition_Discriminator::ElementDefinition_DiscriminatorGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -279,6 +283,20 @@ impl ElementDefinition_SlicingBuilder {
         self.value["rules"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ElementDefinition_SlicingGraphql {
+    _description: Option<ElementGraphql>,
+    _ordered: Option<ElementGraphql>,
+    _rules: Option<ElementGraphql>,
+    description: Option<String>,
+    discriminator: Option<Vec<ElementDefinition_DiscriminatorGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    ordered: Option<bool>,
+    rules: Option<ElementDefinition_SlicingRulesGraphql>,
 }
 
 #[derive(Debug)]

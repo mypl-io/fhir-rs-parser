@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ConceptMap_DependsOn::ConceptMap_DependsOn;
+use crate::model::ConceptMap_DependsOn::ConceptMap_DependsOnGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -337,6 +341,23 @@ impl ConceptMap_TargetBuilder {
         self.value["product"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConceptMap_TargetGraphql {
+    _code: Option<ElementGraphql>,
+    _comment: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    _equivalence: Option<ElementGraphql>,
+    code: Option<String>,
+    comment: Option<String>,
+    depends_on: Option<Vec<ConceptMap_DependsOnGraphql>>,
+    display: Option<String>,
+    equivalence: Option<ConceptMap_TargetEquivalenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    product: Option<Vec<ConceptMap_DependsOnGraphql>>,
 }
 
 #[derive(Debug)]

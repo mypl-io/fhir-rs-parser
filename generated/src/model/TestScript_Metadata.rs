@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::TestScript_Capability::TestScript_Capability;
+use crate::model::TestScript_Capability::TestScript_CapabilityGraphql;
 use crate::model::TestScript_Link::TestScript_Link;
+use crate::model::TestScript_Link::TestScript_LinkGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -182,4 +186,13 @@ impl TestScript_MetadataBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_MetadataGraphql {
+    capability: Vec<TestScript_CapabilityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    link: Option<Vec<TestScript_LinkGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }

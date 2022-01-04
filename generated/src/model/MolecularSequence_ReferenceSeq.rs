@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -460,6 +465,28 @@ impl MolecularSequence_ReferenceSeqBuilder {
         self.value["windowStart"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MolecularSequence_ReferenceSeqGraphql {
+    _genome_build: Option<ElementGraphql>,
+    _orientation: Option<ElementGraphql>,
+    _reference_seq_string: Option<ElementGraphql>,
+    _strand: Option<ElementGraphql>,
+    _window_end: Option<ElementGraphql>,
+    _window_start: Option<ElementGraphql>,
+    chromosome: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    genome_build: Option<String>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    orientation: Option<MolecularSequence_ReferenceSeqOrientationGraphql>,
+    reference_seq_id: Option<CodeableConceptGraphql>,
+    reference_seq_pointer: Option<ReferenceGraphql>,
+    reference_seq_string: Option<String>,
+    strand: Option<MolecularSequence_ReferenceSeqStrandGraphql>,
+    window_end: Option<i64>,
+    window_start: Option<i64>,
 }
 
 #[derive(Debug)]

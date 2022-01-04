@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -255,6 +259,21 @@ impl ContactPointBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ContactPointGraphql {
+    _rank: Option<ElementGraphql>,
+    _system: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    period: Option<PeriodGraphql>,
+    rank: Option<i64>,
+    system: Option<ContactPointSystemGraphql>,
+    fhir_use: Option<ContactPointUseGraphql>,
+    value: Option<String>,
 }
 
 #[derive(Debug)]

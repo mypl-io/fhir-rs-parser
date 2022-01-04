@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -300,4 +305,19 @@ impl Claim_ProcedureBuilder {
         self.value["udi"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Claim_ProcedureGraphql {
+    _date: Option<ElementGraphql>,
+    _sequence: Option<ElementGraphql>,
+    date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    procedure_codeable_concept: Option<CodeableConceptGraphql>,
+    procedure_reference: Option<ReferenceGraphql>,
+    sequence: Option<i64>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
+    udi: Option<Vec<ReferenceGraphql>>,
 }

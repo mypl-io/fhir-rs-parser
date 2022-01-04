@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -300,6 +304,22 @@ impl NamingSystem_UniqueIdBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct NamingSystem_UniqueIdGraphql {
+    _comment: Option<ElementGraphql>,
+    _preferred: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    comment: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<PeriodGraphql>,
+    preferred: Option<bool>,
+    fhir_type: Option<NamingSystem_UniqueIdTypeGraphql>,
+    value: Option<String>,
 }
 
 #[derive(Debug)]

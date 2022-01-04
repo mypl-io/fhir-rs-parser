@@ -1,12 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
+use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItem;
+use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItemGraphql;
 use crate::model::ProdCharacteristic::ProdCharacteristic;
+use crate::model::ProdCharacteristic::ProdCharacteristicGraphql;
 use crate::model::ProductShelfLife::ProductShelfLife;
+use crate::model::ProductShelfLife::ProductShelfLifeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -438,4 +448,23 @@ impl MedicinalProductPackaged_PackageItemBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPackaged_PackageItemGraphql {
+    alternate_material: Option<Vec<CodeableConceptGraphql>>,
+    device: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    manufactured_item: Option<Vec<ReferenceGraphql>>,
+    manufacturer: Option<Vec<ReferenceGraphql>>,
+    material: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    other_characteristics: Option<Vec<CodeableConceptGraphql>>,
+    package_item: Option<Vec<MedicinalProductPackaged_PackageItemGraphql>>,
+    physical_characteristics: Option<ProdCharacteristicGraphql>,
+    quantity: QuantityGraphql,
+    shelf_life_storage: Option<Vec<ProductShelfLifeGraphql>>,
+    fhir_type: CodeableConceptGraphql,
 }

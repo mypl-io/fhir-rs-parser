@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -276,4 +280,19 @@ impl MetaBuilder {
         self.value["versionId"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MetaGraphql {
+    _last_updated: Option<ElementGraphql>,
+    _source: Option<ElementGraphql>,
+    _version_id: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    last_updated: Option<String>,
+    profile: Option<Vec<String>>,
+    security: Option<Vec<CodingGraphql>>,
+    source: Option<String>,
+    tag: Option<Vec<CodingGraphql>>,
+    version_id: Option<String>,
 }

@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Communication_Payload::Communication_Payload;
+use crate::model::Communication_Payload::Communication_PayloadGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -900,4 +911,46 @@ impl CommunicationBuilder {
         self.value["topic"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CommunicationGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _language: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _received: Option<ElementGraphql>,
+    _sent: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    about: Option<Vec<ReferenceGraphql>>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    in_response_to: Option<Vec<ReferenceGraphql>>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    language: Option<String>,
+    medium: Option<Vec<CodeableConceptGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    payload: Option<Vec<Communication_PayloadGraphql>>,
+    priority: Option<String>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    received: Option<String>,
+    recipient: Option<Vec<ReferenceGraphql>>,
+    sender: Option<ReferenceGraphql>,
+    sent: Option<String>,
+    status: Option<String>,
+    status_reason: Option<CodeableConceptGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    topic: Option<CodeableConceptGraphql>,
 }

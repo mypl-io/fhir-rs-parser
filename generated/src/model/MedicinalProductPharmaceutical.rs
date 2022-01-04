@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MedicinalProductPharmaceutical_Characteristics::MedicinalProductPharmaceutical_Characteristics;
+use crate::model::MedicinalProductPharmaceutical_Characteristics::MedicinalProductPharmaceutical_CharacteristicsGraphql;
 use crate::model::MedicinalProductPharmaceutical_RouteOfAdministration::MedicinalProductPharmaceutical_RouteOfAdministration;
+use crate::model::MedicinalProductPharmaceutical_RouteOfAdministration::MedicinalProductPharmaceutical_RouteOfAdministrationGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -474,4 +485,25 @@ impl MedicinalProductPharmaceuticalBuilder {
         self.value["unitOfPresentation"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductPharmaceuticalGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    administrable_dose_form: CodeableConceptGraphql,
+    characteristics: Option<Vec<MedicinalProductPharmaceutical_CharacteristicsGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    device: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    ingredient: Option<Vec<ReferenceGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    route_of_administration: Vec<MedicinalProductPharmaceutical_RouteOfAdministrationGraphql>,
+    text: Option<NarrativeGraphql>,
+    unit_of_presentation: Option<CodeableConceptGraphql>,
 }

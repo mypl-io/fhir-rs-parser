@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::ClinicalImpression_Finding::ClinicalImpression_Finding;
+use crate::model::ClinicalImpression_Finding::ClinicalImpression_FindingGraphql;
 use crate::model::ClinicalImpression_Investigation::ClinicalImpression_Investigation;
+use crate::model::ClinicalImpression_Investigation::ClinicalImpression_InvestigationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -870,4 +883,45 @@ impl ClinicalImpressionBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClinicalImpressionGraphql {
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _effective_date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _protocol: Option<Vec<ElementGraphql>>,
+    _status: Option<ElementGraphql>,
+    _summary: Option<ElementGraphql>,
+    assessor: Option<ReferenceGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    description: Option<String>,
+    effective_date_time: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    finding: Option<Vec<ClinicalImpression_FindingGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    investigation: Option<Vec<ClinicalImpression_InvestigationGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    previous: Option<ReferenceGraphql>,
+    problem: Option<Vec<ReferenceGraphql>>,
+    prognosis_codeable_concept: Option<Vec<CodeableConceptGraphql>>,
+    prognosis_reference: Option<Vec<ReferenceGraphql>>,
+    protocol: Option<Vec<String>>,
+    status: Option<String>,
+    status_reason: Option<CodeableConceptGraphql>,
+    subject: ReferenceGraphql,
+    summary: Option<String>,
+    supporting_info: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

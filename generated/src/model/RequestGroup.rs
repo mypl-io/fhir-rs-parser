@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RequestGroup_Action::RequestGroup_Action;
+use crate::model::RequestGroup_Action::RequestGroup_ActionGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -790,4 +801,42 @@ impl RequestGroupBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RequestGroupGraphql {
+    _authored_on: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_canonical: Option<Vec<ElementGraphql>>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _intent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    action: Option<Vec<RequestGroup_ActionGraphql>>,
+    author: Option<ReferenceGraphql>,
+    authored_on: Option<String>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group_identifier: Option<IdentifierGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    intent: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    priority: Option<String>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    replaces: Option<Vec<ReferenceGraphql>>,
+    status: Option<String>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
 }

@@ -1,25 +1,46 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ActivityDefinition_DynamicValue::ActivityDefinition_DynamicValue;
+use crate::model::ActivityDefinition_DynamicValue::ActivityDefinition_DynamicValueGraphql;
 use crate::model::ActivityDefinition_Participant::ActivityDefinition_Participant;
+use crate::model::ActivityDefinition_Participant::ActivityDefinition_ParticipantGraphql;
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Dosage::Dosage;
+use crate::model::Dosage::DosageGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1819,6 +1840,93 @@ impl ActivityDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ActivityDefinitionGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _do_not_perform: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _intent: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subtitle: Option<ElementGraphql>,
+    _timing_date_time: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _usage: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    approval_date: Option<String>,
+    author: Option<Vec<ContactDetailGraphql>>,
+    body_site: Option<Vec<CodeableConceptGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    do_not_perform: Option<bool>,
+    dosage: Option<Vec<DosageGraphql>>,
+    dynamic_value: Option<Vec<ActivityDefinition_DynamicValueGraphql>>,
+    editor: Option<Vec<ContactDetailGraphql>>,
+    effective_period: Option<PeriodGraphql>,
+    endorser: Option<Vec<ContactDetailGraphql>>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    intent: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    kind: Option<String>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    library: Option<Vec<String>>,
+    location: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    observation_requirement: Option<Vec<ReferenceGraphql>>,
+    observation_result_requirement: Option<Vec<ReferenceGraphql>>,
+    participant: Option<Vec<ActivityDefinition_ParticipantGraphql>>,
+    priority: Option<String>,
+    product_codeable_concept: Option<CodeableConceptGraphql>,
+    product_reference: Option<ReferenceGraphql>,
+    profile: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    quantity: Option<QuantityGraphql>,
+    related_artifact: Option<Vec<RelatedArtifactGraphql>>,
+    reviewer: Option<Vec<ContactDetailGraphql>>,
+    specimen_requirement: Option<Vec<ReferenceGraphql>>,
+    status: Option<ActivityDefinitionStatusGraphql>,
+    subject_codeable_concept: Option<CodeableConceptGraphql>,
+    subject_reference: Option<ReferenceGraphql>,
+    subtitle: Option<String>,
+    text: Option<NarrativeGraphql>,
+    timing_age: Option<AgeGraphql>,
+    timing_date_time: Option<String>,
+    timing_duration: Option<DurationGraphql>,
+    timing_period: Option<PeriodGraphql>,
+    timing_range: Option<RangeGraphql>,
+    timing_timing: Option<TimingGraphql>,
+    title: Option<String>,
+    topic: Option<Vec<CodeableConceptGraphql>>,
+    transform: Option<String>,
+    url: Option<String>,
+    usage: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

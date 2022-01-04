@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_Adjudication;
+use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_AdjudicationGraphql;
 use crate::model::ExplanationOfBenefit_SubDetail::ExplanationOfBenefit_SubDetail;
+use crate::model::ExplanationOfBenefit_SubDetail::ExplanationOfBenefit_SubDetailGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -523,4 +532,28 @@ impl ExplanationOfBenefit_DetailBuilder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_DetailGraphql {
+    _factor: Option<ElementGraphql>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    _sequence: Option<ElementGraphql>,
+    adjudication: Option<Vec<ExplanationOfBenefit_AdjudicationGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    net: Option<MoneyGraphql>,
+    note_number: Option<Vec<i64>>,
+    product_or_service: CodeableConceptGraphql,
+    program_code: Option<Vec<CodeableConceptGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    revenue: Option<CodeableConceptGraphql>,
+    sequence: Option<i64>,
+    sub_detail: Option<Vec<ExplanationOfBenefit_SubDetailGraphql>>,
+    udi: Option<Vec<ReferenceGraphql>>,
+    unit_price: Option<MoneyGraphql>,
 }

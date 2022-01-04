@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -237,4 +241,17 @@ impl ReferenceBuilder {
         self.value["type"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ReferenceGraphql {
+    _display: Option<ElementGraphql>,
+    _reference: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    reference: Option<String>,
+    fhir_type: Option<String>,
 }

@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::DataRequirement::DataRequirement;
+use crate::model::DataRequirement::DataRequirementGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Expression::Expression;
+use crate::model::Expression::ExpressionGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -326,6 +333,24 @@ impl TriggerDefinitionBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TriggerDefinitionGraphql {
+    _name: Option<ElementGraphql>,
+    _timing_date: Option<ElementGraphql>,
+    _timing_date_time: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    condition: Option<ExpressionGraphql>,
+    data: Option<Vec<DataRequirementGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    name: Option<String>,
+    timing_date: Option<String>,
+    timing_date_time: Option<String>,
+    timing_reference: Option<ReferenceGraphql>,
+    timing_timing: Option<TimingGraphql>,
+    fhir_type: Option<TriggerDefinitionTypeGraphql>,
 }
 
 #[derive(Debug)]

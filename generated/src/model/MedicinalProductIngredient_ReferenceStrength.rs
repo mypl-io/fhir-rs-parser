@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -266,4 +271,17 @@ impl MedicinalProductIngredient_ReferenceStrengthBuilder {
         self.value["substance"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductIngredient_ReferenceStrengthGraphql {
+    _measurement_point: Option<ElementGraphql>,
+    country: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    measurement_point: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    strength: RatioGraphql,
+    strength_low_limit: Option<RatioGraphql>,
+    substance: Option<CodeableConceptGraphql>,
 }

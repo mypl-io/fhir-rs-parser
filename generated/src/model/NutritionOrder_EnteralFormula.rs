@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::NutritionOrder_Administration::NutritionOrder_Administration;
+use crate::model::NutritionOrder_Administration::NutritionOrder_AdministrationGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -415,4 +421,23 @@ impl NutritionOrder_EnteralFormulaBuilder {
         self.value["routeofAdministration"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct NutritionOrder_EnteralFormulaGraphql {
+    _additive_product_name: Option<ElementGraphql>,
+    _administration_instruction: Option<ElementGraphql>,
+    _base_formula_product_name: Option<ElementGraphql>,
+    additive_product_name: Option<String>,
+    additive_type: Option<CodeableConceptGraphql>,
+    administration: Option<Vec<NutritionOrder_AdministrationGraphql>>,
+    administration_instruction: Option<String>,
+    base_formula_product_name: Option<String>,
+    base_formula_type: Option<CodeableConceptGraphql>,
+    caloric_density: Option<QuantityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max_volume_to_deliver: Option<QuantityGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    routeof_administration: Option<CodeableConceptGraphql>,
 }

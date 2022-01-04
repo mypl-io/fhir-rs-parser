@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SpecimenDefinition_Container::SpecimenDefinition_Container;
+use crate::model::SpecimenDefinition_Container::SpecimenDefinition_ContainerGraphql;
 use crate::model::SpecimenDefinition_Handling::SpecimenDefinition_Handling;
+use crate::model::SpecimenDefinition_Handling::SpecimenDefinition_HandlingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -383,6 +390,24 @@ impl SpecimenDefinition_TypeTestedBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SpecimenDefinition_TypeTestedGraphql {
+    _is_derived: Option<ElementGraphql>,
+    _preference: Option<ElementGraphql>,
+    _requirement: Option<ElementGraphql>,
+    container: Option<SpecimenDefinition_ContainerGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    handling: Option<Vec<SpecimenDefinition_HandlingGraphql>>,
+    id: Option<String>,
+    is_derived: Option<bool>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    preference: Option<SpecimenDefinition_TypeTestedPreferenceGraphql>,
+    rejection_criterion: Option<Vec<CodeableConceptGraphql>>,
+    requirement: Option<String>,
+    retention_time: Option<DurationGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

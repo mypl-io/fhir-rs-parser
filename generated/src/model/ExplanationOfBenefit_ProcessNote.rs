@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -277,6 +281,20 @@ impl ExplanationOfBenefit_ProcessNoteBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_ProcessNoteGraphql {
+    _number: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    language: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    number: Option<i64>,
+    text: Option<String>,
+    fhir_type: Option<ExplanationOfBenefit_ProcessNoteTypeGraphql>,
 }
 
 #[derive(Debug)]

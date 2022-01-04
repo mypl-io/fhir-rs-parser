@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -709,6 +715,43 @@ impl Timing_RepeatBuilder {
         self.value["timeOfDay"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Timing_RepeatGraphql {
+    _count: Option<ElementGraphql>,
+    _count_max: Option<ElementGraphql>,
+    _day_of_week: Option<Vec<ElementGraphql>>,
+    _duration: Option<ElementGraphql>,
+    _duration_max: Option<ElementGraphql>,
+    _duration_unit: Option<ElementGraphql>,
+    _frequency: Option<ElementGraphql>,
+    _frequency_max: Option<ElementGraphql>,
+    _offset: Option<ElementGraphql>,
+    _period: Option<ElementGraphql>,
+    _period_max: Option<ElementGraphql>,
+    _period_unit: Option<ElementGraphql>,
+    _time_of_day: Option<Vec<ElementGraphql>>,
+    _when: Option<Vec<ElementGraphql>>,
+    bounds_duration: Option<DurationGraphql>,
+    bounds_period: Option<PeriodGraphql>,
+    bounds_range: Option<RangeGraphql>,
+    count: Option<i64>,
+    count_max: Option<i64>,
+    day_of_week: Option<Vec<String>>,
+    duration: Option<f64>,
+    duration_max: Option<f64>,
+    duration_unit: Option<Timing_RepeatDurationUnitGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    frequency: Option<i64>,
+    frequency_max: Option<i64>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    offset: Option<u64>,
+    period: Option<f64>,
+    period_max: Option<f64>,
+    period_unit: Option<Timing_RepeatPeriodUnitGraphql>,
+    time_of_day: Option<Vec<String>>,
 }
 
 #[derive(Debug)]

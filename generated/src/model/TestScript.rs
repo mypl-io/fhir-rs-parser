@@ -1,23 +1,42 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::TestScript_Destination::TestScript_Destination;
+use crate::model::TestScript_Destination::TestScript_DestinationGraphql;
 use crate::model::TestScript_Fixture::TestScript_Fixture;
+use crate::model::TestScript_Fixture::TestScript_FixtureGraphql;
 use crate::model::TestScript_Metadata::TestScript_Metadata;
+use crate::model::TestScript_Metadata::TestScript_MetadataGraphql;
 use crate::model::TestScript_Origin::TestScript_Origin;
+use crate::model::TestScript_Origin::TestScript_OriginGraphql;
 use crate::model::TestScript_Setup::TestScript_Setup;
+use crate::model::TestScript_Setup::TestScript_SetupGraphql;
 use crate::model::TestScript_Teardown::TestScript_Teardown;
+use crate::model::TestScript_Teardown::TestScript_TeardownGraphql;
 use crate::model::TestScript_Test::TestScript_Test;
+use crate::model::TestScript_Test::TestScript_TestGraphql;
 use crate::model::TestScript_Variable::TestScript_Variable;
+use crate::model::TestScript_Variable::TestScript_VariableGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -998,6 +1017,55 @@ impl TestScriptBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScriptGraphql {
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    destination: Option<Vec<TestScript_DestinationGraphql>>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    fixture: Option<Vec<TestScript_FixtureGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    metadata: Option<TestScript_MetadataGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    origin: Option<Vec<TestScript_OriginGraphql>>,
+    profile: Option<Vec<ReferenceGraphql>>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    setup: Option<TestScript_SetupGraphql>,
+    status: Option<TestScriptStatusGraphql>,
+    teardown: Option<TestScript_TeardownGraphql>,
+    test: Option<Vec<TestScript_TestGraphql>>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    variable: Option<Vec<TestScript_VariableGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

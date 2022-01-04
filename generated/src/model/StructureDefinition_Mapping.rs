@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -276,4 +279,19 @@ impl StructureDefinition_MappingBuilder {
         self.value["uri"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureDefinition_MappingGraphql {
+    _comment: Option<ElementGraphql>,
+    _identity: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _uri: Option<ElementGraphql>,
+    comment: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identity: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    uri: Option<String>,
 }

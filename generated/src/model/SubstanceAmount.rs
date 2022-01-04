@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::SubstanceAmount_ReferenceRange::SubstanceAmount_ReferenceRange;
+use crate::model::SubstanceAmount_ReferenceRange::SubstanceAmount_ReferenceRangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -304,4 +311,19 @@ impl SubstanceAmountBuilder {
         self.value["referenceRange"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceAmountGraphql {
+    _amount_string: Option<ElementGraphql>,
+    _amount_text: Option<ElementGraphql>,
+    amount_quantity: Option<QuantityGraphql>,
+    amount_range: Option<RangeGraphql>,
+    amount_string: Option<String>,
+    amount_text: Option<String>,
+    amount_type: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    reference_range: Option<SubstanceAmount_ReferenceRangeGraphql>,
 }

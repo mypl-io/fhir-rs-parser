@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::ClaimResponse_Adjudication::ClaimResponse_Adjudication;
+use crate::model::ClaimResponse_Adjudication::ClaimResponse_AdjudicationGraphql;
 use crate::model::ClaimResponse_Detail1::ClaimResponse_Detail1;
+use crate::model::ClaimResponse_Detail1::ClaimResponse_Detail1Graphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -763,4 +774,38 @@ impl ClaimResponse_AddItemBuilder {
         self.value["unitPrice"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ClaimResponse_AddItemGraphql {
+    _detail_sequence: Option<Vec<ElementGraphql>>,
+    _factor: Option<ElementGraphql>,
+    _item_sequence: Option<Vec<ElementGraphql>>,
+    _note_number: Option<Vec<ElementGraphql>>,
+    _serviced_date: Option<ElementGraphql>,
+    _subdetail_sequence: Option<Vec<ElementGraphql>>,
+    adjudication: Vec<ClaimResponse_AdjudicationGraphql>,
+    body_site: Option<CodeableConceptGraphql>,
+    detail: Option<Vec<ClaimResponse_Detail1Graphql>>,
+    detail_sequence: Option<Vec<i64>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    item_sequence: Option<Vec<i64>>,
+    location_address: Option<AddressGraphql>,
+    location_codeable_concept: Option<CodeableConceptGraphql>,
+    location_reference: Option<ReferenceGraphql>,
+    modifier: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    net: Option<MoneyGraphql>,
+    note_number: Option<Vec<i64>>,
+    product_or_service: CodeableConceptGraphql,
+    program_code: Option<Vec<CodeableConceptGraphql>>,
+    provider: Option<Vec<ReferenceGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    serviced_date: Option<String>,
+    serviced_period: Option<PeriodGraphql>,
+    sub_site: Option<Vec<CodeableConceptGraphql>>,
+    subdetail_sequence: Option<Vec<i64>>,
+    unit_price: Option<MoneyGraphql>,
 }

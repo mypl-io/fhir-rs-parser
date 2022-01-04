@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DataRequirement_CodeFilter::DataRequirement_CodeFilter;
+use crate::model::DataRequirement_CodeFilter::DataRequirement_CodeFilterGraphql;
 use crate::model::DataRequirement_DateFilter::DataRequirement_DateFilter;
+use crate::model::DataRequirement_DateFilter::DataRequirement_DateFilterGraphql;
 use crate::model::DataRequirement_Sort::DataRequirement_Sort;
+use crate::model::DataRequirement_Sort::DataRequirement_SortGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -372,4 +380,22 @@ impl DataRequirementBuilder {
         self.value["type"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DataRequirementGraphql {
+    _limit: Option<ElementGraphql>,
+    _must_support: Option<Vec<ElementGraphql>>,
+    _type: Option<ElementGraphql>,
+    code_filter: Option<Vec<DataRequirement_CodeFilterGraphql>>,
+    date_filter: Option<Vec<DataRequirement_DateFilterGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    limit: Option<i64>,
+    must_support: Option<Vec<String>>,
+    profile: Option<Vec<String>>,
+    sort: Option<Vec<DataRequirement_SortGraphql>>,
+    subject_codeable_concept: Option<CodeableConceptGraphql>,
+    subject_reference: Option<ReferenceGraphql>,
+    fhir_type: Option<String>,
 }

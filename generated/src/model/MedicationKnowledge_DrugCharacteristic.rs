@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -292,4 +297,18 @@ impl MedicationKnowledge_DrugCharacteristicBuilder {
         self.value["valueString"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationKnowledge_DrugCharacteristicGraphql {
+    _value_base_6_4_binary: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    value_base_6_4_binary: Option<String>,
+    value_codeable_concept: Option<CodeableConceptGraphql>,
+    value_quantity: Option<QuantityGraphql>,
+    value_string: Option<String>,
 }

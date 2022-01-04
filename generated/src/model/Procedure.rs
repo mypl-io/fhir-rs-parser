@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Procedure_FocalDevice::Procedure_FocalDevice;
+use crate::model::Procedure_FocalDevice::Procedure_FocalDeviceGraphql;
 use crate::model::Procedure_Performer::Procedure_Performer;
+use crate::model::Procedure_Performer::Procedure_PerformerGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1082,4 +1097,54 @@ impl ProcedureBuilder {
         self.value["usedReference"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ProcedureGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _language: Option<ElementGraphql>,
+    _performed_date_time: Option<ElementGraphql>,
+    _performed_string: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    asserter: Option<ReferenceGraphql>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    body_site: Option<Vec<CodeableConceptGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    complication: Option<Vec<CodeableConceptGraphql>>,
+    complication_detail: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focal_device: Option<Vec<Procedure_FocalDeviceGraphql>>,
+    follow_up: Option<Vec<CodeableConceptGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    outcome: Option<CodeableConceptGraphql>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performed_age: Option<AgeGraphql>,
+    performed_date_time: Option<String>,
+    performed_period: Option<PeriodGraphql>,
+    performed_range: Option<RangeGraphql>,
+    performed_string: Option<String>,
+    performer: Option<Vec<Procedure_PerformerGraphql>>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    recorder: Option<ReferenceGraphql>,
+    report: Option<Vec<ReferenceGraphql>>,
+    status: Option<String>,
+    status_reason: Option<CodeableConceptGraphql>,
+    subject: ReferenceGraphql,
+    text: Option<NarrativeGraphql>,
+    used_code: Option<Vec<CodeableConceptGraphql>>,
+    used_reference: Option<Vec<ReferenceGraphql>>,
 }

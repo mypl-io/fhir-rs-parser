@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -204,4 +207,15 @@ impl TestScript_RequestHeaderBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_RequestHeaderGraphql {
+    _field: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    field: Option<String>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    value: Option<String>,
 }

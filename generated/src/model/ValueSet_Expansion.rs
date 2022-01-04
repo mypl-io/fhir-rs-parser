@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ValueSet_Contains::ValueSet_Contains;
+use crate::model::ValueSet_Contains::ValueSet_ContainsGraphql;
 use crate::model::ValueSet_Parameter::ValueSet_Parameter;
+use crate::model::ValueSet_Parameter::ValueSet_ParameterGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -337,4 +342,21 @@ impl ValueSet_ExpansionBuilder {
         self.value["total"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ValueSet_ExpansionGraphql {
+    _identifier: Option<ElementGraphql>,
+    _offset: Option<ElementGraphql>,
+    _timestamp: Option<ElementGraphql>,
+    _total: Option<ElementGraphql>,
+    contains: Option<Vec<ValueSet_ContainsGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    offset: Option<i64>,
+    parameter: Option<Vec<ValueSet_ParameterGraphql>>,
+    timestamp: Option<String>,
+    total: Option<i64>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -253,4 +257,18 @@ impl ImagingStudy_InstanceBuilder {
         self.value["uid"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImagingStudy_InstanceGraphql {
+    _number: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _uid: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    number: Option<u64>,
+    sop_class: CodingGraphql,
+    title: Option<String>,
+    uid: Option<String>,
 }

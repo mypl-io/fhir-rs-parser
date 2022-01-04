@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -372,4 +375,24 @@ impl TestScript_CapabilityBuilder {
         self.value["validated"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestScript_CapabilityGraphql {
+    _description: Option<ElementGraphql>,
+    _destination: Option<ElementGraphql>,
+    _link: Option<Vec<ElementGraphql>>,
+    _origin: Option<Vec<ElementGraphql>>,
+    _required: Option<ElementGraphql>,
+    _validated: Option<ElementGraphql>,
+    capabilities: String,
+    description: Option<String>,
+    destination: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    link: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    origin: Option<Vec<i64>>,
+    required: Option<bool>,
+    validated: Option<bool>,
 }

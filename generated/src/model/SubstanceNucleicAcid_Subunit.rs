@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SubstanceNucleicAcid_Linkage::SubstanceNucleicAcid_Linkage;
+use crate::model::SubstanceNucleicAcid_Linkage::SubstanceNucleicAcid_LinkageGraphql;
 use crate::model::SubstanceNucleicAcid_Sugar::SubstanceNucleicAcid_Sugar;
+use crate::model::SubstanceNucleicAcid_Sugar::SubstanceNucleicAcid_SugarGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -379,4 +386,22 @@ impl SubstanceNucleicAcid_SubunitBuilder {
         self.value["threePrime"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceNucleicAcid_SubunitGraphql {
+    _length: Option<ElementGraphql>,
+    _sequence: Option<ElementGraphql>,
+    _subunit: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    five_prime: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    length: Option<i64>,
+    linkage: Option<Vec<SubstanceNucleicAcid_LinkageGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    sequence: Option<String>,
+    sequence_attachment: Option<AttachmentGraphql>,
+    subunit: Option<i64>,
+    sugar: Option<Vec<SubstanceNucleicAcid_SugarGraphql>>,
+    three_prime: Option<CodeableConceptGraphql>,
 }

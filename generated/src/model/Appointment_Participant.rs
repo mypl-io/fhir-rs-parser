@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -284,6 +290,20 @@ impl Appointment_ParticipantBuilder {
         self.value["type"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Appointment_ParticipantGraphql {
+    _required: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    actor: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<PeriodGraphql>,
+    required: Option<Appointment_ParticipantRequiredGraphql>,
+    status: Option<Appointment_ParticipantStatusGraphql>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
 #[derive(Debug)]

@@ -1,15 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Contract_Action::Contract_Action;
+use crate::model::Contract_Action::Contract_ActionGraphql;
 use crate::model::Contract_Asset::Contract_Asset;
+use crate::model::Contract_Asset::Contract_AssetGraphql;
 use crate::model::Contract_Offer::Contract_Offer;
+use crate::model::Contract_Offer::Contract_OfferGraphql;
 use crate::model::Contract_SecurityLabel::Contract_SecurityLabel;
+use crate::model::Contract_SecurityLabel::Contract_SecurityLabelGraphql;
+use crate::model::Contract_Term::Contract_Term;
+use crate::model::Contract_Term::Contract_TermGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -447,4 +460,26 @@ impl Contract_TermBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Contract_TermGraphql {
+    _issued: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    action: Option<Vec<Contract_ActionGraphql>>,
+    applies: Option<PeriodGraphql>,
+    asset: Option<Vec<Contract_AssetGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group: Option<Vec<Contract_TermGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    issued: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    offer: Contract_OfferGraphql,
+    security_label: Option<Vec<Contract_SecurityLabelGraphql>>,
+    sub_type: Option<CodeableConceptGraphql>,
+    text: Option<String>,
+    topic_codeable_concept: Option<CodeableConceptGraphql>,
+    topic_reference: Option<ReferenceGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

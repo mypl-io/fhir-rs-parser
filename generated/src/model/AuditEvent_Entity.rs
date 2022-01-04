@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::AuditEvent_Detail::AuditEvent_Detail;
+use crate::model::AuditEvent_Detail::AuditEvent_DetailGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -371,4 +377,23 @@ impl AuditEvent_EntityBuilder {
         self.value["what"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AuditEvent_EntityGraphql {
+    _description: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _query: Option<ElementGraphql>,
+    description: Option<String>,
+    detail: Option<Vec<AuditEvent_DetailGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    lifecycle: Option<CodingGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    query: Option<String>,
+    role: Option<CodingGraphql>,
+    security_label: Option<Vec<CodingGraphql>>,
+    fhir_type: Option<CodingGraphql>,
+    what: Option<ReferenceGraphql>,
 }

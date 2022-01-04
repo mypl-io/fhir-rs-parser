@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -247,4 +253,16 @@ impl SpecimenDefinition_HandlingBuilder {
         self.value["temperatureRange"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SpecimenDefinition_HandlingGraphql {
+    _instruction: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    instruction: Option<String>,
+    max_duration: Option<DurationGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    temperature_qualifier: Option<CodeableConceptGraphql>,
+    temperature_range: Option<RangeGraphql>,
 }

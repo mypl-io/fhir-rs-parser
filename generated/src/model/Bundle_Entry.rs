@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Bundle_Link::Bundle_Link;
+use crate::model::Bundle_Link::Bundle_LinkGraphql;
 use crate::model::Bundle_Request::Bundle_Request;
+use crate::model::Bundle_Request::Bundle_RequestGraphql;
 use crate::model::Bundle_Response::Bundle_Response;
+use crate::model::Bundle_Response::Bundle_ResponseGraphql;
 use crate::model::Bundle_Search::Bundle_Search;
+use crate::model::Bundle_Search::Bundle_SearchGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -286,4 +294,18 @@ impl Bundle_EntryBuilder {
         self.value["search"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Bundle_EntryGraphql {
+    _full_url: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    full_url: Option<String>,
+    id: Option<String>,
+    link: Option<Vec<Bundle_LinkGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    request: Option<Bundle_RequestGraphql>,
+    resource: Option<ResourceListGraphql>,
+    response: Option<Bundle_ResponseGraphql>,
+    search: Option<Bundle_SearchGraphql>,
 }

@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MarketingStatus::MarketingStatus;
+use crate::model::MarketingStatus::MarketingStatusGraphql;
 use crate::model::MedicinalProduct_ManufacturingBusinessOperation::MedicinalProduct_ManufacturingBusinessOperation;
+use crate::model::MedicinalProduct_ManufacturingBusinessOperation::MedicinalProduct_ManufacturingBusinessOperationGraphql;
 use crate::model::MedicinalProduct_Name::MedicinalProduct_Name;
+use crate::model::MedicinalProduct_Name::MedicinalProduct_NameGraphql;
 use crate::model::MedicinalProduct_SpecialDesignation::MedicinalProduct_SpecialDesignation;
+use crate::model::MedicinalProduct_SpecialDesignation::MedicinalProduct_SpecialDesignationGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -824,4 +838,40 @@ impl MedicinalProductBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _special_measures: Option<Vec<ElementGraphql>>,
+    additional_monitoring_indicator: Option<CodeableConceptGraphql>,
+    attached_document: Option<Vec<ReferenceGraphql>>,
+    clinical_trial: Option<Vec<ReferenceGraphql>>,
+    combined_pharmaceutical_dose_form: Option<CodeableConceptGraphql>,
+    contact: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    cross_reference: Option<Vec<IdentifierGraphql>>,
+    domain: Option<CodingGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    legal_status_of_supply: Option<CodeableConceptGraphql>,
+    manufacturing_business_operation:
+        Option<Vec<MedicinalProduct_ManufacturingBusinessOperationGraphql>>,
+    marketing_status: Option<Vec<MarketingStatusGraphql>>,
+    master_file: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Vec<MedicinalProduct_NameGraphql>,
+    packaged_medicinal_product: Option<Vec<ReferenceGraphql>>,
+    paediatric_use_indicator: Option<CodeableConceptGraphql>,
+    pharmaceutical_product: Option<Vec<ReferenceGraphql>>,
+    product_classification: Option<Vec<CodeableConceptGraphql>>,
+    special_designation: Option<Vec<MedicinalProduct_SpecialDesignationGraphql>>,
+    special_measures: Option<Vec<String>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

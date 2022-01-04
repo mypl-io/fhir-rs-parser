@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -262,6 +267,19 @@ impl EffectEvidenceSynthesis_ResultsByExposureBuilder {
         self.value["variantState"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EffectEvidenceSynthesis_ResultsByExposureGraphql {
+    _description: Option<ElementGraphql>,
+    _exposure_state: Option<ElementGraphql>,
+    description: Option<String>,
+    exposure_state: Option<EffectEvidenceSynthesis_ResultsByExposureExposureStateGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    risk_evidence_synthesis: ReferenceGraphql,
+    variant_state: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

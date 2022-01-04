@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -368,4 +374,22 @@ impl SubstanceSpecification_MoietyBuilder {
         self.value["stereochemistry"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_MoietyGraphql {
+    _amount_string: Option<ElementGraphql>,
+    _molecular_formula: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    amount_quantity: Option<QuantityGraphql>,
+    amount_string: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    molecular_formula: Option<String>,
+    name: Option<String>,
+    optical_activity: Option<CodeableConceptGraphql>,
+    role: Option<CodeableConceptGraphql>,
+    stereochemistry: Option<CodeableConceptGraphql>,
 }

@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MessageHeader_Destination::MessageHeader_Destination;
+use crate::model::MessageHeader_Destination::MessageHeader_DestinationGraphql;
 use crate::model::MessageHeader_Response::MessageHeader_Response;
+use crate::model::MessageHeader_Response::MessageHeader_ResponseGraphql;
 use crate::model::MessageHeader_Source::MessageHeader_Source;
+use crate::model::MessageHeader_Source::MessageHeader_SourceGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -554,4 +566,31 @@ impl MessageHeaderBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MessageHeaderGraphql {
+    _event_uri: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    author: Option<ReferenceGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    definition: Option<String>,
+    destination: Option<Vec<MessageHeader_DestinationGraphql>>,
+    enterer: Option<ReferenceGraphql>,
+    event_coding: Option<CodingGraphql>,
+    event_uri: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focus: Option<Vec<ReferenceGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    reason: Option<CodeableConceptGraphql>,
+    response: Option<MessageHeader_ResponseGraphql>,
+    responsible: Option<ReferenceGraphql>,
+    sender: Option<ReferenceGraphql>,
+    source: MessageHeader_SourceGraphql,
+    text: Option<NarrativeGraphql>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -189,6 +193,17 @@ impl ContributorBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ContributorGraphql {
+    _name: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    name: Option<String>,
+    fhir_type: Option<ContributorTypeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,30 +1,56 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExplanationOfBenefit_Accident::ExplanationOfBenefit_Accident;
+use crate::model::ExplanationOfBenefit_Accident::ExplanationOfBenefit_AccidentGraphql;
 use crate::model::ExplanationOfBenefit_AddItem::ExplanationOfBenefit_AddItem;
+use crate::model::ExplanationOfBenefit_AddItem::ExplanationOfBenefit_AddItemGraphql;
 use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_Adjudication;
+use crate::model::ExplanationOfBenefit_Adjudication::ExplanationOfBenefit_AdjudicationGraphql;
 use crate::model::ExplanationOfBenefit_BenefitBalance::ExplanationOfBenefit_BenefitBalance;
+use crate::model::ExplanationOfBenefit_BenefitBalance::ExplanationOfBenefit_BenefitBalanceGraphql;
 use crate::model::ExplanationOfBenefit_CareTeam::ExplanationOfBenefit_CareTeam;
+use crate::model::ExplanationOfBenefit_CareTeam::ExplanationOfBenefit_CareTeamGraphql;
 use crate::model::ExplanationOfBenefit_Diagnosis::ExplanationOfBenefit_Diagnosis;
+use crate::model::ExplanationOfBenefit_Diagnosis::ExplanationOfBenefit_DiagnosisGraphql;
 use crate::model::ExplanationOfBenefit_Insurance::ExplanationOfBenefit_Insurance;
+use crate::model::ExplanationOfBenefit_Insurance::ExplanationOfBenefit_InsuranceGraphql;
 use crate::model::ExplanationOfBenefit_Item::ExplanationOfBenefit_Item;
+use crate::model::ExplanationOfBenefit_Item::ExplanationOfBenefit_ItemGraphql;
 use crate::model::ExplanationOfBenefit_Payee::ExplanationOfBenefit_Payee;
+use crate::model::ExplanationOfBenefit_Payee::ExplanationOfBenefit_PayeeGraphql;
 use crate::model::ExplanationOfBenefit_Payment::ExplanationOfBenefit_Payment;
+use crate::model::ExplanationOfBenefit_Payment::ExplanationOfBenefit_PaymentGraphql;
 use crate::model::ExplanationOfBenefit_Procedure::ExplanationOfBenefit_Procedure;
+use crate::model::ExplanationOfBenefit_Procedure::ExplanationOfBenefit_ProcedureGraphql;
 use crate::model::ExplanationOfBenefit_ProcessNote::ExplanationOfBenefit_ProcessNote;
+use crate::model::ExplanationOfBenefit_ProcessNote::ExplanationOfBenefit_ProcessNoteGraphql;
 use crate::model::ExplanationOfBenefit_Related::ExplanationOfBenefit_Related;
+use crate::model::ExplanationOfBenefit_Related::ExplanationOfBenefit_RelatedGraphql;
 use crate::model::ExplanationOfBenefit_SupportingInfo::ExplanationOfBenefit_SupportingInfo;
+use crate::model::ExplanationOfBenefit_SupportingInfo::ExplanationOfBenefit_SupportingInfoGraphql;
 use crate::model::ExplanationOfBenefit_Total::ExplanationOfBenefit_Total;
+use crate::model::ExplanationOfBenefit_Total::ExplanationOfBenefit_TotalGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1390,6 +1416,70 @@ impl ExplanationOfBenefitBuilder {
         self.value["use"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefitGraphql {
+    _created: Option<ElementGraphql>,
+    _disposition: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _outcome: Option<ElementGraphql>,
+    _pre_auth_ref: Option<Vec<ElementGraphql>>,
+    _precedence: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    accident: Option<ExplanationOfBenefit_AccidentGraphql>,
+    add_item: Option<Vec<ExplanationOfBenefit_AddItemGraphql>>,
+    adjudication: Option<Vec<ExplanationOfBenefit_AdjudicationGraphql>>,
+    benefit_balance: Option<Vec<ExplanationOfBenefit_BenefitBalanceGraphql>>,
+    benefit_period: Option<PeriodGraphql>,
+    billable_period: Option<PeriodGraphql>,
+    care_team: Option<Vec<ExplanationOfBenefit_CareTeamGraphql>>,
+    claim: Option<ReferenceGraphql>,
+    claim_response: Option<ReferenceGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    created: Option<String>,
+    diagnosis: Option<Vec<ExplanationOfBenefit_DiagnosisGraphql>>,
+    disposition: Option<String>,
+    enterer: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    facility: Option<ReferenceGraphql>,
+    form: Option<AttachmentGraphql>,
+    form_code: Option<CodeableConceptGraphql>,
+    funds_reserve: Option<CodeableConceptGraphql>,
+    funds_reserve_requested: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    insurance: Vec<ExplanationOfBenefit_InsuranceGraphql>,
+    insurer: ReferenceGraphql,
+    item: Option<Vec<ExplanationOfBenefit_ItemGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    original_prescription: Option<ReferenceGraphql>,
+    outcome: Option<String>,
+    patient: ReferenceGraphql,
+    payee: Option<ExplanationOfBenefit_PayeeGraphql>,
+    payment: Option<ExplanationOfBenefit_PaymentGraphql>,
+    pre_auth_ref: Option<Vec<String>>,
+    pre_auth_ref_period: Option<Vec<PeriodGraphql>>,
+    precedence: Option<i64>,
+    prescription: Option<ReferenceGraphql>,
+    priority: Option<CodeableConceptGraphql>,
+    procedure: Option<Vec<ExplanationOfBenefit_ProcedureGraphql>>,
+    process_note: Option<Vec<ExplanationOfBenefit_ProcessNoteGraphql>>,
+    provider: ReferenceGraphql,
+    referral: Option<ReferenceGraphql>,
+    related: Option<Vec<ExplanationOfBenefit_RelatedGraphql>>,
+    status: Option<ExplanationOfBenefitStatusGraphql>,
+    sub_type: Option<CodeableConceptGraphql>,
+    supporting_info: Option<Vec<ExplanationOfBenefit_SupportingInfoGraphql>>,
+    text: Option<NarrativeGraphql>,
+    total: Option<Vec<ExplanationOfBenefit_TotalGraphql>>,
+    fhir_type: CodeableConceptGraphql,
+    fhir_use: Option<String>,
 }
 
 #[derive(Debug)]

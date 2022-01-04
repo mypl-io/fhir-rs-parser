@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
 use crate::model::VerificationResult_Attestation::VerificationResult_Attestation;
+use crate::model::VerificationResult_Attestation::VerificationResult_AttestationGraphql;
 use crate::model::VerificationResult_PrimarySource::VerificationResult_PrimarySource;
+use crate::model::VerificationResult_PrimarySource::VerificationResult_PrimarySourceGraphql;
 use crate::model::VerificationResult_Validator::VerificationResult_Validator;
+use crate::model::VerificationResult_Validator::VerificationResult_ValidatorGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -691,4 +703,37 @@ impl VerificationResultBuilder {
         self.value["validator"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct VerificationResultGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_performed: Option<ElementGraphql>,
+    _next_scheduled: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _status_date: Option<ElementGraphql>,
+    _target_location: Option<Vec<ElementGraphql>>,
+    attestation: Option<VerificationResult_AttestationGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    failure_action: Option<CodeableConceptGraphql>,
+    frequency: Option<TimingGraphql>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    last_performed: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    need: Option<CodeableConceptGraphql>,
+    next_scheduled: Option<String>,
+    primary_source: Option<Vec<VerificationResult_PrimarySourceGraphql>>,
+    status: Option<String>,
+    status_date: Option<String>,
+    target: Option<Vec<ReferenceGraphql>>,
+    target_location: Option<Vec<String>>,
+    text: Option<NarrativeGraphql>,
+    validation_process: Option<Vec<CodeableConceptGraphql>>,
+    validation_type: Option<CodeableConceptGraphql>,
+    validator: Option<Vec<VerificationResult_ValidatorGraphql>>,
 }

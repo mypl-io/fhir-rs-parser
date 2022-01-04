@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ValueSet_Concept::ValueSet_Concept;
+use crate::model::ValueSet_Concept::ValueSet_ConceptGraphql;
 use crate::model::ValueSet_Filter::ValueSet_Filter;
+use crate::model::ValueSet_Filter::ValueSet_FilterGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -283,4 +288,18 @@ impl ValueSet_IncludeBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ValueSet_IncludeGraphql {
+    _system: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    concept: Option<Vec<ValueSet_ConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    filter: Option<Vec<ValueSet_FilterGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    system: Option<String>,
+    value_set: Option<Vec<String>>,
+    version: Option<String>,
 }

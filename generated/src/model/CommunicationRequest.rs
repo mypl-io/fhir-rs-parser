@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::CommunicationRequest_Payload::CommunicationRequest_Payload;
+use crate::model::CommunicationRequest_Payload::CommunicationRequest_PayloadGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -909,4 +921,46 @@ impl CommunicationRequestBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CommunicationRequestGraphql {
+    _authored_on: Option<ElementGraphql>,
+    _do_not_perform: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    about: Option<Vec<ReferenceGraphql>>,
+    authored_on: Option<String>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    do_not_perform: Option<bool>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group_identifier: Option<IdentifierGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    medium: Option<Vec<CodeableConceptGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_period: Option<PeriodGraphql>,
+    payload: Option<Vec<CommunicationRequest_PayloadGraphql>>,
+    priority: Option<String>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    recipient: Option<Vec<ReferenceGraphql>>,
+    replaces: Option<Vec<ReferenceGraphql>>,
+    requester: Option<ReferenceGraphql>,
+    sender: Option<ReferenceGraphql>,
+    status: Option<String>,
+    status_reason: Option<CodeableConceptGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
 }

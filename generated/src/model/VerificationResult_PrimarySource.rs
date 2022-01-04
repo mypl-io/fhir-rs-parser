@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -336,4 +341,19 @@ impl VerificationResult_PrimarySourceBuilder {
         self.value["who"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct VerificationResult_PrimarySourceGraphql {
+    _validation_date: Option<ElementGraphql>,
+    can_push_updates: Option<CodeableConceptGraphql>,
+    communication_method: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    push_type_available: Option<Vec<CodeableConceptGraphql>>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
+    validation_date: Option<String>,
+    validation_status: Option<CodeableConceptGraphql>,
+    who: Option<ReferenceGraphql>,
 }

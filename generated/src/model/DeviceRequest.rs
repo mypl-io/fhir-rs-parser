@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DeviceRequest_Parameter::DeviceRequest_Parameter;
+use crate::model::DeviceRequest_Parameter::DeviceRequest_ParameterGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -986,4 +999,51 @@ impl DeviceRequestBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DeviceRequestGraphql {
+    _authored_on: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _intent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    authored_on: Option<String>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    code_codeable_concept: Option<CodeableConceptGraphql>,
+    code_reference: Option<ReferenceGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group_identifier: Option<IdentifierGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    insurance: Option<Vec<ReferenceGraphql>>,
+    intent: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_period: Option<PeriodGraphql>,
+    occurrence_timing: Option<TimingGraphql>,
+    parameter: Option<Vec<DeviceRequest_ParameterGraphql>>,
+    performer: Option<ReferenceGraphql>,
+    performer_type: Option<CodeableConceptGraphql>,
+    prior_request: Option<Vec<ReferenceGraphql>>,
+    priority: Option<String>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    relevant_history: Option<Vec<ReferenceGraphql>>,
+    requester: Option<ReferenceGraphql>,
+    status: Option<String>,
+    subject: ReferenceGraphql,
+    supporting_info: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

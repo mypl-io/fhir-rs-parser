@@ -1,20 +1,36 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::HumanName::HumanName;
+use crate::model::HumanName::HumanNameGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Patient_Communication::Patient_Communication;
+use crate::model::Patient_Communication::Patient_CommunicationGraphql;
 use crate::model::Patient_Contact::Patient_Contact;
+use crate::model::Patient_Contact::Patient_ContactGraphql;
 use crate::model::Patient_Link::Patient_Link;
+use crate::model::Patient_Link::Patient_LinkGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -796,6 +812,45 @@ impl PatientBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PatientGraphql {
+    _active: Option<ElementGraphql>,
+    _birth_date: Option<ElementGraphql>,
+    _deceased_boolean: Option<ElementGraphql>,
+    _deceased_date_time: Option<ElementGraphql>,
+    _gender: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _multiple_birth_boolean: Option<ElementGraphql>,
+    _multiple_birth_integer: Option<ElementGraphql>,
+    active: Option<bool>,
+    address: Option<Vec<AddressGraphql>>,
+    birth_date: Option<String>,
+    communication: Option<Vec<Patient_CommunicationGraphql>>,
+    contact: Option<Vec<Patient_ContactGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    deceased_boolean: Option<bool>,
+    deceased_date_time: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    gender: Option<PatientGenderGraphql>,
+    general_practitioner: Option<Vec<ReferenceGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    link: Option<Vec<Patient_LinkGraphql>>,
+    managing_organization: Option<ReferenceGraphql>,
+    marital_status: Option<CodeableConceptGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    multiple_birth_boolean: Option<bool>,
+    multiple_birth_integer: Option<f64>,
+    name: Option<Vec<HumanNameGraphql>>,
+    photo: Option<Vec<AttachmentGraphql>>,
+    telecom: Option<Vec<ContactPointGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

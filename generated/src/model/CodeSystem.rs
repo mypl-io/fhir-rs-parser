@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeSystem_Concept::CodeSystem_Concept;
+use crate::model::CodeSystem_Concept::CodeSystem_ConceptGraphql;
 use crate::model::CodeSystem_Filter::CodeSystem_Filter;
+use crate::model::CodeSystem_Filter::CodeSystem_FilterGraphql;
 use crate::model::CodeSystem_Property::CodeSystem_Property;
+use crate::model::CodeSystem_Property::CodeSystem_PropertyGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1105,6 +1118,63 @@ impl CodeSystemBuilder {
         self.value["versionNeeded"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CodeSystemGraphql {
+    _case_sensitive: Option<ElementGraphql>,
+    _compositional: Option<ElementGraphql>,
+    _content: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _count: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _hierarchy_meaning: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    _version_needed: Option<ElementGraphql>,
+    case_sensitive: Option<bool>,
+    compositional: Option<bool>,
+    concept: Option<Vec<CodeSystem_ConceptGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    content: Option<CodeSystemContentGraphql>,
+    copyright: Option<String>,
+    count: Option<u64>,
+    date: Option<String>,
+    description: Option<String>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    filter: Option<Vec<CodeSystem_FilterGraphql>>,
+    hierarchy_meaning: Option<CodeSystemHierarchyMeaningGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    property: Option<Vec<CodeSystem_PropertyGraphql>>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    status: Option<CodeSystemStatusGraphql>,
+    supplements: Option<String>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    value_set: Option<String>,
+    version: Option<String>,
+    version_needed: Option<bool>,
 }
 
 #[derive(Debug)]

@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::PlanDefinition_Action::PlanDefinition_Action;
+use crate::model::PlanDefinition_Action::PlanDefinition_ActionGraphql;
 use crate::model::PlanDefinition_Goal::PlanDefinition_Goal;
+use crate::model::PlanDefinition_Goal::PlanDefinition_GoalGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1254,6 +1269,67 @@ impl PlanDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PlanDefinitionGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subtitle: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _usage: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    action: Option<Vec<PlanDefinition_ActionGraphql>>,
+    approval_date: Option<String>,
+    author: Option<Vec<ContactDetailGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    editor: Option<Vec<ContactDetailGraphql>>,
+    effective_period: Option<PeriodGraphql>,
+    endorser: Option<Vec<ContactDetailGraphql>>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    goal: Option<Vec<PlanDefinition_GoalGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    library: Option<Vec<String>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    related_artifact: Option<Vec<RelatedArtifactGraphql>>,
+    reviewer: Option<Vec<ContactDetailGraphql>>,
+    status: Option<PlanDefinitionStatusGraphql>,
+    subject_codeable_concept: Option<CodeableConceptGraphql>,
+    subject_reference: Option<ReferenceGraphql>,
+    subtitle: Option<String>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    topic: Option<Vec<CodeableConceptGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    url: Option<String>,
+    usage: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

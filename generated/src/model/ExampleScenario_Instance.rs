@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExampleScenario_ContainedInstance::ExampleScenario_ContainedInstance;
+use crate::model::ExampleScenario_ContainedInstance::ExampleScenario_ContainedInstanceGraphql;
 use crate::model::ExampleScenario_Version::ExampleScenario_Version;
+use crate::model::ExampleScenario_Version::ExampleScenario_VersionGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -332,4 +337,21 @@ impl ExampleScenario_InstanceBuilder {
         self.value["version"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExampleScenario_InstanceGraphql {
+    _description: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _resource_id: Option<ElementGraphql>,
+    _resource_type: Option<ElementGraphql>,
+    contained_instance: Option<Vec<ExampleScenario_ContainedInstanceGraphql>>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    resource_id: Option<String>,
+    resource_type: Option<String>,
+    version: Option<Vec<ExampleScenario_VersionGraphql>>,
 }

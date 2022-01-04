@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MeasureReport_Population::MeasureReport_Population;
+use crate::model::MeasureReport_Population::MeasureReport_PopulationGraphql;
 use crate::model::MeasureReport_Stratifier::MeasureReport_Stratifier;
+use crate::model::MeasureReport_Stratifier::MeasureReport_StratifierGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -234,4 +240,15 @@ impl MeasureReport_GroupBuilder {
         self.value["stratifier"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MeasureReport_GroupGraphql {
+    code: Option<CodeableConceptGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    measure_score: Option<QuantityGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    population: Option<Vec<MeasureReport_PopulationGraphql>>,
+    stratifier: Option<Vec<MeasureReport_StratifierGraphql>>,
 }

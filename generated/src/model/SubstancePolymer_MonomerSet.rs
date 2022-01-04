@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SubstancePolymer_StartingMaterial::SubstancePolymer_StartingMaterial;
+use crate::model::SubstancePolymer_StartingMaterial::SubstancePolymer_StartingMaterialGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -187,4 +191,13 @@ impl SubstancePolymer_MonomerSetBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstancePolymer_MonomerSetGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    ratio_type: Option<CodeableConceptGraphql>,
+    starting_material: Option<Vec<SubstancePolymer_StartingMaterialGraphql>>,
 }

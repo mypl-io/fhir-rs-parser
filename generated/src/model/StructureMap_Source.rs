@@ -1,38 +1,72 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Contributor::Contributor;
+use crate::model::Contributor::ContributorGraphql;
 use crate::model::Count::Count;
+use crate::model::Count::CountGraphql;
 use crate::model::DataRequirement::DataRequirement;
+use crate::model::DataRequirement::DataRequirementGraphql;
 use crate::model::Distance::Distance;
+use crate::model::Distance::DistanceGraphql;
 use crate::model::Dosage::Dosage;
+use crate::model::Dosage::DosageGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Expression::Expression;
+use crate::model::Expression::ExpressionGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::HumanName::HumanName;
+use crate::model::HumanName::HumanNameGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::ParameterDefinition::ParameterDefinition;
+use crate::model::ParameterDefinition::ParameterDefinitionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::SampledData::SampledData;
+use crate::model::SampledData::SampledDataGraphql;
 use crate::model::Signature::Signature;
+use crate::model::Signature::SignatureGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
 use crate::model::TriggerDefinition::TriggerDefinition;
+use crate::model::TriggerDefinition::TriggerDefinitionGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1931,6 +1965,102 @@ impl StructureMap_SourceBuilder {
         self.value["variable"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_SourceGraphql {
+    _check: Option<ElementGraphql>,
+    _condition: Option<ElementGraphql>,
+    _context: Option<ElementGraphql>,
+    _default_value_base_6_4_binary: Option<ElementGraphql>,
+    _default_value_boolean: Option<ElementGraphql>,
+    _default_value_canonical: Option<ElementGraphql>,
+    _default_value_code: Option<ElementGraphql>,
+    _default_value_date: Option<ElementGraphql>,
+    _default_value_date_time: Option<ElementGraphql>,
+    _default_value_decimal: Option<ElementGraphql>,
+    _default_value_id: Option<ElementGraphql>,
+    _default_value_instant: Option<ElementGraphql>,
+    _default_value_integer: Option<ElementGraphql>,
+    _default_value_markdown: Option<ElementGraphql>,
+    _default_value_oid: Option<ElementGraphql>,
+    _default_value_positive_int: Option<ElementGraphql>,
+    _default_value_string: Option<ElementGraphql>,
+    _default_value_time: Option<ElementGraphql>,
+    _default_value_unsigned_int: Option<ElementGraphql>,
+    _default_value_uri: Option<ElementGraphql>,
+    _default_value_url: Option<ElementGraphql>,
+    _default_value_uuid: Option<ElementGraphql>,
+    _element: Option<ElementGraphql>,
+    _list_mode: Option<ElementGraphql>,
+    _log_message: Option<ElementGraphql>,
+    _max: Option<ElementGraphql>,
+    _min: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _variable: Option<ElementGraphql>,
+    check: Option<String>,
+    condition: Option<String>,
+    context: Option<String>,
+    default_value_address: Option<AddressGraphql>,
+    default_value_age: Option<AgeGraphql>,
+    default_value_annotation: Option<AnnotationGraphql>,
+    default_value_attachment: Option<AttachmentGraphql>,
+    default_value_base_6_4_binary: Option<String>,
+    default_value_boolean: Option<bool>,
+    default_value_canonical: Option<String>,
+    default_value_code: Option<String>,
+    default_value_codeable_concept: Option<CodeableConceptGraphql>,
+    default_value_coding: Option<CodingGraphql>,
+    default_value_contact_detail: Option<ContactDetailGraphql>,
+    default_value_contact_point: Option<ContactPointGraphql>,
+    default_value_contributor: Option<ContributorGraphql>,
+    default_value_count: Option<CountGraphql>,
+    default_value_data_requirement: Option<DataRequirementGraphql>,
+    default_value_date: Option<String>,
+    default_value_date_time: Option<String>,
+    default_value_decimal: Option<f64>,
+    default_value_distance: Option<DistanceGraphql>,
+    default_value_dosage: Option<DosageGraphql>,
+    default_value_duration: Option<DurationGraphql>,
+    default_value_expression: Option<ExpressionGraphql>,
+    default_value_human_name: Option<HumanNameGraphql>,
+    default_value_id: Option<String>,
+    default_value_identifier: Option<IdentifierGraphql>,
+    default_value_instant: Option<String>,
+    default_value_integer: Option<f64>,
+    default_value_markdown: Option<String>,
+    default_value_meta: Option<MetaGraphql>,
+    default_value_money: Option<MoneyGraphql>,
+    default_value_oid: Option<String>,
+    default_value_parameter_definition: Option<ParameterDefinitionGraphql>,
+    default_value_period: Option<PeriodGraphql>,
+    default_value_positive_int: Option<f64>,
+    default_value_quantity: Option<QuantityGraphql>,
+    default_value_range: Option<RangeGraphql>,
+    default_value_ratio: Option<RatioGraphql>,
+    default_value_reference: Option<ReferenceGraphql>,
+    default_value_related_artifact: Option<RelatedArtifactGraphql>,
+    default_value_sampled_data: Option<SampledDataGraphql>,
+    default_value_signature: Option<SignatureGraphql>,
+    default_value_string: Option<String>,
+    default_value_time: Option<String>,
+    default_value_timing: Option<TimingGraphql>,
+    default_value_trigger_definition: Option<TriggerDefinitionGraphql>,
+    default_value_unsigned_int: Option<f64>,
+    default_value_uri: Option<String>,
+    default_value_url: Option<String>,
+    default_value_usage_context: Option<UsageContextGraphql>,
+    default_value_uuid: Option<String>,
+    element: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    list_mode: Option<StructureMap_SourceListModeGraphql>,
+    log_message: Option<String>,
+    max: Option<String>,
+    min: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<String>,
+    variable: Option<String>,
 }
 
 #[derive(Debug)]

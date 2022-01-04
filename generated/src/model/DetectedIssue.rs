@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DetectedIssue_Evidence::DetectedIssue_Evidence;
+use crate::model::DetectedIssue_Evidence::DetectedIssue_EvidenceGraphql;
 use crate::model::DetectedIssue_Mitigation::DetectedIssue_Mitigation;
+use crate::model::DetectedIssue_Mitigation::DetectedIssue_MitigationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -648,6 +660,38 @@ impl DetectedIssueBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DetectedIssueGraphql {
+    _detail: Option<ElementGraphql>,
+    _identified_date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _reference: Option<ElementGraphql>,
+    _severity: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    author: Option<ReferenceGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    detail: Option<String>,
+    evidence: Option<Vec<DetectedIssue_EvidenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identified_date_time: Option<String>,
+    identified_period: Option<PeriodGraphql>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicated: Option<Vec<ReferenceGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    mitigation: Option<Vec<DetectedIssue_MitigationGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    patient: Option<ReferenceGraphql>,
+    reference: Option<String>,
+    severity: Option<DetectedIssueSeverityGraphql>,
+    status: Option<String>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

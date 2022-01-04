@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -271,6 +274,21 @@ impl StructureMap_InputBuilder {
         self.value["type"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_InputGraphql {
+    _documentation: Option<ElementGraphql>,
+    _mode: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    mode: Option<StructureMap_InputModeGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    fhir_type: Option<String>,
 }
 
 #[derive(Debug)]

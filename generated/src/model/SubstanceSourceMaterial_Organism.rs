@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SubstanceSourceMaterial_Author::SubstanceSourceMaterial_Author;
+use crate::model::SubstanceSourceMaterial_Author::SubstanceSourceMaterial_AuthorGraphql;
 use crate::model::SubstanceSourceMaterial_Hybrid::SubstanceSourceMaterial_Hybrid;
+use crate::model::SubstanceSourceMaterial_Hybrid::SubstanceSourceMaterial_HybridGraphql;
 use crate::model::SubstanceSourceMaterial_OrganismGeneral::SubstanceSourceMaterial_OrganismGeneral;
+use crate::model::SubstanceSourceMaterial_OrganismGeneral::SubstanceSourceMaterial_OrganismGeneralGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -364,4 +371,20 @@ impl SubstanceSourceMaterial_OrganismBuilder {
         self.value["species"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSourceMaterial_OrganismGraphql {
+    _intraspecific_description: Option<ElementGraphql>,
+    author: Option<Vec<SubstanceSourceMaterial_AuthorGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    family: Option<CodeableConceptGraphql>,
+    genus: Option<CodeableConceptGraphql>,
+    hybrid: Option<SubstanceSourceMaterial_HybridGraphql>,
+    id: Option<String>,
+    intraspecific_description: Option<String>,
+    intraspecific_type: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    organism_general: Option<SubstanceSourceMaterial_OrganismGeneralGraphql>,
+    species: Option<CodeableConceptGraphql>,
 }

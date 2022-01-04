@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::TestReport_Assert::TestReport_Assert;
+use crate::model::TestReport_Assert::TestReport_AssertGraphql;
 use crate::model::TestReport_Operation::TestReport_Operation;
+use crate::model::TestReport_Operation::TestReport_OperationGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -176,4 +180,13 @@ impl TestReport_Action1Builder {
         self.value["operation"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestReport_Action1Graphql {
+    assert: Option<TestReport_AssertGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operation: Option<TestReport_OperationGraphql>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -393,4 +397,26 @@ impl CodeSystem_Property1Builder {
         self.value["valueString"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CodeSystem_Property1Graphql {
+    _code: Option<ElementGraphql>,
+    _value_boolean: Option<ElementGraphql>,
+    _value_code: Option<ElementGraphql>,
+    _value_date_time: Option<ElementGraphql>,
+    _value_decimal: Option<ElementGraphql>,
+    _value_integer: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    code: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    value_boolean: Option<bool>,
+    value_code: Option<String>,
+    value_coding: Option<CodingGraphql>,
+    value_date_time: Option<String>,
+    value_decimal: Option<f64>,
+    value_integer: Option<f64>,
+    value_string: Option<String>,
 }

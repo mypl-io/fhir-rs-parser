@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Dosage::Dosage;
+use crate::model::Dosage::DosageGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::MedicationDispense_Performer::MedicationDispense_Performer;
+use crate::model::MedicationDispense_Performer::MedicationDispense_PerformerGraphql;
 use crate::model::MedicationDispense_Substitution::MedicationDispense_Substitution;
+use crate::model::MedicationDispense_Substitution::MedicationDispense_SubstitutionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -955,4 +969,47 @@ impl MedicationDispenseBuilder {
         self.value["whenPrepared"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationDispenseGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _when_handed_over: Option<ElementGraphql>,
+    _when_prepared: Option<ElementGraphql>,
+    authorizing_prescription: Option<Vec<ReferenceGraphql>>,
+    category: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    context: Option<ReferenceGraphql>,
+    days_supply: Option<QuantityGraphql>,
+    destination: Option<ReferenceGraphql>,
+    detected_issue: Option<Vec<ReferenceGraphql>>,
+    dosage_instruction: Option<Vec<DosageGraphql>>,
+    event_history: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    medication_codeable_concept: Option<CodeableConceptGraphql>,
+    medication_reference: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    part_of: Option<Vec<ReferenceGraphql>>,
+    performer: Option<Vec<MedicationDispense_PerformerGraphql>>,
+    quantity: Option<QuantityGraphql>,
+    receiver: Option<Vec<ReferenceGraphql>>,
+    status: Option<String>,
+    status_reason_codeable_concept: Option<CodeableConceptGraphql>,
+    status_reason_reference: Option<ReferenceGraphql>,
+    subject: Option<ReferenceGraphql>,
+    substitution: Option<MedicationDispense_SubstitutionGraphql>,
+    supporting_information: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    when_handed_over: Option<String>,
+    when_prepared: Option<String>,
 }

@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::SpecimenDefinition_Additive::SpecimenDefinition_Additive;
+use crate::model::SpecimenDefinition_Additive::SpecimenDefinition_AdditiveGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -396,4 +402,23 @@ impl SpecimenDefinition_ContainerBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SpecimenDefinition_ContainerGraphql {
+    _description: Option<ElementGraphql>,
+    _minimum_volume_string: Option<ElementGraphql>,
+    _preparation: Option<ElementGraphql>,
+    additive: Option<Vec<SpecimenDefinition_AdditiveGraphql>>,
+    cap: Option<CodeableConceptGraphql>,
+    capacity: Option<QuantityGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    material: Option<CodeableConceptGraphql>,
+    minimum_volume_quantity: Option<QuantityGraphql>,
+    minimum_volume_string: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    preparation: Option<String>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

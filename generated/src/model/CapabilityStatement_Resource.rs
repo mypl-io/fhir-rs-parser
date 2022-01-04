@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CapabilityStatement_Interaction::CapabilityStatement_Interaction;
+use crate::model::CapabilityStatement_Interaction::CapabilityStatement_InteractionGraphql;
 use crate::model::CapabilityStatement_Operation::CapabilityStatement_Operation;
+use crate::model::CapabilityStatement_Operation::CapabilityStatement_OperationGraphql;
 use crate::model::CapabilityStatement_SearchParam::CapabilityStatement_SearchParam;
+use crate::model::CapabilityStatement_SearchParam::CapabilityStatement_SearchParamGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -764,6 +770,41 @@ impl CapabilityStatement_ResourceBuilder {
         self.value["versioning"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CapabilityStatement_ResourceGraphql {
+    _conditional_create: Option<ElementGraphql>,
+    _conditional_delete: Option<ElementGraphql>,
+    _conditional_read: Option<ElementGraphql>,
+    _conditional_update: Option<ElementGraphql>,
+    _documentation: Option<ElementGraphql>,
+    _read_history: Option<ElementGraphql>,
+    _reference_policy: Option<Vec<ElementGraphql>>,
+    _search_include: Option<Vec<ElementGraphql>>,
+    _search_rev_include: Option<Vec<ElementGraphql>>,
+    _type: Option<ElementGraphql>,
+    _update_create: Option<ElementGraphql>,
+    _versioning: Option<ElementGraphql>,
+    conditional_create: Option<bool>,
+    conditional_delete: Option<CapabilityStatement_ResourceConditionalDeleteGraphql>,
+    conditional_read: Option<CapabilityStatement_ResourceConditionalReadGraphql>,
+    conditional_update: Option<bool>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    interaction: Option<Vec<CapabilityStatement_InteractionGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    operation: Option<Vec<CapabilityStatement_OperationGraphql>>,
+    profile: Option<String>,
+    read_history: Option<bool>,
+    search_include: Option<Vec<String>>,
+    search_param: Option<Vec<CapabilityStatement_SearchParamGraphql>>,
+    search_rev_include: Option<Vec<String>>,
+    supported_profile: Option<Vec<String>>,
+    fhir_type: Option<String>,
+    update_create: Option<bool>,
+    versioning: Option<CapabilityStatement_ResourceVersioningGraphql>,
 }
 
 #[derive(Debug)]

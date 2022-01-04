@@ -1,10 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use crate::model::SubstanceSpecification_Name::SubstanceSpecification_Name;
+use crate::model::SubstanceSpecification_Name::SubstanceSpecification_NameGraphql;
 use crate::model::SubstanceSpecification_Official::SubstanceSpecification_Official;
+use crate::model::SubstanceSpecification_Official::SubstanceSpecification_OfficialGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -446,4 +454,24 @@ impl SubstanceSpecification_NameBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSpecification_NameGraphql {
+    _name: Option<ElementGraphql>,
+    _preferred: Option<ElementGraphql>,
+    domain: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<Vec<CodeableConceptGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    official: Option<Vec<SubstanceSpecification_OfficialGraphql>>,
+    preferred: Option<bool>,
+    source: Option<Vec<ReferenceGraphql>>,
+    status: Option<CodeableConceptGraphql>,
+    synonym: Option<Vec<SubstanceSpecification_NameGraphql>>,
+    translation: Option<Vec<SubstanceSpecification_NameGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }

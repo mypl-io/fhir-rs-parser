@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::TerminologyCapabilities_Parameter::TerminologyCapabilities_Parameter;
+use crate::model::TerminologyCapabilities_Parameter::TerminologyCapabilities_ParameterGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -324,4 +328,20 @@ impl TerminologyCapabilities_ExpansionBuilder {
         self.value["textFilter"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TerminologyCapabilities_ExpansionGraphql {
+    _hierarchical: Option<ElementGraphql>,
+    _incomplete: Option<ElementGraphql>,
+    _paging: Option<ElementGraphql>,
+    _text_filter: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    hierarchical: Option<bool>,
+    id: Option<String>,
+    incomplete: Option<bool>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    paging: Option<bool>,
+    parameter: Option<Vec<TerminologyCapabilities_ParameterGraphql>>,
+    text_filter: Option<String>,
 }

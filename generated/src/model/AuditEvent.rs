@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::AuditEvent_Agent::AuditEvent_Agent;
+use crate::model::AuditEvent_Agent::AuditEvent_AgentGraphql;
 use crate::model::AuditEvent_Entity::AuditEvent_Entity;
+use crate::model::AuditEvent_Entity::AuditEvent_EntityGraphql;
 use crate::model::AuditEvent_Source::AuditEvent_Source;
+use crate::model::AuditEvent_Source::AuditEvent_SourceGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -568,6 +580,35 @@ impl AuditEventBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AuditEventGraphql {
+    _action: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _outcome: Option<ElementGraphql>,
+    _outcome_desc: Option<ElementGraphql>,
+    _recorded: Option<ElementGraphql>,
+    action: Option<AuditEventActionGraphql>,
+    agent: Vec<AuditEvent_AgentGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    entity: Option<Vec<AuditEvent_EntityGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    outcome: Option<AuditEventOutcomeGraphql>,
+    outcome_desc: Option<String>,
+    period: Option<PeriodGraphql>,
+    purpose_of_event: Option<Vec<CodeableConceptGraphql>>,
+    recorded: Option<String>,
+    source: AuditEvent_SourceGraphql,
+    subtype: Option<Vec<CodingGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: CodingGraphql,
 }
 
 #[derive(Debug)]

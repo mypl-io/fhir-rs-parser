@@ -1,14 +1,24 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ProdCharacteristic::ProdCharacteristic;
+use crate::model::ProdCharacteristic::ProdCharacteristicGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -455,4 +465,25 @@ impl MedicinalProductManufacturedBuilder {
         self.value["unitOfPresentation"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductManufacturedGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    ingredient: Option<Vec<ReferenceGraphql>>,
+    language: Option<String>,
+    manufactured_dose_form: CodeableConceptGraphql,
+    manufacturer: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    other_characteristics: Option<Vec<CodeableConceptGraphql>>,
+    physical_characteristics: Option<ProdCharacteristicGraphql>,
+    quantity: QuantityGraphql,
+    text: Option<NarrativeGraphql>,
+    unit_of_presentation: Option<CodeableConceptGraphql>,
 }

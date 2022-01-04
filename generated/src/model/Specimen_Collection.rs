@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -347,4 +355,21 @@ impl Specimen_CollectionBuilder {
         self.value["quantity"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Specimen_CollectionGraphql {
+    _collected_date_time: Option<ElementGraphql>,
+    body_site: Option<CodeableConceptGraphql>,
+    collected_date_time: Option<String>,
+    collected_period: Option<PeriodGraphql>,
+    collector: Option<ReferenceGraphql>,
+    duration: Option<DurationGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    fasting_status_codeable_concept: Option<CodeableConceptGraphql>,
+    fasting_status_duration: Option<DurationGraphql>,
+    id: Option<String>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    quantity: Option<QuantityGraphql>,
 }

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::NutritionOrder_EnteralFormula::NutritionOrder_EnteralFormula;
+use crate::model::NutritionOrder_EnteralFormula::NutritionOrder_EnteralFormulaGraphql;
 use crate::model::NutritionOrder_OralDiet::NutritionOrder_OralDiet;
+use crate::model::NutritionOrder_OralDiet::NutritionOrder_OralDietGraphql;
 use crate::model::NutritionOrder_Supplement::NutritionOrder_Supplement;
+use crate::model::NutritionOrder_Supplement::NutritionOrder_SupplementGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -781,4 +794,40 @@ impl NutritionOrderBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct NutritionOrderGraphql {
+    _date_time: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates: Option<Vec<ElementGraphql>>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _intent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    allergy_intolerance: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date_time: Option<String>,
+    encounter: Option<ReferenceGraphql>,
+    enteral_formula: Option<NutritionOrder_EnteralFormulaGraphql>,
+    exclude_food_modifier: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    food_preference_modifier: Option<Vec<CodeableConceptGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates: Option<Vec<String>>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    intent: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    oral_diet: Option<NutritionOrder_OralDietGraphql>,
+    orderer: Option<ReferenceGraphql>,
+    patient: ReferenceGraphql,
+    status: Option<String>,
+    supplement: Option<Vec<NutritionOrder_SupplementGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

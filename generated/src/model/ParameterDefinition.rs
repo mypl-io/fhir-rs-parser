@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -319,4 +322,23 @@ impl ParameterDefinitionBuilder {
         self.value["use"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ParameterDefinitionGraphql {
+    _documentation: Option<ElementGraphql>,
+    _max: Option<ElementGraphql>,
+    _min: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _use: Option<ElementGraphql>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max: Option<String>,
+    min: Option<i64>,
+    name: Option<String>,
+    profile: Option<String>,
+    fhir_type: Option<String>,
+    fhir_use: Option<String>,
 }

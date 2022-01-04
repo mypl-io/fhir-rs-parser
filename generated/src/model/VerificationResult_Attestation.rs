@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::Signature::Signature;
+use crate::model::Signature::SignatureGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -369,4 +375,22 @@ impl VerificationResult_AttestationBuilder {
         self.value["who"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct VerificationResult_AttestationGraphql {
+    _date: Option<ElementGraphql>,
+    _proxy_identity_certificate: Option<ElementGraphql>,
+    _source_identity_certificate: Option<ElementGraphql>,
+    communication_method: Option<CodeableConceptGraphql>,
+    date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    on_behalf_of: Option<ReferenceGraphql>,
+    proxy_identity_certificate: Option<String>,
+    proxy_signature: Option<SignatureGraphql>,
+    source_identity_certificate: Option<String>,
+    source_signature: Option<SignatureGraphql>,
+    who: Option<ReferenceGraphql>,
 }

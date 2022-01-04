@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -305,6 +309,24 @@ impl RelatedArtifactBuilder {
         self.value["url"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RelatedArtifactGraphql {
+    _citation: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    _label: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    citation: Option<String>,
+    display: Option<String>,
+    document: Option<AttachmentGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    label: Option<String>,
+    resource: Option<String>,
+    fhir_type: Option<RelatedArtifactTypeGraphql>,
+    url: Option<String>,
 }
 
 #[derive(Debug)]

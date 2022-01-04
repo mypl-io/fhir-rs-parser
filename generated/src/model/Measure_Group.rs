@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Measure_Population::Measure_Population;
+use crate::model::Measure_Population::Measure_PopulationGraphql;
 use crate::model::Measure_Stratifier::Measure_Stratifier;
+use crate::model::Measure_Stratifier::Measure_StratifierGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -247,4 +253,16 @@ impl Measure_GroupBuilder {
         self.value["stratifier"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Measure_GroupGraphql {
+    _description: Option<ElementGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    population: Option<Vec<Measure_PopulationGraphql>>,
+    stratifier: Option<Vec<Measure_StratifierGraphql>>,
 }

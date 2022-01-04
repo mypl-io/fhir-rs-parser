@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -274,4 +278,18 @@ impl ImplementationGuide_Resource1Builder {
         self.value["relativePath"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuide_Resource1Graphql {
+    _example_boolean: Option<ElementGraphql>,
+    _example_canonical: Option<ElementGraphql>,
+    _relative_path: Option<ElementGraphql>,
+    example_boolean: Option<bool>,
+    example_canonical: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    reference: ReferenceGraphql,
+    relative_path: Option<String>,
 }

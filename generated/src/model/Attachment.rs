@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -370,4 +373,26 @@ impl AttachmentBuilder {
         self.value["url"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AttachmentGraphql {
+    _content_type: Option<ElementGraphql>,
+    _creation: Option<ElementGraphql>,
+    _data: Option<ElementGraphql>,
+    _hash: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _size: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    content_type: Option<String>,
+    creation: Option<String>,
+    data: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    hash: Option<String>,
+    id: Option<String>,
+    language: Option<String>,
+    size: Option<u64>,
+    title: Option<String>,
+    url: Option<String>,
 }

@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -413,4 +418,24 @@ impl SubstanceProtein_SubunitBuilder {
         self.value["subunit"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceProtein_SubunitGraphql {
+    _c_terminal_modification: Option<ElementGraphql>,
+    _length: Option<ElementGraphql>,
+    _n_terminal_modification: Option<ElementGraphql>,
+    _sequence: Option<ElementGraphql>,
+    _subunit: Option<ElementGraphql>,
+    c_terminal_modification: Option<String>,
+    c_terminal_modification_id: Option<IdentifierGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    length: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    n_terminal_modification: Option<String>,
+    n_terminal_modification_id: Option<IdentifierGraphql>,
+    sequence: Option<String>,
+    sequence_attachment: Option<AttachmentGraphql>,
+    subunit: Option<i64>,
 }

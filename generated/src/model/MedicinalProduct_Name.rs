@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicinalProduct_CountryLanguage::MedicinalProduct_CountryLanguage;
+use crate::model::MedicinalProduct_CountryLanguage::MedicinalProduct_CountryLanguageGraphql;
 use crate::model::MedicinalProduct_NamePart::MedicinalProduct_NamePart;
+use crate::model::MedicinalProduct_NamePart::MedicinalProduct_NamePartGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -226,4 +231,15 @@ impl MedicinalProduct_NameBuilder {
         self.value["productName"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProduct_NameGraphql {
+    _product_name: Option<ElementGraphql>,
+    country_language: Option<Vec<MedicinalProduct_CountryLanguageGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name_part: Option<Vec<MedicinalProduct_NamePartGraphql>>,
+    product_name: Option<String>,
 }

@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ChargeItemDefinition_Applicability::ChargeItemDefinition_Applicability;
+use crate::model::ChargeItemDefinition_Applicability::ChargeItemDefinition_ApplicabilityGraphql;
 use crate::model::ChargeItemDefinition_PropertyGroup::ChargeItemDefinition_PropertyGroup;
+use crate::model::ChargeItemDefinition_PropertyGroup::ChargeItemDefinition_PropertyGroupGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1030,6 +1044,55 @@ impl ChargeItemDefinitionBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ChargeItemDefinitionGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _derived_from_uri: Option<Vec<ElementGraphql>>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    applicability: Option<Vec<ChargeItemDefinition_ApplicabilityGraphql>>,
+    approval_date: Option<String>,
+    code: Option<CodeableConceptGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    derived_from_uri: Option<Vec<String>>,
+    description: Option<String>,
+    effective_period: Option<PeriodGraphql>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instance: Option<Vec<ReferenceGraphql>>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    part_of: Option<Vec<String>>,
+    property_group: Option<Vec<ChargeItemDefinition_PropertyGroupGraphql>>,
+    publisher: Option<String>,
+    replaces: Option<Vec<String>>,
+    status: Option<ChargeItemDefinitionStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::ImagingStudy_Series::ImagingStudy_Series;
+use crate::model::ImagingStudy_Series::ImagingStudy_SeriesGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -811,6 +823,45 @@ impl ImagingStudyBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImagingStudyGraphql {
+    _description: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _number_of_instances: Option<ElementGraphql>,
+    _number_of_series: Option<ElementGraphql>,
+    _started: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    based_on: Option<Vec<ReferenceGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    description: Option<String>,
+    encounter: Option<ReferenceGraphql>,
+    endpoint: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    interpreter: Option<Vec<ReferenceGraphql>>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modality: Option<Vec<CodingGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    number_of_instances: Option<u64>,
+    number_of_series: Option<u64>,
+    procedure_code: Option<Vec<CodeableConceptGraphql>>,
+    procedure_reference: Option<ReferenceGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    referrer: Option<ReferenceGraphql>,
+    series: Option<Vec<ImagingStudy_SeriesGraphql>>,
+    started: Option<String>,
+    status: Option<ImagingStudyStatusGraphql>,
+    subject: ReferenceGraphql,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

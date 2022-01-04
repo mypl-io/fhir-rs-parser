@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -267,6 +270,22 @@ impl AgeBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AgeGraphql {
+    _code: Option<ElementGraphql>,
+    _comparator: Option<ElementGraphql>,
+    _system: Option<ElementGraphql>,
+    _unit: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    code: Option<String>,
+    comparator: Option<AgeComparatorGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    system: Option<String>,
+    unit: Option<String>,
+    value: Option<f64>,
 }
 
 #[derive(Debug)]

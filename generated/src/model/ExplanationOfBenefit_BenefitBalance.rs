@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExplanationOfBenefit_Financial::ExplanationOfBenefit_Financial;
+use crate::model::ExplanationOfBenefit_Financial::ExplanationOfBenefit_FinancialGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -369,4 +374,22 @@ impl ExplanationOfBenefit_BenefitBalanceBuilder {
         self.value["unit"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_BenefitBalanceGraphql {
+    _description: Option<ElementGraphql>,
+    _excluded: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    category: CodeableConceptGraphql,
+    description: Option<String>,
+    excluded: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    financial: Option<Vec<ExplanationOfBenefit_FinancialGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    network: Option<CodeableConceptGraphql>,
+    term: Option<CodeableConceptGraphql>,
+    unit: Option<CodeableConceptGraphql>,
 }

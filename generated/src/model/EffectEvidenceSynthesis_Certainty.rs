@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::EffectEvidenceSynthesis_CertaintySubcomponent::EffectEvidenceSynthesis_CertaintySubcomponent;
+use crate::model::EffectEvidenceSynthesis_CertaintySubcomponent::EffectEvidenceSynthesis_CertaintySubcomponentGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -225,4 +230,14 @@ impl EffectEvidenceSynthesis_CertaintyBuilder {
         self.value["rating"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EffectEvidenceSynthesis_CertaintyGraphql {
+    certainty_subcomponent: Option<Vec<EffectEvidenceSynthesis_CertaintySubcomponentGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    rating: Option<Vec<CodeableConceptGraphql>>,
 }

@@ -1,15 +1,26 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicinalProductIndication_OtherTherapy::MedicinalProductIndication_OtherTherapy;
+use crate::model::MedicinalProductIndication_OtherTherapy::MedicinalProductIndication_OtherTherapyGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Population::Population;
+use crate::model::Population::PopulationGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -523,4 +534,27 @@ impl MedicinalProductIndicationBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductIndicationGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    comorbidity: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    disease_status: Option<CodeableConceptGraphql>,
+    disease_symptom_procedure: Option<CodeableConceptGraphql>,
+    duration: Option<QuantityGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    intended_effect: Option<CodeableConceptGraphql>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    other_therapy: Option<Vec<MedicinalProductIndication_OtherTherapyGraphql>>,
+    population: Option<Vec<PopulationGraphql>>,
+    subject: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
+    undesirable_effect: Option<Vec<ReferenceGraphql>>,
 }

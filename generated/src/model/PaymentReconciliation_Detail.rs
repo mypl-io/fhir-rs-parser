@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -364,4 +371,22 @@ impl PaymentReconciliation_DetailBuilder {
         self.value["submitter"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PaymentReconciliation_DetailGraphql {
+    _date: Option<ElementGraphql>,
+    amount: Option<MoneyGraphql>,
+    date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    payee: Option<ReferenceGraphql>,
+    predecessor: Option<IdentifierGraphql>,
+    request: Option<ReferenceGraphql>,
+    response: Option<ReferenceGraphql>,
+    responsible: Option<ReferenceGraphql>,
+    submitter: Option<ReferenceGraphql>,
+    fhir_type: CodeableConceptGraphql,
 }

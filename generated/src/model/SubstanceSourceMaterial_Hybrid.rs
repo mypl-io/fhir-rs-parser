@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -338,4 +342,20 @@ impl SubstanceSourceMaterial_HybridBuilder {
         self.value["paternalOrganismName"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstanceSourceMaterial_HybridGraphql {
+    _maternal_organism_id: Option<ElementGraphql>,
+    _maternal_organism_name: Option<ElementGraphql>,
+    _paternal_organism_id: Option<ElementGraphql>,
+    _paternal_organism_name: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    hybrid_type: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    maternal_organism_id: Option<String>,
+    maternal_organism_name: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    paternal_organism_id: Option<String>,
+    paternal_organism_name: Option<String>,
 }

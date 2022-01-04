@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::HealthcareService_AvailableTime::HealthcareService_AvailableTime;
+use crate::model::HealthcareService_AvailableTime::HealthcareService_AvailableTimeGraphql;
 use crate::model::HealthcareService_Eligibility::HealthcareService_Eligibility;
+use crate::model::HealthcareService_Eligibility::HealthcareService_EligibilityGraphql;
 use crate::model::HealthcareService_NotAvailable::HealthcareService_NotAvailable;
+use crate::model::HealthcareService_NotAvailable::HealthcareService_NotAvailableGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -982,4 +996,48 @@ impl HealthcareServiceBuilder {
         self.value["type"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct HealthcareServiceGraphql {
+    _active: Option<ElementGraphql>,
+    _appointment_required: Option<ElementGraphql>,
+    _availability_exceptions: Option<ElementGraphql>,
+    _comment: Option<ElementGraphql>,
+    _extra_details: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    active: Option<bool>,
+    appointment_required: Option<bool>,
+    availability_exceptions: Option<String>,
+    available_time: Option<Vec<HealthcareService_AvailableTimeGraphql>>,
+    category: Option<Vec<CodeableConceptGraphql>>,
+    characteristic: Option<Vec<CodeableConceptGraphql>>,
+    comment: Option<String>,
+    communication: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    coverage_area: Option<Vec<ReferenceGraphql>>,
+    eligibility: Option<Vec<HealthcareService_EligibilityGraphql>>,
+    endpoint: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    extra_details: Option<String>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    location: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    not_available: Option<Vec<HealthcareService_NotAvailableGraphql>>,
+    photo: Option<AttachmentGraphql>,
+    program: Option<Vec<CodeableConceptGraphql>>,
+    provided_by: Option<ReferenceGraphql>,
+    referral_method: Option<Vec<CodeableConceptGraphql>>,
+    service_provision_code: Option<Vec<CodeableConceptGraphql>>,
+    specialty: Option<Vec<CodeableConceptGraphql>>,
+    telecom: Option<Vec<ContactPointGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }

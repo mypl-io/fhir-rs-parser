@@ -1,10 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::StructureMap_Dependent::StructureMap_Dependent;
+use crate::model::StructureMap_Dependent::StructureMap_DependentGraphql;
+use crate::model::StructureMap_Rule::StructureMap_Rule;
+use crate::model::StructureMap_Rule::StructureMap_RuleGraphql;
 use crate::model::StructureMap_Source::StructureMap_Source;
+use crate::model::StructureMap_Source::StructureMap_SourceGraphql;
 use crate::model::StructureMap_Target::StructureMap_Target;
+use crate::model::StructureMap_Target::StructureMap_TargetGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -304,4 +312,19 @@ impl StructureMap_RuleBuilder {
         self.value["target"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_RuleGraphql {
+    _documentation: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    dependent: Option<Vec<StructureMap_DependentGraphql>>,
+    documentation: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    rule: Option<Vec<StructureMap_RuleGraphql>>,
+    source: Vec<StructureMap_SourceGraphql>,
+    target: Option<Vec<StructureMap_TargetGraphql>>,
 }

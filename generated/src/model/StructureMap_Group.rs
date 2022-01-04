@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::StructureMap_Input::StructureMap_Input;
+use crate::model::StructureMap_Input::StructureMap_InputGraphql;
 use crate::model::StructureMap_Rule::StructureMap_Rule;
+use crate::model::StructureMap_Rule::StructureMap_RuleGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -325,6 +330,23 @@ impl StructureMap_GroupBuilder {
         self.value["typeMode"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_GroupGraphql {
+    _documentation: Option<ElementGraphql>,
+    _extends: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _type_mode: Option<ElementGraphql>,
+    documentation: Option<String>,
+    extends: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    input: Vec<StructureMap_InputGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    rule: Vec<StructureMap_RuleGraphql>,
+    type_mode: Option<StructureMap_GroupTypeModeGraphql>,
 }
 
 #[derive(Debug)]

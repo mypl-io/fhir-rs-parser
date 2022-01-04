@@ -1,9 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
+use crate::model::CodeSystem_Concept::CodeSystem_Concept;
+use crate::model::CodeSystem_Concept::CodeSystem_ConceptGraphql;
 use crate::model::CodeSystem_Designation::CodeSystem_Designation;
+use crate::model::CodeSystem_Designation::CodeSystem_DesignationGraphql;
 use crate::model::CodeSystem_Property1::CodeSystem_Property1;
+use crate::model::CodeSystem_Property1::CodeSystem_Property1Graphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -327,4 +334,20 @@ impl CodeSystem_ConceptBuilder {
         self.value["property"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CodeSystem_ConceptGraphql {
+    _code: Option<ElementGraphql>,
+    _definition: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    code: Option<String>,
+    concept: Option<Vec<CodeSystem_ConceptGraphql>>,
+    definition: Option<String>,
+    designation: Option<Vec<CodeSystem_DesignationGraphql>>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    property: Option<Vec<CodeSystem_Property1Graphql>>,
 }

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::PractitionerRole_AvailableTime::PractitionerRole_AvailableTime;
+use crate::model::PractitionerRole_AvailableTime::PractitionerRole_AvailableTimeGraphql;
 use crate::model::PractitionerRole_NotAvailable::PractitionerRole_NotAvailable;
+use crate::model::PractitionerRole_NotAvailable::PractitionerRole_NotAvailableGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -655,4 +668,34 @@ impl PractitionerRoleBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PractitionerRoleGraphql {
+    _active: Option<ElementGraphql>,
+    _availability_exceptions: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    active: Option<bool>,
+    availability_exceptions: Option<String>,
+    available_time: Option<Vec<PractitionerRole_AvailableTimeGraphql>>,
+    code: Option<Vec<CodeableConceptGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    endpoint: Option<Vec<ReferenceGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    healthcare_service: Option<Vec<ReferenceGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    location: Option<Vec<ReferenceGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    not_available: Option<Vec<PractitionerRole_NotAvailableGraphql>>,
+    organization: Option<ReferenceGraphql>,
+    period: Option<PeriodGraphql>,
+    practitioner: Option<ReferenceGraphql>,
+    specialty: Option<Vec<CodeableConceptGraphql>>,
+    telecom: Option<Vec<ContactPointGraphql>>,
+    text: Option<NarrativeGraphql>,
 }

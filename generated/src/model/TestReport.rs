@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::TestReport_Participant::TestReport_Participant;
+use crate::model::TestReport_Participant::TestReport_ParticipantGraphql;
 use crate::model::TestReport_Setup::TestReport_Setup;
+use crate::model::TestReport_Setup::TestReport_SetupGraphql;
 use crate::model::TestReport_Teardown::TestReport_Teardown;
+use crate::model::TestReport_Teardown::TestReport_TeardownGraphql;
 use crate::model::TestReport_Test::TestReport_Test;
+use crate::model::TestReport_Test::TestReport_TestGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -615,6 +627,38 @@ impl TestReportBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestReportGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _issued: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _result: Option<ElementGraphql>,
+    _score: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _tester: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    issued: Option<String>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    participant: Option<Vec<TestReport_ParticipantGraphql>>,
+    result: Option<TestReportResultGraphql>,
+    score: Option<f64>,
+    setup: Option<TestReport_SetupGraphql>,
+    status: Option<TestReportStatusGraphql>,
+    teardown: Option<TestReport_TeardownGraphql>,
+    test: Option<Vec<TestReport_TestGraphql>>,
+    test_script: ReferenceGraphql,
+    tester: Option<String>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,17 +1,30 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::BiologicallyDerivedProduct_Collection::BiologicallyDerivedProduct_Collection;
+use crate::model::BiologicallyDerivedProduct_Collection::BiologicallyDerivedProduct_CollectionGraphql;
 use crate::model::BiologicallyDerivedProduct_Manipulation::BiologicallyDerivedProduct_Manipulation;
+use crate::model::BiologicallyDerivedProduct_Manipulation::BiologicallyDerivedProduct_ManipulationGraphql;
 use crate::model::BiologicallyDerivedProduct_Processing::BiologicallyDerivedProduct_Processing;
+use crate::model::BiologicallyDerivedProduct_Processing::BiologicallyDerivedProduct_ProcessingGraphql;
 use crate::model::BiologicallyDerivedProduct_Storage::BiologicallyDerivedProduct_Storage;
+use crate::model::BiologicallyDerivedProduct_Storage::BiologicallyDerivedProduct_StorageGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -624,6 +637,34 @@ impl BiologicallyDerivedProductBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct BiologicallyDerivedProductGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _product_category: Option<ElementGraphql>,
+    _quantity: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    collection: Option<BiologicallyDerivedProduct_CollectionGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    manipulation: Option<BiologicallyDerivedProduct_ManipulationGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    parent: Option<Vec<ReferenceGraphql>>,
+    processing: Option<Vec<BiologicallyDerivedProduct_ProcessingGraphql>>,
+    product_category: Option<BiologicallyDerivedProductProductCategoryGraphql>,
+    product_code: Option<CodeableConceptGraphql>,
+    quantity: Option<i64>,
+    request: Option<Vec<ReferenceGraphql>>,
+    status: Option<BiologicallyDerivedProductStatusGraphql>,
+    storage: Option<Vec<BiologicallyDerivedProduct_StorageGraphql>>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

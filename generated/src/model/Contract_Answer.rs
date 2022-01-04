@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Attachment::Attachment;
+use crate::model::Attachment::AttachmentGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -525,4 +532,31 @@ impl Contract_AnswerBuilder {
         self.value["valueUri"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Contract_AnswerGraphql {
+    _value_boolean: Option<ElementGraphql>,
+    _value_date: Option<ElementGraphql>,
+    _value_date_time: Option<ElementGraphql>,
+    _value_decimal: Option<ElementGraphql>,
+    _value_integer: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    _value_time: Option<ElementGraphql>,
+    _value_uri: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    value_attachment: Option<AttachmentGraphql>,
+    value_boolean: Option<bool>,
+    value_coding: Option<CodingGraphql>,
+    value_date: Option<String>,
+    value_date_time: Option<String>,
+    value_decimal: Option<f64>,
+    value_integer: Option<f64>,
+    value_quantity: Option<QuantityGraphql>,
+    value_reference: Option<ReferenceGraphql>,
+    value_string: Option<String>,
+    value_time: Option<String>,
+    value_uri: Option<String>,
 }

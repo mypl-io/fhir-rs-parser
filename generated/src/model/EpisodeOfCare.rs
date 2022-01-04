@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::EpisodeOfCare_Diagnosis::EpisodeOfCare_Diagnosis;
+use crate::model::EpisodeOfCare_Diagnosis::EpisodeOfCare_DiagnosisGraphql;
 use crate::model::EpisodeOfCare_StatusHistory::EpisodeOfCare_StatusHistory;
+use crate::model::EpisodeOfCare_StatusHistory::EpisodeOfCare_StatusHistoryGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -575,6 +587,33 @@ impl EpisodeOfCareBuilder {
         self.value["type"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct EpisodeOfCareGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    account: Option<Vec<ReferenceGraphql>>,
+    care_manager: Option<ReferenceGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    diagnosis: Option<Vec<EpisodeOfCare_DiagnosisGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    managing_organization: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    patient: ReferenceGraphql,
+    period: Option<PeriodGraphql>,
+    referral_request: Option<Vec<ReferenceGraphql>>,
+    status: Option<EpisodeOfCareStatusGraphql>,
+    status_history: Option<Vec<EpisodeOfCare_StatusHistoryGraphql>>,
+    team: Option<Vec<ReferenceGraphql>>,
+    text: Option<NarrativeGraphql>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
 #[derive(Debug)]

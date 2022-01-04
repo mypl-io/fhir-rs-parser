@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Bundle_Entry::Bundle_Entry;
+use crate::model::Bundle_Entry::Bundle_EntryGraphql;
 use crate::model::Bundle_Link::Bundle_Link;
+use crate::model::Bundle_Link::Bundle_LinkGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Signature::Signature;
+use crate::model::Signature::SignatureGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -359,6 +366,26 @@ impl BundleBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct BundleGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _timestamp: Option<ElementGraphql>,
+    _total: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    entry: Option<Vec<Bundle_EntryGraphql>>,
+    id: Option<String>,
+    identifier: Option<IdentifierGraphql>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    link: Option<Vec<Bundle_LinkGraphql>>,
+    meta: Option<MetaGraphql>,
+    signature: Option<SignatureGraphql>,
+    timestamp: Option<String>,
+    total: Option<u64>,
+    fhir_type: Option<BundleTypeGraphql>,
 }
 
 #[derive(Debug)]

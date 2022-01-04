@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -134,4 +137,12 @@ impl RangeBuilder {
         self.value["low"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RangeGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    high: Option<QuantityGraphql>,
+    id: Option<String>,
+    low: Option<QuantityGraphql>,
 }

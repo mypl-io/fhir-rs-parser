@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ImplementationGuide_Page1::ImplementationGuide_Page1;
+use crate::model::ImplementationGuide_Page1::ImplementationGuide_Page1Graphql;
 use crate::model::ImplementationGuide_Resource1::ImplementationGuide_Resource1;
+use crate::model::ImplementationGuide_Resource1::ImplementationGuide_Resource1Graphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -329,4 +334,19 @@ impl ImplementationGuide_ManifestBuilder {
         self.value["rendering"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuide_ManifestGraphql {
+    _image: Option<Vec<ElementGraphql>>,
+    _other: Option<Vec<ElementGraphql>>,
+    _rendering: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    image: Option<Vec<String>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    other: Option<Vec<String>>,
+    page: Option<Vec<ImplementationGuide_Page1Graphql>>,
+    rendering: Option<String>,
+    resource: Vec<ImplementationGuide_Resource1Graphql>,
 }

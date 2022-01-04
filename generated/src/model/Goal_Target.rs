@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -433,4 +441,25 @@ impl Goal_TargetBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Goal_TargetGraphql {
+    _detail_boolean: Option<ElementGraphql>,
+    _detail_integer: Option<ElementGraphql>,
+    _detail_string: Option<ElementGraphql>,
+    _due_date: Option<ElementGraphql>,
+    detail_boolean: Option<bool>,
+    detail_codeable_concept: Option<CodeableConceptGraphql>,
+    detail_integer: Option<f64>,
+    detail_quantity: Option<QuantityGraphql>,
+    detail_range: Option<RangeGraphql>,
+    detail_ratio: Option<RatioGraphql>,
+    detail_string: Option<String>,
+    due_date: Option<String>,
+    due_duration: Option<DurationGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    measure: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }

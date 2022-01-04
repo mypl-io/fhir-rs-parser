@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MeasureReport_Component::MeasureReport_Component;
+use crate::model::MeasureReport_Component::MeasureReport_ComponentGraphql;
 use crate::model::MeasureReport_Population1::MeasureReport_Population1;
+use crate::model::MeasureReport_Population1::MeasureReport_Population1Graphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -237,4 +243,15 @@ impl MeasureReport_StratumBuilder {
         self.value["value"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MeasureReport_StratumGraphql {
+    component: Option<Vec<MeasureReport_ComponentGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    measure_score: Option<QuantityGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    population: Option<Vec<MeasureReport_Population1Graphql>>,
+    value: Option<CodeableConceptGraphql>,
 }

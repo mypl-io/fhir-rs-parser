@@ -1,13 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Address::Address;
+use crate::model::Address::AddressGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactPoint::ContactPoint;
+use crate::model::ContactPoint::ContactPointGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::HumanName::HumanName;
+use crate::model::HumanName::HumanNameGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -307,6 +316,21 @@ impl Patient_ContactBuilder {
         self.value["telecom"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Patient_ContactGraphql {
+    _gender: Option<ElementGraphql>,
+    address: Option<AddressGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    gender: Option<Patient_ContactGenderGraphql>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<HumanNameGraphql>,
+    organization: Option<ReferenceGraphql>,
+    period: Option<PeriodGraphql>,
+    relationship: Option<Vec<CodeableConceptGraphql>>,
+    telecom: Option<Vec<ContactPointGraphql>>,
 }
 
 #[derive(Debug)]

@@ -1,21 +1,40 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::DataRequirement::DataRequirement;
+use crate::model::DataRequirement::DataRequirementGraphql;
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use crate::model::PlanDefinition_Action::PlanDefinition_Action;
+use crate::model::PlanDefinition_Action::PlanDefinition_ActionGraphql;
 use crate::model::PlanDefinition_Condition::PlanDefinition_Condition;
+use crate::model::PlanDefinition_Condition::PlanDefinition_ConditionGraphql;
 use crate::model::PlanDefinition_DynamicValue::PlanDefinition_DynamicValue;
+use crate::model::PlanDefinition_DynamicValue::PlanDefinition_DynamicValueGraphql;
 use crate::model::PlanDefinition_Participant::PlanDefinition_Participant;
+use crate::model::PlanDefinition_Participant::PlanDefinition_ParticipantGraphql;
 use crate::model::PlanDefinition_RelatedAction::PlanDefinition_RelatedAction;
+use crate::model::PlanDefinition_RelatedAction::PlanDefinition_RelatedActionGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
 use crate::model::TriggerDefinition::TriggerDefinition;
+use crate::model::TriggerDefinition::TriggerDefinitionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1185,6 +1204,61 @@ impl PlanDefinition_ActionBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PlanDefinition_ActionGraphql {
+    _cardinality_behavior: Option<ElementGraphql>,
+    _definition_canonical: Option<ElementGraphql>,
+    _definition_uri: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _goal_id: Option<Vec<ElementGraphql>>,
+    _grouping_behavior: Option<ElementGraphql>,
+    _precheck_behavior: Option<ElementGraphql>,
+    _prefix: Option<ElementGraphql>,
+    _priority: Option<ElementGraphql>,
+    _required_behavior: Option<ElementGraphql>,
+    _selection_behavior: Option<ElementGraphql>,
+    _text_equivalent: Option<ElementGraphql>,
+    _timing_date_time: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    action: Option<Vec<PlanDefinition_ActionGraphql>>,
+    cardinality_behavior: Option<PlanDefinition_ActionCardinalityBehaviorGraphql>,
+    code: Option<Vec<CodeableConceptGraphql>>,
+    condition: Option<Vec<PlanDefinition_ConditionGraphql>>,
+    definition_canonical: Option<String>,
+    definition_uri: Option<String>,
+    description: Option<String>,
+    documentation: Option<Vec<RelatedArtifactGraphql>>,
+    dynamic_value: Option<Vec<PlanDefinition_DynamicValueGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    goal_id: Option<Vec<String>>,
+    grouping_behavior: Option<PlanDefinition_ActionGroupingBehaviorGraphql>,
+    id: Option<String>,
+    input: Option<Vec<DataRequirementGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    output: Option<Vec<DataRequirementGraphql>>,
+    participant: Option<Vec<PlanDefinition_ParticipantGraphql>>,
+    precheck_behavior: Option<PlanDefinition_ActionPrecheckBehaviorGraphql>,
+    prefix: Option<String>,
+    priority: Option<String>,
+    reason: Option<Vec<CodeableConceptGraphql>>,
+    related_action: Option<Vec<PlanDefinition_RelatedActionGraphql>>,
+    required_behavior: Option<PlanDefinition_ActionRequiredBehaviorGraphql>,
+    selection_behavior: Option<PlanDefinition_ActionSelectionBehaviorGraphql>,
+    subject_codeable_concept: Option<CodeableConceptGraphql>,
+    subject_reference: Option<ReferenceGraphql>,
+    text_equivalent: Option<String>,
+    timing_age: Option<AgeGraphql>,
+    timing_date_time: Option<String>,
+    timing_duration: Option<DurationGraphql>,
+    timing_period: Option<PeriodGraphql>,
+    timing_range: Option<RangeGraphql>,
+    timing_timing: Option<TimingGraphql>,
+    title: Option<String>,
+    transform: Option<String>,
+    trigger: Option<Vec<TriggerDefinitionGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

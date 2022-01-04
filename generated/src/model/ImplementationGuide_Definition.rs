@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ImplementationGuide_Grouping::ImplementationGuide_Grouping;
+use crate::model::ImplementationGuide_Grouping::ImplementationGuide_GroupingGraphql;
 use crate::model::ImplementationGuide_Page::ImplementationGuide_Page;
+use crate::model::ImplementationGuide_Page::ImplementationGuide_PageGraphql;
 use crate::model::ImplementationGuide_Parameter::ImplementationGuide_Parameter;
+use crate::model::ImplementationGuide_Parameter::ImplementationGuide_ParameterGraphql;
 use crate::model::ImplementationGuide_Resource::ImplementationGuide_Resource;
+use crate::model::ImplementationGuide_Resource::ImplementationGuide_ResourceGraphql;
 use crate::model::ImplementationGuide_Template::ImplementationGuide_Template;
+use crate::model::ImplementationGuide_Template::ImplementationGuide_TemplateGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -275,4 +282,16 @@ impl ImplementationGuide_DefinitionBuilder {
         self.value["template"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuide_DefinitionGraphql {
+    extension: Option<Vec<ExtensionGraphql>>,
+    grouping: Option<Vec<ImplementationGuide_GroupingGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    page: Option<ImplementationGuide_PageGraphql>,
+    parameter: Option<Vec<ImplementationGuide_ParameterGraphql>>,
+    resource: Vec<ImplementationGuide_ResourceGraphql>,
+    template: Option<Vec<ImplementationGuide_TemplateGraphql>>,
 }

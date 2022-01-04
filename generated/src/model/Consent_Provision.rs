@@ -1,12 +1,22 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Consent_Actor::Consent_Actor;
+use crate::model::Consent_Actor::Consent_ActorGraphql;
 use crate::model::Consent_Data::Consent_Data;
+use crate::model::Consent_Data::Consent_DataGraphql;
+use crate::model::Consent_Provision::Consent_Provision;
+use crate::model::Consent_Provision::Consent_ProvisionGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -418,6 +428,25 @@ impl Consent_ProvisionBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Consent_ProvisionGraphql {
+    _type: Option<ElementGraphql>,
+    action: Option<Vec<CodeableConceptGraphql>>,
+    actor: Option<Vec<Consent_ActorGraphql>>,
+    class: Option<Vec<CodingGraphql>>,
+    code: Option<Vec<CodeableConceptGraphql>>,
+    data: Option<Vec<Consent_DataGraphql>>,
+    data_period: Option<PeriodGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<PeriodGraphql>,
+    provision: Option<Vec<Consent_ProvisionGraphql>>,
+    purpose: Option<Vec<CodingGraphql>>,
+    security_label: Option<Vec<CodingGraphql>>,
+    fhir_type: Option<Consent_ProvisionTypeGraphql>,
 }
 
 #[derive(Debug)]

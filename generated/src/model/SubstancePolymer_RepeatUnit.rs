@@ -1,11 +1,18 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SubstanceAmount::SubstanceAmount;
+use crate::model::SubstanceAmount::SubstanceAmountGraphql;
 use crate::model::SubstancePolymer_DegreeOfPolymerisation::SubstancePolymer_DegreeOfPolymerisation;
+use crate::model::SubstancePolymer_DegreeOfPolymerisation::SubstancePolymer_DegreeOfPolymerisationGraphql;
 use crate::model::SubstancePolymer_StructuralRepresentation::SubstancePolymer_StructuralRepresentation;
+use crate::model::SubstancePolymer_StructuralRepresentation::SubstancePolymer_StructuralRepresentationGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -280,4 +287,17 @@ impl SubstancePolymer_RepeatUnitBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstancePolymer_RepeatUnitGraphql {
+    _repeat_unit: Option<ElementGraphql>,
+    amount: Option<SubstanceAmountGraphql>,
+    degree_of_polymerisation: Option<Vec<SubstancePolymer_DegreeOfPolymerisationGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    orientation_of_polymerisation: Option<CodeableConceptGraphql>,
+    repeat_unit: Option<String>,
+    structural_representation: Option<Vec<SubstancePolymer_StructuralRepresentationGraphql>>,
 }

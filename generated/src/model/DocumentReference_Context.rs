@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -318,4 +323,18 @@ impl DocumentReference_ContextBuilder {
         self.value["sourcePatientInfo"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DocumentReference_ContextGraphql {
+    encounter: Option<Vec<ReferenceGraphql>>,
+    event: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    facility_type: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    period: Option<PeriodGraphql>,
+    practice_setting: Option<CodeableConceptGraphql>,
+    related: Option<Vec<ReferenceGraphql>>,
+    source_patient_info: Option<ReferenceGraphql>,
 }

@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::Timing::Timing;
+use crate::model::Timing::TimingGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -686,6 +694,39 @@ impl CarePlan_DetailBuilder {
         self.value["statusReason"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CarePlan_DetailGraphql {
+    _description: Option<ElementGraphql>,
+    _do_not_perform: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _kind: Option<ElementGraphql>,
+    _scheduled_string: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    code: Option<CodeableConceptGraphql>,
+    daily_amount: Option<QuantityGraphql>,
+    description: Option<String>,
+    do_not_perform: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    goal: Option<Vec<ReferenceGraphql>>,
+    id: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    kind: Option<String>,
+    location: Option<ReferenceGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    performer: Option<Vec<ReferenceGraphql>>,
+    product_codeable_concept: Option<CodeableConceptGraphql>,
+    product_reference: Option<ReferenceGraphql>,
+    quantity: Option<QuantityGraphql>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    scheduled_period: Option<PeriodGraphql>,
+    scheduled_string: Option<String>,
+    scheduled_timing: Option<TimingGraphql>,
+    status: Option<CarePlan_DetailStatusGraphql>,
+    status_reason: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

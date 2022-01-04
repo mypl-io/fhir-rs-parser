@@ -1,11 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Coding::Coding;
+use crate::model::Coding::CodingGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Questionnaire_AnswerOption::Questionnaire_AnswerOption;
+use crate::model::Questionnaire_AnswerOption::Questionnaire_AnswerOptionGraphql;
 use crate::model::Questionnaire_EnableWhen::Questionnaire_EnableWhen;
+use crate::model::Questionnaire_EnableWhen::Questionnaire_EnableWhenGraphql;
 use crate::model::Questionnaire_Initial::Questionnaire_Initial;
+use crate::model::Questionnaire_Initial::Questionnaire_InitialGraphql;
+use crate::model::Questionnaire_Item::Questionnaire_Item;
+use crate::model::Questionnaire_Item::Questionnaire_ItemGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -656,6 +665,39 @@ impl Questionnaire_ItemBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct Questionnaire_ItemGraphql {
+    _definition: Option<ElementGraphql>,
+    _enable_behavior: Option<ElementGraphql>,
+    _link_id: Option<ElementGraphql>,
+    _max_length: Option<ElementGraphql>,
+    _prefix: Option<ElementGraphql>,
+    _read_only: Option<ElementGraphql>,
+    _repeats: Option<ElementGraphql>,
+    _required: Option<ElementGraphql>,
+    _text: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    answer_option: Option<Vec<Questionnaire_AnswerOptionGraphql>>,
+    answer_value_set: Option<String>,
+    code: Option<Vec<CodingGraphql>>,
+    definition: Option<String>,
+    enable_behavior: Option<Questionnaire_ItemEnableBehaviorGraphql>,
+    enable_when: Option<Vec<Questionnaire_EnableWhenGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    initial: Option<Vec<Questionnaire_InitialGraphql>>,
+    item: Option<Vec<Questionnaire_ItemGraphql>>,
+    link_id: Option<String>,
+    max_length: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    prefix: Option<String>,
+    read_only: Option<bool>,
+    repeats: Option<bool>,
+    required: Option<bool>,
+    text: Option<String>,
+    fhir_type: Option<Questionnaire_ItemTypeGraphql>,
 }
 
 #[derive(Debug)]

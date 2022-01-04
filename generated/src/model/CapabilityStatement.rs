@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CapabilityStatement_Document::CapabilityStatement_Document;
+use crate::model::CapabilityStatement_Document::CapabilityStatement_DocumentGraphql;
 use crate::model::CapabilityStatement_Implementation::CapabilityStatement_Implementation;
+use crate::model::CapabilityStatement_Implementation::CapabilityStatement_ImplementationGraphql;
 use crate::model::CapabilityStatement_Messaging::CapabilityStatement_Messaging;
+use crate::model::CapabilityStatement_Messaging::CapabilityStatement_MessagingGraphql;
 use crate::model::CapabilityStatement_Rest::CapabilityStatement_Rest;
+use crate::model::CapabilityStatement_Rest::CapabilityStatement_RestGraphql;
 use crate::model::CapabilityStatement_Software::CapabilityStatement_Software;
+use crate::model::CapabilityStatement_Software::CapabilityStatement_SoftwareGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1157,6 +1171,61 @@ impl CapabilityStatementBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct CapabilityStatementGraphql {
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _fhir_version: Option<ElementGraphql>,
+    _format: Option<Vec<ElementGraphql>>,
+    _implicit_rules: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _patch_format: Option<Vec<ElementGraphql>>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    document: Option<Vec<CapabilityStatement_DocumentGraphql>>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    fhir_version: Option<CapabilityStatementFhirVersionGraphql>,
+    format: Option<Vec<String>>,
+    id: Option<String>,
+    implementation: Option<CapabilityStatement_ImplementationGraphql>,
+    implementation_guide: Option<Vec<String>>,
+    implicit_rules: Option<String>,
+    imports: Option<Vec<String>>,
+    instantiates: Option<Vec<String>>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    kind: Option<CapabilityStatementKindGraphql>,
+    language: Option<String>,
+    messaging: Option<Vec<CapabilityStatement_MessagingGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    patch_format: Option<Vec<String>>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    rest: Option<Vec<CapabilityStatement_RestGraphql>>,
+    software: Option<CapabilityStatement_SoftwareGraphql>,
+    status: Option<CapabilityStatementStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

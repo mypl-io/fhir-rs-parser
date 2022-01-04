@@ -1,12 +1,20 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicationRequest_InitialFill::MedicationRequest_InitialFill;
+use crate::model::MedicationRequest_InitialFill::MedicationRequest_InitialFillGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -332,4 +340,19 @@ impl MedicationRequest_DispenseRequestBuilder {
         self.value["validityPeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationRequest_DispenseRequestGraphql {
+    _number_of_repeats_allowed: Option<ElementGraphql>,
+    dispense_interval: Option<DurationGraphql>,
+    expected_supply_duration: Option<DurationGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    initial_fill: Option<MedicationRequest_InitialFillGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    number_of_repeats_allowed: Option<u64>,
+    performer: Option<ReferenceGraphql>,
+    quantity: Option<QuantityGraphql>,
+    validity_period: Option<PeriodGraphql>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -237,4 +241,16 @@ impl PopulationBuilder {
         self.value["race"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct PopulationGraphql {
+    age_codeable_concept: Option<CodeableConceptGraphql>,
+    age_range: Option<RangeGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    gender: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    physiological_condition: Option<CodeableConceptGraphql>,
+    race: Option<CodeableConceptGraphql>,
 }

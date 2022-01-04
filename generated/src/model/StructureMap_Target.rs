@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::StructureMap_Parameter::StructureMap_Parameter;
+use crate::model::StructureMap_Parameter::StructureMap_ParameterGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -394,6 +398,27 @@ impl StructureMap_TargetBuilder {
         self.value["variable"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct StructureMap_TargetGraphql {
+    _context: Option<ElementGraphql>,
+    _context_type: Option<ElementGraphql>,
+    _element: Option<ElementGraphql>,
+    _list_mode: Option<Vec<ElementGraphql>>,
+    _list_rule_id: Option<ElementGraphql>,
+    _transform: Option<ElementGraphql>,
+    _variable: Option<ElementGraphql>,
+    context: Option<String>,
+    context_type: Option<StructureMap_TargetContextTypeGraphql>,
+    element: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    list_rule_id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    parameter: Option<Vec<StructureMap_ParameterGraphql>>,
+    transform: Option<StructureMap_TargetTransformGraphql>,
+    variable: Option<String>,
 }
 
 #[derive(Debug)]

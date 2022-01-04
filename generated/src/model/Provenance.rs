@@ -1,16 +1,28 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Provenance_Agent::Provenance_Agent;
+use crate::model::Provenance_Agent::Provenance_AgentGraphql;
 use crate::model::Provenance_Entity::Provenance_Entity;
+use crate::model::Provenance_Entity::Provenance_EntityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::Signature::Signature;
+use crate::model::Signature::SignatureGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -589,4 +601,32 @@ impl ProvenanceBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ProvenanceGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _occurred_date_time: Option<ElementGraphql>,
+    _policy: Option<Vec<ElementGraphql>>,
+    _recorded: Option<ElementGraphql>,
+    activity: Option<CodeableConceptGraphql>,
+    agent: Vec<Provenance_AgentGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    entity: Option<Vec<Provenance_EntityGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    occurred_date_time: Option<String>,
+    occurred_period: Option<PeriodGraphql>,
+    policy: Option<Vec<String>>,
+    reason: Option<Vec<CodeableConceptGraphql>>,
+    recorded: Option<String>,
+    signature: Option<Vec<SignatureGraphql>>,
+    target: Vec<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
 }

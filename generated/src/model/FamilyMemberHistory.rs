@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Age::Age;
+use crate::model::Age::AgeGraphql;
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::FamilyMemberHistory_Condition::FamilyMemberHistory_Condition;
+use crate::model::FamilyMemberHistory_Condition::FamilyMemberHistory_ConditionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Range::Range;
+use crate::model::Range::RangeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1026,6 +1040,57 @@ impl FamilyMemberHistoryBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct FamilyMemberHistoryGraphql {
+    _age_string: Option<ElementGraphql>,
+    _born_date: Option<ElementGraphql>,
+    _born_string: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _deceased_boolean: Option<ElementGraphql>,
+    _deceased_date: Option<ElementGraphql>,
+    _deceased_string: Option<ElementGraphql>,
+    _estimated_age: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _instantiates_uri: Option<Vec<ElementGraphql>>,
+    _language: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    age_age: Option<AgeGraphql>,
+    age_range: Option<RangeGraphql>,
+    age_string: Option<String>,
+    born_date: Option<String>,
+    born_period: Option<PeriodGraphql>,
+    born_string: Option<String>,
+    condition: Option<Vec<FamilyMemberHistory_ConditionGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    data_absent_reason: Option<CodeableConceptGraphql>,
+    date: Option<String>,
+    deceased_age: Option<AgeGraphql>,
+    deceased_boolean: Option<bool>,
+    deceased_date: Option<String>,
+    deceased_range: Option<RangeGraphql>,
+    deceased_string: Option<String>,
+    estimated_age: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    instantiates_canonical: Option<Vec<String>>,
+    instantiates_uri: Option<Vec<String>>,
+    language: Option<String>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    note: Option<Vec<AnnotationGraphql>>,
+    patient: ReferenceGraphql,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    relationship: CodeableConceptGraphql,
+    sex: Option<CodeableConceptGraphql>,
+    status: Option<FamilyMemberHistoryStatusGraphql>,
+    text: Option<NarrativeGraphql>,
 }
 
 #[derive(Debug)]

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -358,4 +362,22 @@ impl MolecularSequence_VariantBuilder {
         self.value["variantPointer"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MolecularSequence_VariantGraphql {
+    _cigar: Option<ElementGraphql>,
+    _end: Option<ElementGraphql>,
+    _observed_allele: Option<ElementGraphql>,
+    _reference_allele: Option<ElementGraphql>,
+    _start: Option<ElementGraphql>,
+    cigar: Option<String>,
+    end: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    observed_allele: Option<String>,
+    reference_allele: Option<String>,
+    start: Option<i64>,
+    variant_pointer: Option<ReferenceGraphql>,
 }

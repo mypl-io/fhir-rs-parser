@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -371,4 +375,23 @@ impl ImplementationGuide_ResourceBuilder {
         self.value["name"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImplementationGuide_ResourceGraphql {
+    _description: Option<ElementGraphql>,
+    _example_boolean: Option<ElementGraphql>,
+    _example_canonical: Option<ElementGraphql>,
+    _fhir_version: Option<Vec<ElementGraphql>>,
+    _grouping_id: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    description: Option<String>,
+    example_boolean: Option<bool>,
+    example_canonical: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    grouping_id: Option<String>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    reference: ReferenceGraphql,
 }

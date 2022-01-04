@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -238,4 +242,16 @@ impl ExplanationOfBenefit_InsuranceBuilder {
         self.value["preAuthRef"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExplanationOfBenefit_InsuranceGraphql {
+    _focal: Option<ElementGraphql>,
+    _pre_auth_ref: Option<Vec<ElementGraphql>>,
+    coverage: ReferenceGraphql,
+    extension: Option<Vec<ExtensionGraphql>>,
+    focal: Option<bool>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    pre_auth_ref: Option<Vec<String>>,
 }

@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -239,4 +242,17 @@ impl AuditEvent_DetailBuilder {
         self.value["valueString"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct AuditEvent_DetailGraphql {
+    _type: Option<ElementGraphql>,
+    _value_base_6_4_binary: Option<ElementGraphql>,
+    _value_string: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    fhir_type: Option<String>,
+    value_base_6_4_binary: Option<String>,
+    value_string: Option<String>,
 }

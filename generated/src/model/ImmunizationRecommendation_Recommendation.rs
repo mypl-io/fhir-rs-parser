@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ImmunizationRecommendation_DateCriterion::ImmunizationRecommendation_DateCriterion;
+use crate::model::ImmunizationRecommendation_DateCriterion::ImmunizationRecommendation_DateCriterionGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -593,4 +599,31 @@ impl ImmunizationRecommendation_RecommendationBuilder {
         self.value["vaccineCode"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImmunizationRecommendation_RecommendationGraphql {
+    _description: Option<ElementGraphql>,
+    _dose_number_positive_int: Option<ElementGraphql>,
+    _dose_number_string: Option<ElementGraphql>,
+    _series: Option<ElementGraphql>,
+    _series_doses_positive_int: Option<ElementGraphql>,
+    _series_doses_string: Option<ElementGraphql>,
+    contraindicated_vaccine_code: Option<Vec<CodeableConceptGraphql>>,
+    date_criterion: Option<Vec<ImmunizationRecommendation_DateCriterionGraphql>>,
+    description: Option<String>,
+    dose_number_positive_int: Option<f64>,
+    dose_number_string: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    forecast_reason: Option<Vec<CodeableConceptGraphql>>,
+    forecast_status: CodeableConceptGraphql,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    series: Option<String>,
+    series_doses_positive_int: Option<f64>,
+    series_doses_string: Option<String>,
+    supporting_immunization: Option<Vec<ReferenceGraphql>>,
+    supporting_patient_information: Option<Vec<ReferenceGraphql>>,
+    target_disease: Option<CodeableConceptGraphql>,
+    vaccine_code: Option<Vec<CodeableConceptGraphql>>,
 }

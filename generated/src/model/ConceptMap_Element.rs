@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::ConceptMap_Target::ConceptMap_Target;
+use crate::model::ConceptMap_Target::ConceptMap_TargetGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -231,4 +235,16 @@ impl ConceptMap_ElementBuilder {
         self.value["target"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ConceptMap_ElementGraphql {
+    _code: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    code: Option<String>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    target: Option<Vec<ConceptMap_TargetGraphql>>,
 }

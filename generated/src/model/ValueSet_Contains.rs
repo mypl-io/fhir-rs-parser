@@ -1,8 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use crate::model::ValueSet_Contains::ValueSet_Contains;
+use crate::model::ValueSet_Contains::ValueSet_ContainsGraphql;
 use crate::model::ValueSet_Designation::ValueSet_Designation;
+use crate::model::ValueSet_Designation::ValueSet_DesignationGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -407,4 +413,25 @@ impl ValueSet_ContainsBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ValueSet_ContainsGraphql {
+    _abstract: Option<ElementGraphql>,
+    _code: Option<ElementGraphql>,
+    _display: Option<ElementGraphql>,
+    _inactive: Option<ElementGraphql>,
+    _system: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    fhir_abstract: Option<bool>,
+    code: Option<String>,
+    contains: Option<Vec<ValueSet_ContainsGraphql>>,
+    designation: Option<Vec<ValueSet_DesignationGraphql>>,
+    display: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    inactive: Option<bool>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    system: Option<String>,
+    version: Option<String>,
 }

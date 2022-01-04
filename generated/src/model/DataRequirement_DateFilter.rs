@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Duration::Duration;
+use crate::model::Duration::DurationGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -319,4 +324,19 @@ impl DataRequirement_DateFilterBuilder {
         self.value["valuePeriod"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct DataRequirement_DateFilterGraphql {
+    _path: Option<ElementGraphql>,
+    _search_param: Option<ElementGraphql>,
+    _value_date_time: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    path: Option<String>,
+    search_param: Option<String>,
+    value_date_time: Option<String>,
+    value_duration: Option<DurationGraphql>,
+    value_period: Option<PeriodGraphql>,
 }

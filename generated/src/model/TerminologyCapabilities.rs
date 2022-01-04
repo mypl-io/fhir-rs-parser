@@ -1,20 +1,36 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::TerminologyCapabilities_Closure::TerminologyCapabilities_Closure;
+use crate::model::TerminologyCapabilities_Closure::TerminologyCapabilities_ClosureGraphql;
 use crate::model::TerminologyCapabilities_CodeSystem::TerminologyCapabilities_CodeSystem;
+use crate::model::TerminologyCapabilities_CodeSystem::TerminologyCapabilities_CodeSystemGraphql;
 use crate::model::TerminologyCapabilities_Expansion::TerminologyCapabilities_Expansion;
+use crate::model::TerminologyCapabilities_Expansion::TerminologyCapabilities_ExpansionGraphql;
 use crate::model::TerminologyCapabilities_Implementation::TerminologyCapabilities_Implementation;
+use crate::model::TerminologyCapabilities_Implementation::TerminologyCapabilities_ImplementationGraphql;
 use crate::model::TerminologyCapabilities_Software::TerminologyCapabilities_Software;
+use crate::model::TerminologyCapabilities_Software::TerminologyCapabilities_SoftwareGraphql;
 use crate::model::TerminologyCapabilities_Translation::TerminologyCapabilities_Translation;
+use crate::model::TerminologyCapabilities_Translation::TerminologyCapabilities_TranslationGraphql;
 use crate::model::TerminologyCapabilities_ValidateCode::TerminologyCapabilities_ValidateCode;
+use crate::model::TerminologyCapabilities_ValidateCode::TerminologyCapabilities_ValidateCodeGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1073,6 +1089,58 @@ impl TerminologyCapabilitiesBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TerminologyCapabilitiesGraphql {
+    _code_search: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _kind: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _locked_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    closure: Option<TerminologyCapabilities_ClosureGraphql>,
+    code_search: Option<TerminologyCapabilitiesCodeSearchGraphql>,
+    code_system: Option<Vec<TerminologyCapabilities_CodeSystemGraphql>>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    description: Option<String>,
+    expansion: Option<TerminologyCapabilities_ExpansionGraphql>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implementation: Option<TerminologyCapabilities_ImplementationGraphql>,
+    implicit_rules: Option<String>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    kind: Option<String>,
+    language: Option<String>,
+    locked_date: Option<bool>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    software: Option<TerminologyCapabilities_SoftwareGraphql>,
+    status: Option<TerminologyCapabilitiesStatusGraphql>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    translation: Option<TerminologyCapabilities_TranslationGraphql>,
+    url: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    validate_code: Option<TerminologyCapabilities_ValidateCodeGraphql>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

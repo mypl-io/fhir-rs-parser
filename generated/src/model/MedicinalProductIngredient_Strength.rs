@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicinalProductIngredient_ReferenceStrength::MedicinalProductIngredient_ReferenceStrength;
+use crate::model::MedicinalProductIngredient_ReferenceStrength::MedicinalProductIngredient_ReferenceStrengthGraphql;
 use crate::model::Ratio::Ratio;
+use crate::model::Ratio::RatioGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -319,4 +325,19 @@ impl MedicinalProductIngredient_StrengthBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicinalProductIngredient_StrengthGraphql {
+    _measurement_point: Option<ElementGraphql>,
+    concentration: Option<RatioGraphql>,
+    concentration_low_limit: Option<RatioGraphql>,
+    country: Option<Vec<CodeableConceptGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    measurement_point: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    presentation: RatioGraphql,
+    presentation_low_limit: Option<RatioGraphql>,
+    reference_strength: Option<Vec<MedicinalProductIngredient_ReferenceStrengthGraphql>>,
 }

@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::InsurancePlan_Limit::InsurancePlan_Limit;
+use crate::model::InsurancePlan_Limit::InsurancePlan_LimitGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -209,4 +214,15 @@ impl InsurancePlan_BenefitBuilder {
         self.value["requirement"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct InsurancePlan_BenefitGraphql {
+    _requirement: Option<ElementGraphql>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    limit: Option<Vec<InsurancePlan_LimitGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    requirement: Option<String>,
+    fhir_type: CodeableConceptGraphql,
 }

@@ -1,7 +1,10 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -237,6 +240,19 @@ impl TestReport_AssertBuilder {
         self.value["result"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct TestReport_AssertGraphql {
+    _detail: Option<ElementGraphql>,
+    _message: Option<ElementGraphql>,
+    _result: Option<ElementGraphql>,
+    detail: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    message: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    result: Option<TestReport_AssertResultGraphql>,
 }
 
 #[derive(Debug)]

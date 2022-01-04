@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::ValueSet_Include::ValueSet_Include;
+use crate::model::ValueSet_Include::ValueSet_IncludeGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -262,4 +266,17 @@ impl ValueSet_ComposeBuilder {
             json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ValueSet_ComposeGraphql {
+    _inactive: Option<ElementGraphql>,
+    _locked_date: Option<ElementGraphql>,
+    exclude: Option<Vec<ValueSet_IncludeGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    inactive: Option<bool>,
+    include: Vec<ValueSet_IncludeGraphql>,
+    locked_date: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
 }

@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::ExampleScenario_Step::ExampleScenario_Step;
+use crate::model::ExampleScenario_Step::ExampleScenario_StepGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -305,4 +309,20 @@ impl ExampleScenario_ProcessBuilder {
         self.value["title"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ExampleScenario_ProcessGraphql {
+    _description: Option<ElementGraphql>,
+    _post_conditions: Option<ElementGraphql>,
+    _pre_conditions: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    post_conditions: Option<String>,
+    pre_conditions: Option<String>,
+    step: Option<Vec<ExampleScenario_StepGraphql>>,
+    title: Option<String>,
 }

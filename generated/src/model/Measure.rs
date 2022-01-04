@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::ContactDetail::ContactDetail;
+use crate::model::ContactDetail::ContactDetailGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Measure_Group::Measure_Group;
+use crate::model::Measure_Group::Measure_GroupGraphql;
 use crate::model::Measure_SupplementalData::Measure_SupplementalData;
+use crate::model::Measure_SupplementalData::Measure_SupplementalDataGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Period::Period;
+use crate::model::Period::PeriodGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
+use crate::model::RelatedArtifact::RelatedArtifactGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
 use crate::model::UsageContext::UsageContext;
+use crate::model::UsageContext::UsageContextGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1570,6 +1585,84 @@ impl MeasureBuilder {
         self.value["version"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MeasureGraphql {
+    _approval_date: Option<ElementGraphql>,
+    _clinical_recommendation_statement: Option<ElementGraphql>,
+    _copyright: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _definition: Option<Vec<ElementGraphql>>,
+    _description: Option<ElementGraphql>,
+    _disclaimer: Option<ElementGraphql>,
+    _experimental: Option<ElementGraphql>,
+    _guidance: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _last_review_date: Option<ElementGraphql>,
+    _name: Option<ElementGraphql>,
+    _publisher: Option<ElementGraphql>,
+    _purpose: Option<ElementGraphql>,
+    _rate_aggregation: Option<ElementGraphql>,
+    _rationale: Option<ElementGraphql>,
+    _risk_adjustment: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _subtitle: Option<ElementGraphql>,
+    _title: Option<ElementGraphql>,
+    _url: Option<ElementGraphql>,
+    _usage: Option<ElementGraphql>,
+    _version: Option<ElementGraphql>,
+    approval_date: Option<String>,
+    author: Option<Vec<ContactDetailGraphql>>,
+    clinical_recommendation_statement: Option<String>,
+    composite_scoring: Option<CodeableConceptGraphql>,
+    contact: Option<Vec<ContactDetailGraphql>>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    copyright: Option<String>,
+    date: Option<String>,
+    definition: Option<Vec<String>>,
+    description: Option<String>,
+    disclaimer: Option<String>,
+    editor: Option<Vec<ContactDetailGraphql>>,
+    effective_period: Option<PeriodGraphql>,
+    endorser: Option<Vec<ContactDetailGraphql>>,
+    experimental: Option<bool>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    group: Option<Vec<Measure_GroupGraphql>>,
+    guidance: Option<String>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    improvement_notation: Option<CodeableConceptGraphql>,
+    jurisdiction: Option<Vec<CodeableConceptGraphql>>,
+    language: Option<String>,
+    last_review_date: Option<String>,
+    library: Option<Vec<String>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    name: Option<String>,
+    publisher: Option<String>,
+    purpose: Option<String>,
+    rate_aggregation: Option<String>,
+    rationale: Option<String>,
+    related_artifact: Option<Vec<RelatedArtifactGraphql>>,
+    reviewer: Option<Vec<ContactDetailGraphql>>,
+    risk_adjustment: Option<String>,
+    scoring: Option<CodeableConceptGraphql>,
+    status: Option<MeasureStatusGraphql>,
+    subject_codeable_concept: Option<CodeableConceptGraphql>,
+    subject_reference: Option<ReferenceGraphql>,
+    subtitle: Option<String>,
+    supplemental_data: Option<Vec<Measure_SupplementalDataGraphql>>,
+    text: Option<NarrativeGraphql>,
+    title: Option<String>,
+    topic: Option<Vec<CodeableConceptGraphql>>,
+    fhir_type: Option<Vec<CodeableConceptGraphql>>,
+    url: Option<String>,
+    usage: Option<String>,
+    use_context: Option<Vec<UsageContextGraphql>>,
+    version: Option<String>,
 }
 
 #[derive(Debug)]

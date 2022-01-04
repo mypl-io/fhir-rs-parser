@@ -1,19 +1,34 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Immunization_Education::Immunization_Education;
+use crate::model::Immunization_Education::Immunization_EducationGraphql;
 use crate::model::Immunization_Performer::Immunization_Performer;
+use crate::model::Immunization_Performer::Immunization_PerformerGraphql;
 use crate::model::Immunization_ProtocolApplied::Immunization_ProtocolApplied;
+use crate::model::Immunization_ProtocolApplied::Immunization_ProtocolAppliedGraphql;
 use crate::model::Immunization_Reaction::Immunization_Reaction;
+use crate::model::Immunization_Reaction::Immunization_ReactionGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -1037,4 +1052,55 @@ impl ImmunizationBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct ImmunizationGraphql {
+    _expiration_date: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _is_subpotent: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _lot_number: Option<ElementGraphql>,
+    _occurrence_date_time: Option<ElementGraphql>,
+    _occurrence_string: Option<ElementGraphql>,
+    _primary_source: Option<ElementGraphql>,
+    _recorded: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    dose_quantity: Option<QuantityGraphql>,
+    education: Option<Vec<Immunization_EducationGraphql>>,
+    encounter: Option<ReferenceGraphql>,
+    expiration_date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    funding_source: Option<CodeableConceptGraphql>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    is_subpotent: Option<bool>,
+    language: Option<String>,
+    location: Option<ReferenceGraphql>,
+    lot_number: Option<String>,
+    manufacturer: Option<ReferenceGraphql>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    occurrence_date_time: Option<String>,
+    occurrence_string: Option<String>,
+    patient: ReferenceGraphql,
+    performer: Option<Vec<Immunization_PerformerGraphql>>,
+    primary_source: Option<bool>,
+    program_eligibility: Option<Vec<CodeableConceptGraphql>>,
+    protocol_applied: Option<Vec<Immunization_ProtocolAppliedGraphql>>,
+    reaction: Option<Vec<Immunization_ReactionGraphql>>,
+    reason_code: Option<Vec<CodeableConceptGraphql>>,
+    reason_reference: Option<Vec<ReferenceGraphql>>,
+    recorded: Option<String>,
+    report_origin: Option<CodeableConceptGraphql>,
+    route: Option<CodeableConceptGraphql>,
+    site: Option<CodeableConceptGraphql>,
+    status: Option<String>,
+    status_reason: Option<CodeableConceptGraphql>,
+    subpotent_reason: Option<Vec<CodeableConceptGraphql>>,
+    text: Option<NarrativeGraphql>,
+    vaccine_code: CodeableConceptGraphql,
 }

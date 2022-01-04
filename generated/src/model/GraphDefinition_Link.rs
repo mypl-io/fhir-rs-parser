@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::GraphDefinition_Target::GraphDefinition_Target;
+use crate::model::GraphDefinition_Target::GraphDefinition_TargetGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -332,4 +336,22 @@ impl GraphDefinition_LinkBuilder {
         self.value["target"] = json!(val.into_iter().map(|e| e.value).collect::<Vec<_>>());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GraphDefinition_LinkGraphql {
+    _description: Option<ElementGraphql>,
+    _max: Option<ElementGraphql>,
+    _min: Option<ElementGraphql>,
+    _path: Option<ElementGraphql>,
+    _slice_name: Option<ElementGraphql>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    max: Option<String>,
+    min: Option<i64>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    path: Option<String>,
+    slice_name: Option<String>,
+    target: Option<Vec<GraphDefinition_TargetGraphql>>,
 }

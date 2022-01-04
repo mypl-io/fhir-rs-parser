@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::GraphDefinition_Compartment::GraphDefinition_Compartment;
+use crate::model::GraphDefinition_Compartment::GraphDefinition_CompartmentGraphql;
 use crate::model::GraphDefinition_Link::GraphDefinition_Link;
+use crate::model::GraphDefinition_Link::GraphDefinition_LinkGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -275,4 +280,18 @@ impl GraphDefinition_TargetBuilder {
         self.value["type"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct GraphDefinition_TargetGraphql {
+    _params: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    compartment: Option<Vec<GraphDefinition_CompartmentGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    link: Option<Vec<GraphDefinition_LinkGraphql>>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    params: Option<String>,
+    profile: Option<String>,
+    fhir_type: Option<String>,
 }

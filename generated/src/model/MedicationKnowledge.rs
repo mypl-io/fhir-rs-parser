@@ -1,24 +1,44 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MedicationKnowledge_AdministrationGuidelines::MedicationKnowledge_AdministrationGuidelines;
+use crate::model::MedicationKnowledge_AdministrationGuidelines::MedicationKnowledge_AdministrationGuidelinesGraphql;
 use crate::model::MedicationKnowledge_Cost::MedicationKnowledge_Cost;
+use crate::model::MedicationKnowledge_Cost::MedicationKnowledge_CostGraphql;
 use crate::model::MedicationKnowledge_DrugCharacteristic::MedicationKnowledge_DrugCharacteristic;
+use crate::model::MedicationKnowledge_DrugCharacteristic::MedicationKnowledge_DrugCharacteristicGraphql;
 use crate::model::MedicationKnowledge_Ingredient::MedicationKnowledge_Ingredient;
+use crate::model::MedicationKnowledge_Ingredient::MedicationKnowledge_IngredientGraphql;
 use crate::model::MedicationKnowledge_Kinetics::MedicationKnowledge_Kinetics;
+use crate::model::MedicationKnowledge_Kinetics::MedicationKnowledge_KineticsGraphql;
 use crate::model::MedicationKnowledge_MedicineClassification::MedicationKnowledge_MedicineClassification;
+use crate::model::MedicationKnowledge_MedicineClassification::MedicationKnowledge_MedicineClassificationGraphql;
 use crate::model::MedicationKnowledge_MonitoringProgram::MedicationKnowledge_MonitoringProgram;
+use crate::model::MedicationKnowledge_MonitoringProgram::MedicationKnowledge_MonitoringProgramGraphql;
 use crate::model::MedicationKnowledge_Monograph::MedicationKnowledge_Monograph;
+use crate::model::MedicationKnowledge_Monograph::MedicationKnowledge_MonographGraphql;
 use crate::model::MedicationKnowledge_Packaging::MedicationKnowledge_Packaging;
+use crate::model::MedicationKnowledge_Packaging::MedicationKnowledge_PackagingGraphql;
 use crate::model::MedicationKnowledge_Regulatory::MedicationKnowledge_Regulatory;
+use crate::model::MedicationKnowledge_Regulatory::MedicationKnowledge_RegulatoryGraphql;
 use crate::model::MedicationKnowledge_RelatedMedicationKnowledge::MedicationKnowledge_RelatedMedicationKnowledge;
+use crate::model::MedicationKnowledge_RelatedMedicationKnowledge::MedicationKnowledge_RelatedMedicationKnowledgeGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -927,4 +947,44 @@ impl MedicationKnowledgeBuilder {
         self.value["text"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MedicationKnowledgeGraphql {
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _preparation_instruction: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    _synonym: Option<Vec<ElementGraphql>>,
+    administration_guidelines: Option<Vec<MedicationKnowledge_AdministrationGuidelinesGraphql>>,
+    amount: Option<QuantityGraphql>,
+    associated_medication: Option<Vec<ReferenceGraphql>>,
+    code: Option<CodeableConceptGraphql>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    contraindication: Option<Vec<ReferenceGraphql>>,
+    cost: Option<Vec<MedicationKnowledge_CostGraphql>>,
+    dose_form: Option<CodeableConceptGraphql>,
+    drug_characteristic: Option<Vec<MedicationKnowledge_DrugCharacteristicGraphql>>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    implicit_rules: Option<String>,
+    ingredient: Option<Vec<MedicationKnowledge_IngredientGraphql>>,
+    intended_route: Option<Vec<CodeableConceptGraphql>>,
+    kinetics: Option<Vec<MedicationKnowledge_KineticsGraphql>>,
+    language: Option<String>,
+    manufacturer: Option<ReferenceGraphql>,
+    medicine_classification: Option<Vec<MedicationKnowledge_MedicineClassificationGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    monitoring_program: Option<Vec<MedicationKnowledge_MonitoringProgramGraphql>>,
+    monograph: Option<Vec<MedicationKnowledge_MonographGraphql>>,
+    packaging: Option<MedicationKnowledge_PackagingGraphql>,
+    preparation_instruction: Option<String>,
+    product_type: Option<Vec<CodeableConceptGraphql>>,
+    regulatory: Option<Vec<MedicationKnowledge_RegulatoryGraphql>>,
+    related_medication_knowledge:
+        Option<Vec<MedicationKnowledge_RelatedMedicationKnowledgeGraphql>>,
+    status: Option<String>,
+    synonym: Option<Vec<String>>,
+    text: Option<NarrativeGraphql>,
 }

@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::SubstancePolymer_RepeatUnit::SubstancePolymer_RepeatUnit;
+use crate::model::SubstancePolymer_RepeatUnit::SubstancePolymer_RepeatUnitGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -264,4 +269,17 @@ impl SubstancePolymer_RepeatBuilder {
         self.value["repeatUnitAmountType"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SubstancePolymer_RepeatGraphql {
+    _average_molecular_formula: Option<ElementGraphql>,
+    _number_of_units: Option<ElementGraphql>,
+    average_molecular_formula: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    number_of_units: Option<i64>,
+    repeat_unit: Option<Vec<SubstancePolymer_RepeatUnitGraphql>>,
+    repeat_unit_amount_type: Option<CodeableConceptGraphql>,
 }

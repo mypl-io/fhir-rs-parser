@@ -1,8 +1,12 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -319,4 +323,23 @@ impl SampledDataBuilder {
         self.value["upperLimit"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct SampledDataGraphql {
+    _data: Option<ElementGraphql>,
+    _dimensions: Option<ElementGraphql>,
+    _factor: Option<ElementGraphql>,
+    _lower_limit: Option<ElementGraphql>,
+    _period: Option<ElementGraphql>,
+    _upper_limit: Option<ElementGraphql>,
+    data: Option<String>,
+    dimensions: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    factor: Option<f64>,
+    id: Option<String>,
+    lower_limit: Option<f64>,
+    origin: QuantityGraphql,
+    period: Option<f64>,
+    upper_limit: Option<f64>,
 }

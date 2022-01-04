@@ -1,9 +1,14 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::RiskEvidenceSynthesis_PrecisionEstimate::RiskEvidenceSynthesis_PrecisionEstimate;
+use crate::model::RiskEvidenceSynthesis_PrecisionEstimate::RiskEvidenceSynthesis_PrecisionEstimateGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -372,4 +377,22 @@ impl RiskEvidenceSynthesis_RiskEstimateBuilder {
         self.value["value"] = json!(val);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct RiskEvidenceSynthesis_RiskEstimateGraphql {
+    _denominator_count: Option<ElementGraphql>,
+    _description: Option<ElementGraphql>,
+    _numerator_count: Option<ElementGraphql>,
+    _value: Option<ElementGraphql>,
+    denominator_count: Option<i64>,
+    description: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    numerator_count: Option<i64>,
+    precision_estimate: Option<Vec<RiskEvidenceSynthesis_PrecisionEstimateGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
+    unit_of_measure: Option<CodeableConceptGraphql>,
+    value: Option<f64>,
 }

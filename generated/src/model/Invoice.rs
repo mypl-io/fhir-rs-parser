@@ -1,18 +1,32 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::Annotation::Annotation;
+use crate::model::Annotation::AnnotationGraphql;
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
+use crate::model::Identifier::IdentifierGraphql;
 use crate::model::Invoice_LineItem::Invoice_LineItem;
+use crate::model::Invoice_LineItem::Invoice_LineItemGraphql;
 use crate::model::Invoice_Participant::Invoice_Participant;
+use crate::model::Invoice_Participant::Invoice_ParticipantGraphql;
 use crate::model::Invoice_PriceComponent::Invoice_PriceComponent;
+use crate::model::Invoice_PriceComponent::Invoice_PriceComponentGraphql;
 use crate::model::Meta::Meta;
+use crate::model::Meta::MetaGraphql;
 use crate::model::Money::Money;
+use crate::model::Money::MoneyGraphql;
 use crate::model::Narrative::Narrative;
+use crate::model::Narrative::NarrativeGraphql;
 use crate::model::Reference::Reference;
+use crate::model::Reference::ReferenceGraphql;
 use crate::model::ResourceList::ResourceList;
+use crate::model::ResourceList::ResourceListGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -695,6 +709,40 @@ impl InvoiceBuilder {
         self.value["type"] = json!(val.value);
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct InvoiceGraphql {
+    _cancelled_reason: Option<ElementGraphql>,
+    _date: Option<ElementGraphql>,
+    _implicit_rules: Option<ElementGraphql>,
+    _language: Option<ElementGraphql>,
+    _payment_terms: Option<ElementGraphql>,
+    _status: Option<ElementGraphql>,
+    account: Option<ReferenceGraphql>,
+    cancelled_reason: Option<String>,
+    contained: Option<Vec<ResourceListGraphql>>,
+    date: Option<String>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    id: Option<String>,
+    identifier: Option<Vec<IdentifierGraphql>>,
+    implicit_rules: Option<String>,
+    issuer: Option<ReferenceGraphql>,
+    language: Option<String>,
+    line_item: Option<Vec<Invoice_LineItemGraphql>>,
+    meta: Option<MetaGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    note: Option<Vec<AnnotationGraphql>>,
+    participant: Option<Vec<Invoice_ParticipantGraphql>>,
+    payment_terms: Option<String>,
+    recipient: Option<ReferenceGraphql>,
+    status: Option<InvoiceStatusGraphql>,
+    subject: Option<ReferenceGraphql>,
+    text: Option<NarrativeGraphql>,
+    total_gross: Option<MoneyGraphql>,
+    total_net: Option<MoneyGraphql>,
+    total_price_component: Option<Vec<Invoice_PriceComponentGraphql>>,
+    fhir_type: Option<CodeableConceptGraphql>,
 }
 
 #[derive(Debug)]

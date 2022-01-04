@@ -1,10 +1,16 @@
 #![allow(unused_imports, non_camel_case_types)]
 
 use crate::model::CodeableConcept::CodeableConcept;
+use crate::model::CodeableConcept::CodeableConceptGraphql;
 use crate::model::Element::Element;
+use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
+use crate::model::Extension::ExtensionGraphql;
 use crate::model::MolecularSequence_Roc::MolecularSequence_Roc;
+use crate::model::MolecularSequence_Roc::MolecularSequence_RocGraphql;
 use crate::model::Quantity::Quantity;
+use crate::model::Quantity::QuantityGraphql;
+use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
 use std::borrow::Cow;
@@ -624,6 +630,39 @@ impl MolecularSequence_QualityBuilder {
         self.value["type"] = json!(val.to_string());
         return self;
     }
+}
+
+#[derive(Debug, SimpleObject, InputObject)]
+pub struct MolecularSequence_QualityGraphql {
+    _end: Option<ElementGraphql>,
+    _f_score: Option<ElementGraphql>,
+    _gt_f_p: Option<ElementGraphql>,
+    _precision: Option<ElementGraphql>,
+    _query_f_p: Option<ElementGraphql>,
+    _query_t_p: Option<ElementGraphql>,
+    _recall: Option<ElementGraphql>,
+    _start: Option<ElementGraphql>,
+    _truth_f_n: Option<ElementGraphql>,
+    _truth_t_p: Option<ElementGraphql>,
+    _type: Option<ElementGraphql>,
+    end: Option<i64>,
+    extension: Option<Vec<ExtensionGraphql>>,
+    f_score: Option<f64>,
+    gt_f_p: Option<f64>,
+    id: Option<String>,
+    method: Option<CodeableConceptGraphql>,
+    modifier_extension: Option<Vec<ExtensionGraphql>>,
+    precision: Option<f64>,
+    query_f_p: Option<f64>,
+    query_t_p: Option<f64>,
+    recall: Option<f64>,
+    roc: Option<MolecularSequence_RocGraphql>,
+    score: Option<QuantityGraphql>,
+    standard_sequence: Option<CodeableConceptGraphql>,
+    start: Option<i64>,
+    truth_f_n: Option<f64>,
+    truth_t_p: Option<f64>,
+    fhir_type: Option<MolecularSequence_QualityTypeGraphql>,
 }
 
 #[derive(Debug)]
