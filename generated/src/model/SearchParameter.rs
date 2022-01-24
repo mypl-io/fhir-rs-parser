@@ -1227,18 +1227,18 @@ pub struct SearchParameterGraphql {
     name: Option<String>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<SearchParameterStatusGraphql>,
+    status: Option<SearchParameterStatus>,
     target: Option<Vec<String>>,
     text: Option<NarrativeGraphql>,
-    fhir_type: Option<SearchParameterTypeGraphql>,
+    fhir_type: Option<SearchParameterType>,
     url: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
     version: Option<String>,
     xpath: Option<String>,
-    xpath_usage: Option<SearchParameterXpathUsageGraphql>,
+    xpath_usage: Option<SearchParameterXpathUsage>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SearchParameterStatus {
     Draft,
     Active,
@@ -1267,7 +1267,7 @@ impl SearchParameterStatus {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SearchParameterType {
     Number,
     Date,
@@ -1311,7 +1311,7 @@ impl SearchParameterType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SearchParameterXpathUsage {
     Normal,
     Phonetic,

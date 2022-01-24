@@ -737,7 +737,7 @@ pub struct TestScript_OperationGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     label: Option<String>,
-    method: Option<TestScript_OperationMethodGraphql>,
+    method: Option<TestScript_OperationMethod>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     origin: Option<i64>,
     params: Option<String>,
@@ -751,7 +751,7 @@ pub struct TestScript_OperationGraphql {
     url: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScript_OperationMethod {
     Delete,
     Get,

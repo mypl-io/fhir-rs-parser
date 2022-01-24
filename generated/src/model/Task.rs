@@ -1099,7 +1099,7 @@ pub struct TaskGraphql {
     instantiates_canonical: Option<String>,
     instantiates_uri: Option<String>,
     insurance: Option<Vec<ReferenceGraphql>>,
-    intent: Option<TaskIntentGraphql>,
+    intent: Option<TaskIntent>,
     language: Option<String>,
     last_modified: Option<String>,
     location: Option<ReferenceGraphql>,
@@ -1116,12 +1116,12 @@ pub struct TaskGraphql {
     relevant_history: Option<Vec<ReferenceGraphql>>,
     requester: Option<ReferenceGraphql>,
     restriction: Option<Task_RestrictionGraphql>,
-    status: Option<TaskStatusGraphql>,
+    status: Option<TaskStatus>,
     status_reason: Option<CodeableConceptGraphql>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TaskIntent {
     Unknown,
     Proposal,
@@ -1165,7 +1165,7 @@ impl TaskIntent {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TaskStatus {
     Draft,
     Requested,

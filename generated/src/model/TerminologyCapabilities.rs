@@ -1110,7 +1110,7 @@ pub struct TerminologyCapabilitiesGraphql {
     _url: Option<ElementGraphql>,
     _version: Option<ElementGraphql>,
     closure: Option<TerminologyCapabilities_ClosureGraphql>,
-    code_search: Option<TerminologyCapabilitiesCodeSearchGraphql>,
+    code_search: Option<TerminologyCapabilitiesCodeSearch>,
     code_system: Option<Vec<TerminologyCapabilities_CodeSystemGraphql>>,
     contact: Option<Vec<ContactDetailGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
@@ -1133,7 +1133,7 @@ pub struct TerminologyCapabilitiesGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     software: Option<TerminologyCapabilities_SoftwareGraphql>,
-    status: Option<TerminologyCapabilitiesStatusGraphql>,
+    status: Option<TerminologyCapabilitiesStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     translation: Option<TerminologyCapabilities_TranslationGraphql>,
@@ -1143,7 +1143,7 @@ pub struct TerminologyCapabilitiesGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TerminologyCapabilitiesCodeSearch {
     Explicit,
     All,
@@ -1166,7 +1166,7 @@ impl TerminologyCapabilitiesCodeSearch {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TerminologyCapabilitiesStatus {
     Draft,
     Active,

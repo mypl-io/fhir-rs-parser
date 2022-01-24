@@ -284,12 +284,12 @@ pub struct ExpressionGraphql {
     expression: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    language: Option<ExpressionLanguageGraphql>,
+    language: Option<ExpressionLanguage>,
     name: Option<String>,
     reference: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ExpressionLanguage {
     TextCql,
     TextFhirpath,

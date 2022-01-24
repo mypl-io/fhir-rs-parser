@@ -254,11 +254,11 @@ pub struct TestReport_ParticipantGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    fhir_type: Option<TestReport_ParticipantTypeGraphql>,
+    fhir_type: Option<TestReport_ParticipantType>,
     uri: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestReport_ParticipantType {
     TestEngine,
     Client,

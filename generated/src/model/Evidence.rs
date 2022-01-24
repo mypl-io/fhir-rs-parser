@@ -1180,7 +1180,7 @@ pub struct EvidenceGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     short_title: Option<String>,
-    status: Option<EvidenceStatusGraphql>,
+    status: Option<EvidenceStatus>,
     subtitle: Option<String>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
@@ -1190,7 +1190,7 @@ pub struct EvidenceGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EvidenceStatus {
     Draft,
     Active,

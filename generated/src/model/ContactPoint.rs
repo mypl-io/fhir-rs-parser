@@ -271,12 +271,12 @@ pub struct ContactPointGraphql {
     id: Option<String>,
     period: Option<PeriodGraphql>,
     rank: Option<i64>,
-    system: Option<ContactPointSystemGraphql>,
-    fhir_use: Option<ContactPointUseGraphql>,
+    system: Option<ContactPointSystem>,
+    fhir_use: Option<ContactPointUse>,
     value: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ContactPointSystem {
     Phone,
     Fax,
@@ -314,7 +314,7 @@ impl ContactPointSystem {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ContactPointUse {
     Home,
     Work,

@@ -467,11 +467,11 @@ pub struct AddressGraphql {
     postal_code: Option<String>,
     state: Option<String>,
     text: Option<String>,
-    fhir_type: Option<AddressTypeGraphql>,
-    fhir_use: Option<AddressUseGraphql>,
+    fhir_type: Option<AddressType>,
+    fhir_use: Option<AddressUse>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AddressType {
     Postal,
     Physical,
@@ -497,7 +497,7 @@ impl AddressType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AddressUse {
     Home,
     Work,

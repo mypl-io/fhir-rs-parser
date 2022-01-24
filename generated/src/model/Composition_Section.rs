@@ -2,8 +2,6 @@
 
 use crate::model::CodeableConcept::CodeableConcept;
 use crate::model::CodeableConcept::CodeableConceptGraphql;
-use crate::model::Composition_Section::Composition_Section;
-use crate::model::Composition_Section::Composition_SectionGraphql;
 use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;

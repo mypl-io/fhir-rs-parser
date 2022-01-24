@@ -480,16 +480,16 @@ pub struct MolecularSequence_ReferenceSeqGraphql {
     genome_build: Option<String>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    orientation: Option<MolecularSequence_ReferenceSeqOrientationGraphql>,
+    orientation: Option<MolecularSequence_ReferenceSeqOrientation>,
     reference_seq_id: Option<CodeableConceptGraphql>,
     reference_seq_pointer: Option<ReferenceGraphql>,
     reference_seq_string: Option<String>,
-    strand: Option<MolecularSequence_ReferenceSeqStrandGraphql>,
+    strand: Option<MolecularSequence_ReferenceSeqStrand>,
     window_end: Option<i64>,
     window_start: Option<i64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MolecularSequence_ReferenceSeqOrientation {
     Sense,
     Antisense,
@@ -512,7 +512,7 @@ impl MolecularSequence_ReferenceSeqOrientation {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MolecularSequence_ReferenceSeqStrand {
     Watson,
     Crick,

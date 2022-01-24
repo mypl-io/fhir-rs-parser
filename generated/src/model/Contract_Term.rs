@@ -10,8 +10,6 @@ use crate::model::Contract_Offer::Contract_Offer;
 use crate::model::Contract_Offer::Contract_OfferGraphql;
 use crate::model::Contract_SecurityLabel::Contract_SecurityLabel;
 use crate::model::Contract_SecurityLabel::Contract_SecurityLabelGraphql;
-use crate::model::Contract_Term::Contract_Term;
-use crate::model::Contract_Term::Contract_TermGraphql;
 use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;

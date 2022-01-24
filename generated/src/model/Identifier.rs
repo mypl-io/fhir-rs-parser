@@ -276,17 +276,17 @@ pub struct IdentifierGraphql {
     _system: Option<ElementGraphql>,
     _use: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
-    assigner: Option<ReferenceGraphql>,
+    assigner: Option<Box<ReferenceGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     period: Option<PeriodGraphql>,
     system: Option<String>,
     fhir_type: Option<CodeableConceptGraphql>,
-    fhir_use: Option<IdentifierUseGraphql>,
+    fhir_use: Option<IdentifierUse>,
     value: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum IdentifierUse {
     Usual,
     Official,

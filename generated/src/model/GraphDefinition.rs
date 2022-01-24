@@ -812,14 +812,14 @@ pub struct GraphDefinitionGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     start: Option<String>,
-    status: Option<GraphDefinitionStatusGraphql>,
+    status: Option<GraphDefinitionStatus>,
     text: Option<NarrativeGraphql>,
     url: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GraphDefinitionStatus {
     Draft,
     Active,

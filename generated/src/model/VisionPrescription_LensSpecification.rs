@@ -655,7 +655,7 @@ pub struct VisionPrescription_LensSpecificationGraphql {
     diameter: Option<f64>,
     duration: Option<QuantityGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
-    eye: Option<VisionPrescription_LensSpecificationEyeGraphql>,
+    eye: Option<VisionPrescription_LensSpecificationEye>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     note: Option<Vec<AnnotationGraphql>>,
@@ -665,7 +665,7 @@ pub struct VisionPrescription_LensSpecificationGraphql {
     sphere: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum VisionPrescription_LensSpecificationEye {
     Right,
     Left,

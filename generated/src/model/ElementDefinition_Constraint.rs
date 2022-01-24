@@ -394,12 +394,12 @@ pub struct ElementDefinition_ConstraintGraphql {
     key: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     requirements: Option<String>,
-    severity: Option<ElementDefinition_ConstraintSeverityGraphql>,
+    severity: Option<ElementDefinition_ConstraintSeverity>,
     source: Option<String>,
     xpath: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ElementDefinition_ConstraintSeverity {
     Error,
     Warning,

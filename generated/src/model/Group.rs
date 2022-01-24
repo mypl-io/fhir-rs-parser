@@ -613,10 +613,10 @@ pub struct GroupGraphql {
     name: Option<String>,
     quantity: Option<u64>,
     text: Option<NarrativeGraphql>,
-    fhir_type: Option<GroupTypeGraphql>,
+    fhir_type: Option<GroupType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GroupType {
     Person,
     Animal,

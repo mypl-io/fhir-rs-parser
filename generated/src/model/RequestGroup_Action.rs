@@ -18,8 +18,6 @@ use crate::model::Reference::Reference;
 use crate::model::Reference::ReferenceGraphql;
 use crate::model::RelatedArtifact::RelatedArtifact;
 use crate::model::RelatedArtifact::RelatedArtifactGraphql;
-use crate::model::RequestGroup_Action::RequestGroup_Action;
-use crate::model::RequestGroup_Action::RequestGroup_ActionGraphql;
 use crate::model::RequestGroup_Condition::RequestGroup_Condition;
 use crate::model::RequestGroup_Condition::RequestGroup_ConditionGraphql;
 use crate::model::RequestGroup_RelatedAction::RequestGroup_RelatedAction;

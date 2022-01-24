@@ -185,14 +185,14 @@ impl Person_LinkBuilder {
 #[derive(Debug, SimpleObject, InputObject)]
 pub struct Person_LinkGraphql {
     _assurance: Option<ElementGraphql>,
-    assurance: Option<Person_LinkAssuranceGraphql>,
+    assurance: Option<Person_LinkAssurance>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     target: ReferenceGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Person_LinkAssurance {
     Level1,
     Level2,

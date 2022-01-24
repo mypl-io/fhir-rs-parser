@@ -650,10 +650,10 @@ pub struct TestReportGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     participant: Option<Vec<TestReport_ParticipantGraphql>>,
-    result: Option<TestReportResultGraphql>,
+    result: Option<TestReportResult>,
     score: Option<f64>,
     setup: Option<TestReport_SetupGraphql>,
-    status: Option<TestReportStatusGraphql>,
+    status: Option<TestReportStatus>,
     teardown: Option<TestReport_TeardownGraphql>,
     test: Option<Vec<TestReport_TestGraphql>>,
     test_script: ReferenceGraphql,
@@ -661,7 +661,7 @@ pub struct TestReportGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestReportResult {
     Pass,
     Fail,
@@ -687,7 +687,7 @@ impl TestReportResult {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestReportStatus {
     Completed,
     InProgress,

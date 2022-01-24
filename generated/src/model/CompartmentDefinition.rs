@@ -803,7 +803,7 @@ pub struct CompartmentDefinitionGraphql {
     _status: Option<ElementGraphql>,
     _url: Option<ElementGraphql>,
     _version: Option<ElementGraphql>,
-    code: Option<CompartmentDefinitionCodeGraphql>,
+    code: Option<CompartmentDefinitionCode>,
     contact: Option<Vec<ContactDetailGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
     date: Option<String>,
@@ -820,14 +820,14 @@ pub struct CompartmentDefinitionGraphql {
     purpose: Option<String>,
     resource: Option<Vec<CompartmentDefinition_ResourceGraphql>>,
     search: Option<bool>,
-    status: Option<CompartmentDefinitionStatusGraphql>,
+    status: Option<CompartmentDefinitionStatus>,
     text: Option<NarrativeGraphql>,
     url: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CompartmentDefinitionCode {
     Patient,
     Encounter,
@@ -859,7 +859,7 @@ impl CompartmentDefinitionCode {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CompartmentDefinitionStatus {
     Draft,
     Active,

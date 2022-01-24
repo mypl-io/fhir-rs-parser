@@ -219,10 +219,10 @@ pub struct Device_DeviceNameGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
-    fhir_type: Option<Device_DeviceNameTypeGraphql>,
+    fhir_type: Option<Device_DeviceNameType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Device_DeviceNameType {
     UdiLabelName,
     UserFriendlyName,

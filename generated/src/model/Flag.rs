@@ -481,12 +481,12 @@ pub struct FlagGraphql {
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: Option<PeriodGraphql>,
-    status: Option<FlagStatusGraphql>,
+    status: Option<FlagStatus>,
     subject: ReferenceGraphql,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum FlagStatus {
     Active,
     Inactive,

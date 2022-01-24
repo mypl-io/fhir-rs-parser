@@ -275,12 +275,12 @@ pub struct ConceptMap_UnmappedGraphql {
     display: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<ConceptMap_UnmappedModeGraphql>,
+    mode: Option<ConceptMap_UnmappedMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     url: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ConceptMap_UnmappedMode {
     Provided,
     Fixed,

@@ -576,11 +576,11 @@ pub struct Questionnaire_EnableWhenGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    operator: Option<Questionnaire_EnableWhenOperatorGraphql>,
+    operator: Option<Questionnaire_EnableWhenOperator>,
     question: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Questionnaire_EnableWhenOperator {
     Exists,
     Equal,

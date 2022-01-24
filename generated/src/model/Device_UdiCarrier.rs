@@ -370,7 +370,7 @@ pub struct Device_UdiCarrierGraphql {
     carrier_a_i_d_c: Option<String>,
     carrier_h_r_f: Option<String>,
     device_identifier: Option<String>,
-    entry_type: Option<Device_UdiCarrierEntryTypeGraphql>,
+    entry_type: Option<Device_UdiCarrierEntryType>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     issuer: Option<String>,
@@ -378,7 +378,7 @@ pub struct Device_UdiCarrierGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Device_UdiCarrierEntryType {
     Barcode,
     Rfid,

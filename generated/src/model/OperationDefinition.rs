@@ -1183,7 +1183,7 @@ pub struct OperationDefinitionGraphql {
     input_profile: Option<String>,
     instance: Option<bool>,
     jurisdiction: Option<Vec<CodeableConceptGraphql>>,
-    kind: Option<OperationDefinitionKindGraphql>,
+    kind: Option<OperationDefinitionKind>,
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
@@ -1194,7 +1194,7 @@ pub struct OperationDefinitionGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     resource: Option<Vec<String>>,
-    status: Option<OperationDefinitionStatusGraphql>,
+    status: Option<OperationDefinitionStatus>,
     system: Option<bool>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
@@ -1204,7 +1204,7 @@ pub struct OperationDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationDefinitionKind {
     Operation,
     Query,
@@ -1227,7 +1227,7 @@ impl OperationDefinitionKind {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationDefinitionStatus {
     Draft,
     Active,

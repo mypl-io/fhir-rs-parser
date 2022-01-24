@@ -216,14 +216,14 @@ impl DataRequirement_SortBuilder {
 pub struct DataRequirement_SortGraphql {
     _direction: Option<ElementGraphql>,
     _path: Option<ElementGraphql>,
-    direction: Option<DataRequirement_SortDirectionGraphql>,
+    direction: Option<DataRequirement_SortDirection>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     path: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DataRequirement_SortDirection {
     Ascending,
     Descending,

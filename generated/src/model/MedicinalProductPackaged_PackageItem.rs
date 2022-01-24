@@ -6,8 +6,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
 use crate::model::Identifier::IdentifierGraphql;
-use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItem;
-use crate::model::MedicinalProductPackaged_PackageItem::MedicinalProductPackaged_PackageItemGraphql;
 use crate::model::ProdCharacteristic::ProdCharacteristic;
 use crate::model::ProdCharacteristic::ProdCharacteristicGraphql;
 use crate::model::ProductShelfLife::ProductShelfLife;

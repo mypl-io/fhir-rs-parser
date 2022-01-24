@@ -375,10 +375,10 @@ pub struct HumanNameGraphql {
     prefix: Option<Vec<String>>,
     suffix: Option<Vec<String>>,
     text: Option<String>,
-    fhir_use: Option<HumanNameUseGraphql>,
+    fhir_use: Option<HumanNameUse>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum HumanNameUse {
     Usual,
     Official,

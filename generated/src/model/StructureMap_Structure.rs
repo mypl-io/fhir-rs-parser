@@ -260,12 +260,12 @@ pub struct StructureMap_StructureGraphql {
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<StructureMap_StructureModeGraphql>,
+    mode: Option<StructureMap_StructureMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     url: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_StructureMode {
     Source,
     Queried,

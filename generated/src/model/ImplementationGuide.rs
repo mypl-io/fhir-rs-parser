@@ -999,14 +999,14 @@ pub struct ImplementationGuideGraphql {
     implicit_rules: Option<String>,
     jurisdiction: Option<Vec<CodeableConceptGraphql>>,
     language: Option<String>,
-    license: Option<ImplementationGuideLicenseGraphql>,
+    license: Option<ImplementationGuideLicense>,
     manifest: Option<ImplementationGuide_ManifestGraphql>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     package_id: Option<String>,
     publisher: Option<String>,
-    status: Option<ImplementationGuideStatusGraphql>,
+    status: Option<ImplementationGuideStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     url: Option<String>,
@@ -1014,7 +1014,7 @@ pub struct ImplementationGuideGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ImplementationGuideLicense {
     NotOpenSource,
     Fhir0bsd,
@@ -2091,7 +2091,7 @@ impl ImplementationGuideLicense {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ImplementationGuideStatus {
     Draft,
     Active,

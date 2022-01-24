@@ -1909,7 +1909,7 @@ pub struct ActivityDefinitionGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     specimen_requirement: Option<Vec<ReferenceGraphql>>,
-    status: Option<ActivityDefinitionStatusGraphql>,
+    status: Option<ActivityDefinitionStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
@@ -1929,7 +1929,7 @@ pub struct ActivityDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ActivityDefinitionStatus {
     Draft,
     Active,

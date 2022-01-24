@@ -732,7 +732,7 @@ pub struct GoalGraphql {
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
     language: Option<String>,
-    lifecycle_status: Option<GoalLifecycleStatusGraphql>,
+    lifecycle_status: Option<GoalLifecycleStatus>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     note: Option<Vec<AnnotationGraphql>>,
@@ -748,7 +748,7 @@ pub struct GoalGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GoalLifecycleStatus {
     Proposed,
     Planned,

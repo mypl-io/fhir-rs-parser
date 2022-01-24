@@ -777,7 +777,7 @@ pub struct CoverageEligibilityResponseGraphql {
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    outcome: Option<CoverageEligibilityResponseOutcomeGraphql>,
+    outcome: Option<CoverageEligibilityResponseOutcome>,
     patient: ReferenceGraphql,
     pre_auth_ref: Option<String>,
     request: ReferenceGraphql,
@@ -788,7 +788,7 @@ pub struct CoverageEligibilityResponseGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CoverageEligibilityResponseOutcome {
     Queued,
     Complete,

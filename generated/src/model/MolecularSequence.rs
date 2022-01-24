@@ -768,11 +768,11 @@ pub struct MolecularSequenceGraphql {
     specimen: Option<ReferenceGraphql>,
     structure_variant: Option<Vec<MolecularSequence_StructureVariantGraphql>>,
     text: Option<NarrativeGraphql>,
-    fhir_type: Option<MolecularSequenceTypeGraphql>,
+    fhir_type: Option<MolecularSequenceType>,
     variant: Option<Vec<MolecularSequence_VariantGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MolecularSequenceType {
     Aa,
     Dna,

@@ -228,10 +228,10 @@ pub struct PaymentReconciliation_ProcessNoteGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     text: Option<String>,
-    fhir_type: Option<PaymentReconciliation_ProcessNoteTypeGraphql>,
+    fhir_type: Option<PaymentReconciliation_ProcessNoteType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PaymentReconciliation_ProcessNoteType {
     Display,
     Print,

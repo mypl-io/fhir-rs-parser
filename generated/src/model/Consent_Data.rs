@@ -192,12 +192,12 @@ pub struct Consent_DataGraphql {
     _meaning: Option<ElementGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    meaning: Option<Consent_DataMeaningGraphql>,
+    meaning: Option<Consent_DataMeaning>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     reference: ReferenceGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Consent_DataMeaning {
     Instance,
     Related,

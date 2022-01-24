@@ -339,11 +339,11 @@ pub struct GraphDefinition_CompartmentGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    rule: Option<GraphDefinition_CompartmentRuleGraphql>,
-    fhir_use: Option<GraphDefinition_CompartmentUseGraphql>,
+    rule: Option<GraphDefinition_CompartmentRule>,
+    fhir_use: Option<GraphDefinition_CompartmentUse>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GraphDefinition_CompartmentRule {
     Identical,
     Matching,
@@ -372,7 +372,7 @@ impl GraphDefinition_CompartmentRule {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GraphDefinition_CompartmentUse {
     Condition,
     Requirement,

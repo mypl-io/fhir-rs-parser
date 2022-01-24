@@ -957,12 +957,12 @@ pub struct ResearchStudyGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     site: Option<Vec<ReferenceGraphql>>,
     sponsor: Option<ReferenceGraphql>,
-    status: Option<ResearchStudyStatusGraphql>,
+    status: Option<ResearchStudyStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchStudyStatus {
     Active,
     AdministrativelyCompleted,

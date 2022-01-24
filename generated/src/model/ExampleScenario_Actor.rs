@@ -291,10 +291,10 @@ pub struct ExampleScenario_ActorGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
-    fhir_type: Option<ExampleScenario_ActorTypeGraphql>,
+    fhir_type: Option<ExampleScenario_ActorType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ExampleScenario_ActorType {
     Person,
     Entity,

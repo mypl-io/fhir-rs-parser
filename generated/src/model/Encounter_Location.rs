@@ -247,10 +247,10 @@ pub struct Encounter_LocationGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: Option<PeriodGraphql>,
     physical_type: Option<CodeableConceptGraphql>,
-    status: Option<Encounter_LocationStatusGraphql>,
+    status: Option<Encounter_LocationStatus>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Encounter_LocationStatus {
     Planned,
     Active,

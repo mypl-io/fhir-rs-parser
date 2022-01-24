@@ -1424,7 +1424,7 @@ pub struct ResearchDefinitionGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     short_title: Option<String>,
-    status: Option<ResearchDefinitionStatusGraphql>,
+    status: Option<ResearchDefinitionStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
@@ -1437,7 +1437,7 @@ pub struct ResearchDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchDefinitionStatus {
     Draft,
     Active,

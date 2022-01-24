@@ -403,18 +403,18 @@ pub struct ObservationDefinition_QualifiedIntervalGraphql {
     _gender: Option<ElementGraphql>,
     age: Option<RangeGraphql>,
     applies_to: Option<Vec<CodeableConceptGraphql>>,
-    category: Option<ObservationDefinition_QualifiedIntervalCategoryGraphql>,
+    category: Option<ObservationDefinition_QualifiedIntervalCategory>,
     condition: Option<String>,
     context: Option<CodeableConceptGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<ObservationDefinition_QualifiedIntervalGenderGraphql>,
+    gender: Option<ObservationDefinition_QualifiedIntervalGender>,
     gestational_age: Option<RangeGraphql>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     range: Option<RangeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ObservationDefinition_QualifiedIntervalCategory {
     Reference,
     Critical,
@@ -440,7 +440,7 @@ impl ObservationDefinition_QualifiedIntervalCategory {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ObservationDefinition_QualifiedIntervalGender {
     Male,
     Female,

@@ -309,10 +309,10 @@ pub struct ElementDefinition_TypeGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     profile: Option<Vec<String>>,
     target_profile: Option<Vec<String>>,
-    versioning: Option<ElementDefinition_TypeVersioningGraphql>,
+    versioning: Option<ElementDefinition_TypeVersioning>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ElementDefinition_TypeVersioning {
     Either,
     Independent,

@@ -725,11 +725,11 @@ pub struct CarePlan_DetailGraphql {
     scheduled_period: Option<PeriodGraphql>,
     scheduled_string: Option<String>,
     scheduled_timing: Option<TimingGraphql>,
-    status: Option<CarePlan_DetailStatusGraphql>,
+    status: Option<CarePlan_DetailStatus>,
     status_reason: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CarePlan_DetailStatus {
     NotStarted,
     Scheduled,

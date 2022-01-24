@@ -231,14 +231,14 @@ impl CapabilityStatement_Interaction1Builder {
 pub struct CapabilityStatement_Interaction1Graphql {
     _code: Option<ElementGraphql>,
     _documentation: Option<ElementGraphql>,
-    code: Option<CapabilityStatement_Interaction1CodeGraphql>,
+    code: Option<CapabilityStatement_Interaction1Code>,
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_Interaction1Code {
     Transaction,
     Batch,

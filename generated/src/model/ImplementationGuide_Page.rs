@@ -4,8 +4,6 @@ use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
-use crate::model::ImplementationGuide_Page::ImplementationGuide_Page;
-use crate::model::ImplementationGuide_Page::ImplementationGuide_PageGraphql;
 use crate::model::Reference::Reference;
 use crate::model::Reference::ReferenceGraphql;
 use async_graphql::*;
@@ -309,7 +307,7 @@ pub struct ImplementationGuide_PageGraphql {
     _name_url: Option<ElementGraphql>,
     _title: Option<ElementGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
-    generation: Option<ImplementationGuide_PageGenerationGraphql>,
+    generation: Option<ImplementationGuide_PageGeneration>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name_reference: Option<ReferenceGraphql>,
@@ -318,7 +316,7 @@ pub struct ImplementationGuide_PageGraphql {
     title: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ImplementationGuide_PageGeneration {
     Html,
     Markdown,

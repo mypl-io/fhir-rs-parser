@@ -650,11 +650,11 @@ pub struct EndpointGraphql {
     payload_mime_type: Option<Vec<String>>,
     payload_type: Vec<CodeableConceptGraphql>,
     period: Option<PeriodGraphql>,
-    status: Option<EndpointStatusGraphql>,
+    status: Option<EndpointStatus>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EndpointStatus {
     Active,
     Suspended,

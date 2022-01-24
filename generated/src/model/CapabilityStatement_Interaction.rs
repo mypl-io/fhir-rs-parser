@@ -228,14 +228,14 @@ impl CapabilityStatement_InteractionBuilder {
 pub struct CapabilityStatement_InteractionGraphql {
     _code: Option<ElementGraphql>,
     _documentation: Option<ElementGraphql>,
-    code: Option<CapabilityStatement_InteractionCodeGraphql>,
+    code: Option<CapabilityStatement_InteractionCode>,
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_InteractionCode {
     Read,
     Vread,

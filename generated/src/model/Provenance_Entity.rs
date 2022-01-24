@@ -229,11 +229,11 @@ pub struct Provenance_EntityGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    role: Option<Provenance_EntityRoleGraphql>,
+    role: Option<Provenance_EntityRole>,
     what: ReferenceGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Provenance_EntityRole {
     Derivation,
     Revision,

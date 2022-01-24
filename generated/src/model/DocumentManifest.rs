@@ -655,13 +655,13 @@ pub struct DocumentManifestGraphql {
     recipient: Option<Vec<ReferenceGraphql>>,
     related: Option<Vec<DocumentManifest_RelatedGraphql>>,
     source: Option<String>,
-    status: Option<DocumentManifestStatusGraphql>,
+    status: Option<DocumentManifestStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DocumentManifestStatus {
     Current,
     Superseded,

@@ -1260,7 +1260,7 @@ pub struct RiskEvidenceSynthesisGraphql {
     reviewer: Option<Vec<ContactDetailGraphql>>,
     risk_estimate: Option<RiskEvidenceSynthesis_RiskEstimateGraphql>,
     sample_size: Option<RiskEvidenceSynthesis_SampleSizeGraphql>,
-    status: Option<RiskEvidenceSynthesisStatusGraphql>,
+    status: Option<RiskEvidenceSynthesisStatus>,
     study_type: Option<CodeableConceptGraphql>,
     synthesis_type: Option<CodeableConceptGraphql>,
     text: Option<NarrativeGraphql>,
@@ -1271,7 +1271,7 @@ pub struct RiskEvidenceSynthesisGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum RiskEvidenceSynthesisStatus {
     Draft,
     Active,

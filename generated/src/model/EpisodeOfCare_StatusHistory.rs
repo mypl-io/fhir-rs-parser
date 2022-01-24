@@ -199,10 +199,10 @@ pub struct EpisodeOfCare_StatusHistoryGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: PeriodGraphql,
-    status: Option<EpisodeOfCare_StatusHistoryStatusGraphql>,
+    status: Option<EpisodeOfCare_StatusHistoryStatus>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EpisodeOfCare_StatusHistoryStatus {
     Planned,
     Waitlist,

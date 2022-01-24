@@ -589,13 +589,13 @@ pub struct MeasureReportGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: PeriodGraphql,
     reporter: Option<ReferenceGraphql>,
-    status: Option<MeasureReportStatusGraphql>,
+    status: Option<MeasureReportStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
-    fhir_type: Option<MeasureReportTypeGraphql>,
+    fhir_type: Option<MeasureReportType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MeasureReportStatus {
     Complete,
     Pending,
@@ -621,7 +621,7 @@ impl MeasureReportStatus {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MeasureReportType {
     Individual,
     SubjectList,

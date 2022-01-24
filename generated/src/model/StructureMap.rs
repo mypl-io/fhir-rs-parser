@@ -908,7 +908,7 @@ pub struct StructureMapGraphql {
     name: Option<String>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<StructureMapStatusGraphql>,
+    status: Option<StructureMapStatus>,
     structure: Option<Vec<StructureMap_StructureGraphql>>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
@@ -917,7 +917,7 @@ pub struct StructureMapGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMapStatus {
     Draft,
     Active,

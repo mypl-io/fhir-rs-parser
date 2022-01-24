@@ -8,8 +8,6 @@ use crate::model::Consent_Actor::Consent_Actor;
 use crate::model::Consent_Actor::Consent_ActorGraphql;
 use crate::model::Consent_Data::Consent_Data;
 use crate::model::Consent_Data::Consent_DataGraphql;
-use crate::model::Consent_Provision::Consent_Provision;
-use crate::model::Consent_Provision::Consent_ProvisionGraphql;
 use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
@@ -446,10 +444,10 @@ pub struct Consent_ProvisionGraphql {
     provision: Option<Vec<Consent_ProvisionGraphql>>,
     purpose: Option<Vec<CodingGraphql>>,
     security_label: Option<Vec<CodingGraphql>>,
-    fhir_type: Option<Consent_ProvisionTypeGraphql>,
+    fhir_type: Option<Consent_ProvisionType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Consent_ProvisionType {
     Deny,
     Permit,

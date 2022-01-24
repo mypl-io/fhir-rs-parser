@@ -779,12 +779,12 @@ pub struct SupplyRequestGraphql {
     reason_code: Option<Vec<CodeableConceptGraphql>>,
     reason_reference: Option<Vec<ReferenceGraphql>>,
     requester: Option<ReferenceGraphql>,
-    status: Option<SupplyRequestStatusGraphql>,
+    status: Option<SupplyRequestStatus>,
     supplier: Option<Vec<ReferenceGraphql>>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SupplyRequestStatus {
     Draft,
     Active,

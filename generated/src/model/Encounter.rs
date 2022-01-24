@@ -897,14 +897,14 @@ pub struct EncounterGraphql {
     reason_reference: Option<Vec<ReferenceGraphql>>,
     service_provider: Option<ReferenceGraphql>,
     service_type: Option<CodeableConceptGraphql>,
-    status: Option<EncounterStatusGraphql>,
+    status: Option<EncounterStatus>,
     status_history: Option<Vec<Encounter_StatusHistoryGraphql>>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EncounterStatus {
     Planned,
     Arrived,

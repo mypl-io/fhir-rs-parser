@@ -193,11 +193,11 @@ pub struct OperationDefinition_BindingGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    strength: Option<OperationDefinition_BindingStrengthGraphql>,
+    strength: Option<OperationDefinition_BindingStrength>,
     value_set: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationDefinition_BindingStrength {
     Required,
     Extensible,

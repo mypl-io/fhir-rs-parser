@@ -1058,13 +1058,13 @@ pub struct ChargeItemGraphql {
     reason: Option<Vec<CodeableConceptGraphql>>,
     requesting_organization: Option<ReferenceGraphql>,
     service: Option<Vec<ReferenceGraphql>>,
-    status: Option<ChargeItemStatusGraphql>,
+    status: Option<ChargeItemStatus>,
     subject: ReferenceGraphql,
     supporting_information: Option<Vec<ReferenceGraphql>>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ChargeItemStatus {
     Planned,
     Billable,

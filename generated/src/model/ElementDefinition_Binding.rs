@@ -238,11 +238,11 @@ pub struct ElementDefinition_BindingGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    strength: Option<ElementDefinition_BindingStrengthGraphql>,
+    strength: Option<ElementDefinition_BindingStrength>,
     value_set: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ElementDefinition_BindingStrength {
     Required,
     Extensible,

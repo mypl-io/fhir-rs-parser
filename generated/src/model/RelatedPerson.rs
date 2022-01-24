@@ -630,7 +630,7 @@ pub struct RelatedPersonGraphql {
     communication: Option<Vec<RelatedPerson_CommunicationGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<RelatedPersonGenderGraphql>,
+    gender: Option<RelatedPersonGender>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
@@ -646,7 +646,7 @@ pub struct RelatedPersonGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum RelatedPersonGender {
     Male,
     Female,

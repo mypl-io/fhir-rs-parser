@@ -323,7 +323,7 @@ pub struct Patient_ContactGraphql {
     _gender: Option<ElementGraphql>,
     address: Option<AddressGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<Patient_ContactGenderGraphql>,
+    gender: Option<Patient_ContactGender>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<HumanNameGraphql>,
@@ -333,7 +333,7 @@ pub struct Patient_ContactGraphql {
     telecom: Option<Vec<ContactPointGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Patient_ContactGender {
     Male,
     Female,

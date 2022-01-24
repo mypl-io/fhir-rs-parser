@@ -1089,11 +1089,11 @@ pub struct FamilyMemberHistoryGraphql {
     reason_reference: Option<Vec<ReferenceGraphql>>,
     relationship: CodeableConceptGraphql,
     sex: Option<CodeableConceptGraphql>,
-    status: Option<FamilyMemberHistoryStatusGraphql>,
+    status: Option<FamilyMemberHistoryStatus>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum FamilyMemberHistoryStatus {
     Partial,
     Completed,

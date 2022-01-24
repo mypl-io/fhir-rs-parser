@@ -193,10 +193,10 @@ pub struct Linkage_ItemGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     resource: ReferenceGraphql,
-    fhir_type: Option<Linkage_ItemTypeGraphql>,
+    fhir_type: Option<Linkage_ItemType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Linkage_ItemType {
     Source,
     Alternate,

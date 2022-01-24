@@ -726,14 +726,14 @@ pub struct NamingSystemGraphql {
     id: Option<String>,
     implicit_rules: Option<String>,
     jurisdiction: Option<Vec<CodeableConceptGraphql>>,
-    kind: Option<NamingSystemKindGraphql>,
+    kind: Option<NamingSystemKind>,
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     publisher: Option<String>,
     responsible: Option<String>,
-    status: Option<NamingSystemStatusGraphql>,
+    status: Option<NamingSystemStatus>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
     unique_id: Vec<NamingSystem_UniqueIdGraphql>,
@@ -741,7 +741,7 @@ pub struct NamingSystemGraphql {
     use_context: Option<Vec<UsageContextGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum NamingSystemKind {
     Codesystem,
     Identifier,
@@ -767,7 +767,7 @@ impl NamingSystemKind {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum NamingSystemStatus {
     Draft,
     Active,

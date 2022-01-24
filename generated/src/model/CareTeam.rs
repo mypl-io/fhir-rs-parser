@@ -654,13 +654,13 @@ pub struct CareTeamGraphql {
     period: Option<PeriodGraphql>,
     reason_code: Option<Vec<CodeableConceptGraphql>>,
     reason_reference: Option<Vec<ReferenceGraphql>>,
-    status: Option<CareTeamStatusGraphql>,
+    status: Option<CareTeamStatus>,
     subject: Option<ReferenceGraphql>,
     telecom: Option<Vec<ContactPointGraphql>>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CareTeamStatus {
     Proposed,
     Active,

@@ -695,7 +695,7 @@ pub struct DeviceUseStatementGraphql {
     reason_reference: Option<Vec<ReferenceGraphql>>,
     recorded_on: Option<String>,
     source: Option<ReferenceGraphql>,
-    status: Option<DeviceUseStatementStatusGraphql>,
+    status: Option<DeviceUseStatementStatus>,
     subject: ReferenceGraphql,
     text: Option<NarrativeGraphql>,
     timing_date_time: Option<String>,
@@ -703,7 +703,7 @@ pub struct DeviceUseStatementGraphql {
     timing_timing: Option<TimingGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceUseStatementStatus {
     Active,
     Completed,

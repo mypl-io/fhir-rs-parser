@@ -203,10 +203,10 @@ pub struct ContributorGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     name: Option<String>,
-    fhir_type: Option<ContributorTypeGraphql>,
+    fhir_type: Option<ContributorType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ContributorType {
     Author,
     Editor,

@@ -528,11 +528,11 @@ pub struct SubscriptionGraphql {
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     reason: Option<String>,
-    status: Option<SubscriptionStatusGraphql>,
+    status: Option<SubscriptionStatus>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SubscriptionStatus {
     Requested,
     Active,

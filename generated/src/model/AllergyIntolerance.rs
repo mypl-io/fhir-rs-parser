@@ -856,7 +856,7 @@ pub struct AllergyIntoleranceGraphql {
     clinical_status: Option<CodeableConceptGraphql>,
     code: Option<CodeableConceptGraphql>,
     contained: Option<Vec<ResourceListGraphql>>,
-    criticality: Option<AllergyIntoleranceCriticalityGraphql>,
+    criticality: Option<AllergyIntoleranceCriticality>,
     encounter: Option<ReferenceGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
@@ -877,11 +877,11 @@ pub struct AllergyIntoleranceGraphql {
     recorded_date: Option<String>,
     recorder: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
-    fhir_type: Option<AllergyIntoleranceTypeGraphql>,
+    fhir_type: Option<AllergyIntoleranceType>,
     verification_status: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AllergyIntoleranceCriticality {
     Low,
     High,
@@ -907,7 +907,7 @@ impl AllergyIntoleranceCriticality {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AllergyIntoleranceType {
     Allergy,
     Intolerance,

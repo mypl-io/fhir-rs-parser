@@ -736,7 +736,7 @@ pub struct InvoiceGraphql {
     participant: Option<Vec<Invoice_ParticipantGraphql>>,
     payment_terms: Option<String>,
     recipient: Option<ReferenceGraphql>,
-    status: Option<InvoiceStatusGraphql>,
+    status: Option<InvoiceStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     total_gross: Option<MoneyGraphql>,
@@ -745,7 +745,7 @@ pub struct InvoiceGraphql {
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum InvoiceStatus {
     Draft,
     Issued,

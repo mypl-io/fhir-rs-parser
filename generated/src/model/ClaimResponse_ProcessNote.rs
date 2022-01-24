@@ -282,10 +282,10 @@ pub struct ClaimResponse_ProcessNoteGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     number: Option<i64>,
     text: Option<String>,
-    fhir_type: Option<ClaimResponse_ProcessNoteTypeGraphql>,
+    fhir_type: Option<ClaimResponse_ProcessNoteType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ClaimResponse_ProcessNoteType {
     Display,
     Print,

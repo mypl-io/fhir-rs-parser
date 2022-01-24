@@ -198,11 +198,11 @@ pub struct CapabilityStatement_SupportedMessageGraphql {
     definition: String,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<CapabilityStatement_SupportedMessageModeGraphql>,
+    mode: Option<CapabilityStatement_SupportedMessageMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_SupportedMessageMode {
     Sender,
     Receiver,

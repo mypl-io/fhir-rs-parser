@@ -590,7 +590,7 @@ pub struct AuditEventGraphql {
     _outcome: Option<ElementGraphql>,
     _outcome_desc: Option<ElementGraphql>,
     _recorded: Option<ElementGraphql>,
-    action: Option<AuditEventActionGraphql>,
+    action: Option<AuditEventAction>,
     agent: Vec<AuditEvent_AgentGraphql>,
     contained: Option<Vec<ResourceListGraphql>>,
     entity: Option<Vec<AuditEvent_EntityGraphql>>,
@@ -600,7 +600,7 @@ pub struct AuditEventGraphql {
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    outcome: Option<AuditEventOutcomeGraphql>,
+    outcome: Option<AuditEventOutcome>,
     outcome_desc: Option<String>,
     period: Option<PeriodGraphql>,
     purpose_of_event: Option<Vec<CodeableConceptGraphql>>,
@@ -611,7 +611,7 @@ pub struct AuditEventGraphql {
     fhir_type: CodingGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AuditEventAction {
     C,
     R,
@@ -643,7 +643,7 @@ impl AuditEventAction {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AuditEventOutcome {
     Zero,
     Four,

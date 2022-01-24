@@ -870,7 +870,7 @@ pub struct ExampleScenarioGraphql {
     process: Option<Vec<ExampleScenario_ProcessGraphql>>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<ExampleScenarioStatusGraphql>,
+    status: Option<ExampleScenarioStatus>,
     text: Option<NarrativeGraphql>,
     url: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
@@ -878,7 +878,7 @@ pub struct ExampleScenarioGraphql {
     workflow: Option<Vec<String>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ExampleScenarioStatus {
     Draft,
     Active,

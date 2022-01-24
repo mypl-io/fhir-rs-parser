@@ -859,12 +859,12 @@ pub struct ImagingStudyGraphql {
     referrer: Option<ReferenceGraphql>,
     series: Option<Vec<ImagingStudy_SeriesGraphql>>,
     started: Option<String>,
-    status: Option<ImagingStudyStatusGraphql>,
+    status: Option<ImagingStudyStatus>,
     subject: ReferenceGraphql,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ImagingStudyStatus {
     Registered,
     Available,

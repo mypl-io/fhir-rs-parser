@@ -282,10 +282,10 @@ pub struct PlanDefinition_RelatedActionGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     offset_duration: Option<DurationGraphql>,
     offset_range: Option<RangeGraphql>,
-    relationship: Option<PlanDefinition_RelatedActionRelationshipGraphql>,
+    relationship: Option<PlanDefinition_RelatedActionRelationship>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_RelatedActionRelationship {
     BeforeStart,
     Before,

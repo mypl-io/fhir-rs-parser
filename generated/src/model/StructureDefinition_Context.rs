@@ -225,10 +225,10 @@ pub struct StructureDefinition_ContextGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    fhir_type: Option<StructureDefinition_ContextTypeGraphql>,
+    fhir_type: Option<StructureDefinition_ContextType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureDefinition_ContextType {
     Fhirpath,
     Element,

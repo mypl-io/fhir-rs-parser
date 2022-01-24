@@ -22,14 +22,14 @@ pub fn fhir_parse(string: &str) -> Option<crate::model::ResourceList::ResourceLi
     }
 }
 
-struct Query;
+// struct Query;
 
-#[Object]
-impl Query {
-    async fn patient(&self, _id: String) -> Result<model::Patient::PatientGraphql> {
-        unreachable!()
-    }
-}
+// #[Object]
+// impl Query {
+//     async fn patient(&self, _id: String) -> Result<model::Patient::PatientGraphql> {
+//         unreachable!()
+//     }
+// }
 
 #[cfg(test)]
 mod tests {

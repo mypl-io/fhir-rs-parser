@@ -301,12 +301,12 @@ pub struct Appointment_ParticipantGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: Option<PeriodGraphql>,
-    required: Option<Appointment_ParticipantRequiredGraphql>,
-    status: Option<Appointment_ParticipantStatusGraphql>,
+    required: Option<Appointment_ParticipantRequired>,
+    status: Option<Appointment_ParticipantStatus>,
     fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Appointment_ParticipantRequired {
     Required,
     Optional,
@@ -332,7 +332,7 @@ impl Appointment_ParticipantRequired {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Appointment_ParticipantStatus {
     Accepted,
     Declined,

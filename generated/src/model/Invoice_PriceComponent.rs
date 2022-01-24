@@ -268,10 +268,10 @@ pub struct Invoice_PriceComponentGraphql {
     factor: Option<f64>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    fhir_type: Option<Invoice_PriceComponentTypeGraphql>,
+    fhir_type: Option<Invoice_PriceComponentType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Invoice_PriceComponentType {
     Base,
     Surcharge,

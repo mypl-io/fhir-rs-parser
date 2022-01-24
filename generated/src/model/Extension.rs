@@ -32,8 +32,6 @@ use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Expression::Expression;
 use crate::model::Expression::ExpressionGraphql;
-use crate::model::Extension::Extension;
-use crate::model::Extension::ExtensionGraphql;
 use crate::model::HumanName::HumanName;
 use crate::model::HumanName::HumanNameGraphql;
 use crate::model::Identifier::Identifier;

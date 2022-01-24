@@ -294,11 +294,11 @@ pub struct CodeSystem_PropertyGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    fhir_type: Option<CodeSystem_PropertyTypeGraphql>,
+    fhir_type: Option<CodeSystem_PropertyType>,
     uri: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CodeSystem_PropertyType {
     Code,
     Coding,

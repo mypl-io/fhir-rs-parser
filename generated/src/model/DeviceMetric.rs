@@ -576,8 +576,8 @@ pub struct DeviceMetricGraphql {
     _language: Option<ElementGraphql>,
     _operational_status: Option<ElementGraphql>,
     calibration: Option<Vec<DeviceMetric_CalibrationGraphql>>,
-    category: Option<DeviceMetricCategoryGraphql>,
-    color: Option<DeviceMetricColorGraphql>,
+    category: Option<DeviceMetricCategory>,
+    color: Option<DeviceMetricColor>,
     contained: Option<Vec<ResourceListGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
@@ -587,7 +587,7 @@ pub struct DeviceMetricGraphql {
     measurement_period: Option<TimingGraphql>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    operational_status: Option<DeviceMetricOperationalStatusGraphql>,
+    operational_status: Option<DeviceMetricOperationalStatus>,
     parent: Option<ReferenceGraphql>,
     source: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
@@ -595,7 +595,7 @@ pub struct DeviceMetricGraphql {
     unit: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceMetricCategory {
     Measurement,
     Setting,
@@ -624,7 +624,7 @@ impl DeviceMetricCategory {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceMetricColor {
     Black,
     Red,
@@ -665,7 +665,7 @@ impl DeviceMetricColor {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceMetricOperationalStatus {
     On,
     Off,

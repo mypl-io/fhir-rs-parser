@@ -282,7 +282,7 @@ pub struct CountGraphql {
     _unit: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
     code: Option<String>,
-    comparator: Option<CountComparatorGraphql>,
+    comparator: Option<CountComparator>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     system: Option<String>,
@@ -290,7 +290,7 @@ pub struct CountGraphql {
     value: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CountComparator {
     LessThan,
     LessThanOrEqual,

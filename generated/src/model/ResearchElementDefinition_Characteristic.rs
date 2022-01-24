@@ -827,7 +827,7 @@ pub struct ResearchElementDefinition_CharacteristicGraphql {
     participant_effective_description: Option<String>,
     participant_effective_duration: Option<DurationGraphql>,
     participant_effective_group_measure:
-        Option<ResearchElementDefinition_CharacteristicParticipantEffectiveGroupMeasureGraphql>,
+        Option<ResearchElementDefinition_CharacteristicParticipantEffectiveGroupMeasure>,
     participant_effective_period: Option<PeriodGraphql>,
     participant_effective_time_from_start: Option<DurationGraphql>,
     participant_effective_timing: Option<TimingGraphql>,
@@ -835,7 +835,7 @@ pub struct ResearchElementDefinition_CharacteristicGraphql {
     study_effective_description: Option<String>,
     study_effective_duration: Option<DurationGraphql>,
     study_effective_group_measure:
-        Option<ResearchElementDefinition_CharacteristicStudyEffectiveGroupMeasureGraphql>,
+        Option<ResearchElementDefinition_CharacteristicStudyEffectiveGroupMeasure>,
     study_effective_period: Option<PeriodGraphql>,
     study_effective_time_from_start: Option<DurationGraphql>,
     study_effective_timing: Option<TimingGraphql>,
@@ -843,7 +843,7 @@ pub struct ResearchElementDefinition_CharacteristicGraphql {
     usage_context: Option<Vec<UsageContextGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchElementDefinition_CharacteristicParticipantEffectiveGroupMeasure {
     Mean,
     Median,
@@ -880,7 +880,7 @@ impl ResearchElementDefinition_CharacteristicParticipantEffectiveGroupMeasure {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchElementDefinition_CharacteristicStudyEffectiveGroupMeasure {
     Mean,
     Median,

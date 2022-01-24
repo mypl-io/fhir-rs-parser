@@ -800,12 +800,12 @@ pub struct GuidanceResponseGraphql {
     reason_reference: Option<Vec<ReferenceGraphql>>,
     request_identifier: Option<IdentifierGraphql>,
     result: Option<ReferenceGraphql>,
-    status: Option<GuidanceResponseStatusGraphql>,
+    status: Option<GuidanceResponseStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum GuidanceResponseStatus {
     Success,
     DataRequested,

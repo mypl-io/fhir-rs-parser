@@ -213,12 +213,12 @@ pub struct Bundle_SearchGraphql {
     _score: Option<ElementGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<Bundle_SearchModeGraphql>,
+    mode: Option<Bundle_SearchMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     score: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Bundle_SearchMode {
     Match,
     Include,

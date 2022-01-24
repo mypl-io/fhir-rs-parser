@@ -1087,7 +1087,7 @@ pub struct ChargeItemDefinitionGraphql {
     property_group: Option<Vec<ChargeItemDefinition_PropertyGroupGraphql>>,
     publisher: Option<String>,
     replaces: Option<Vec<String>>,
-    status: Option<ChargeItemDefinitionStatusGraphql>,
+    status: Option<ChargeItemDefinitionStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     url: Option<String>,
@@ -1095,7 +1095,7 @@ pub struct ChargeItemDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ChargeItemDefinitionStatus {
     Draft,
     Active,

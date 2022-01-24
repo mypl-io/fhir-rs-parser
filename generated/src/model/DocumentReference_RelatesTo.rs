@@ -197,14 +197,14 @@ impl DocumentReference_RelatesToBuilder {
 #[derive(Debug, SimpleObject, InputObject)]
 pub struct DocumentReference_RelatesToGraphql {
     _code: Option<ElementGraphql>,
-    code: Option<DocumentReference_RelatesToCodeGraphql>,
+    code: Option<DocumentReference_RelatesToCode>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     target: ReferenceGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DocumentReference_RelatesToCode {
     Replaces,
     Transforms,

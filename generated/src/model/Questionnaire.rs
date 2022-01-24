@@ -1053,7 +1053,7 @@ pub struct QuestionnaireGraphql {
     name: Option<String>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<QuestionnaireStatusGraphql>,
+    status: Option<QuestionnaireStatus>,
     subject_type: Option<Vec<String>>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
@@ -1062,7 +1062,7 @@ pub struct QuestionnaireGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum QuestionnaireStatus {
     Draft,
     Active,

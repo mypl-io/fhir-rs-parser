@@ -363,12 +363,12 @@ pub struct Bundle_RequestGraphql {
     if_modified_since: Option<String>,
     if_none_exist: Option<String>,
     if_none_match: Option<String>,
-    method: Option<Bundle_RequestMethodGraphql>,
+    method: Option<Bundle_RequestMethod>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     url: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Bundle_RequestMethod {
     GET,
     HEAD,

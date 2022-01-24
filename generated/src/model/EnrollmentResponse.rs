@@ -538,14 +538,14 @@ pub struct EnrollmentResponseGraphql {
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     organization: Option<ReferenceGraphql>,
-    outcome: Option<EnrollmentResponseOutcomeGraphql>,
+    outcome: Option<EnrollmentResponseOutcome>,
     request: Option<ReferenceGraphql>,
     request_provider: Option<ReferenceGraphql>,
     status: Option<String>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EnrollmentResponseOutcome {
     Queued,
     Complete,

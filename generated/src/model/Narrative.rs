@@ -148,10 +148,10 @@ pub struct NarrativeGraphql {
     div: String,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    status: Option<NarrativeStatusGraphql>,
+    status: Option<NarrativeStatus>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum NarrativeStatus {
     Generated,
     Extensions,

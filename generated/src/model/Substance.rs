@@ -493,11 +493,11 @@ pub struct SubstanceGraphql {
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    status: Option<SubstanceStatusGraphql>,
+    status: Option<SubstanceStatus>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SubstanceStatus {
     Active,
     Inactive,

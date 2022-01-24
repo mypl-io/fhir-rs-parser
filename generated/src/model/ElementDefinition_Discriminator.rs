@@ -223,10 +223,10 @@ pub struct ElementDefinition_DiscriminatorGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     path: Option<String>,
-    fhir_type: Option<ElementDefinition_DiscriminatorTypeGraphql>,
+    fhir_type: Option<ElementDefinition_DiscriminatorType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ElementDefinition_DiscriminatorType {
     Value,
     Exists,

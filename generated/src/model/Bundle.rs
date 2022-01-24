@@ -385,10 +385,10 @@ pub struct BundleGraphql {
     signature: Option<SignatureGraphql>,
     timestamp: Option<String>,
     total: Option<u64>,
-    fhir_type: Option<BundleTypeGraphql>,
+    fhir_type: Option<BundleType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum BundleType {
     Document,
     Message,

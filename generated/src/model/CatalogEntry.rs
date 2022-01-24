@@ -675,14 +675,14 @@ pub struct CatalogEntryGraphql {
     orderable: Option<bool>,
     referenced_item: ReferenceGraphql,
     related_entry: Option<Vec<CatalogEntry_RelatedEntryGraphql>>,
-    status: Option<CatalogEntryStatusGraphql>,
+    status: Option<CatalogEntryStatus>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
     valid_to: Option<String>,
     validity_period: Option<PeriodGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CatalogEntryStatus {
     Draft,
     Active,

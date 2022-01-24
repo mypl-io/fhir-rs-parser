@@ -1243,18 +1243,18 @@ pub struct StructureDefinitionGraphql {
     context_invariant: Option<Vec<String>>,
     copyright: Option<String>,
     date: Option<String>,
-    derivation: Option<StructureDefinitionDerivationGraphql>,
+    derivation: Option<StructureDefinitionDerivation>,
     description: Option<String>,
     differential: Option<StructureDefinition_DifferentialGraphql>,
     experimental: Option<bool>,
     extension: Option<Vec<ExtensionGraphql>>,
-    fhir_version: Option<StructureDefinitionFhirVersionGraphql>,
+    fhir_version: Option<StructureDefinitionFhirVersion>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
     jurisdiction: Option<Vec<CodeableConceptGraphql>>,
     keyword: Option<Vec<CodingGraphql>>,
-    kind: Option<StructureDefinitionKindGraphql>,
+    kind: Option<StructureDefinitionKind>,
     language: Option<String>,
     mapping: Option<Vec<StructureDefinition_MappingGraphql>>,
     meta: Option<MetaGraphql>,
@@ -1263,7 +1263,7 @@ pub struct StructureDefinitionGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     snapshot: Option<StructureDefinition_SnapshotGraphql>,
-    status: Option<StructureDefinitionStatusGraphql>,
+    status: Option<StructureDefinitionStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     fhir_type: Option<String>,
@@ -1272,7 +1272,7 @@ pub struct StructureDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureDefinitionDerivation {
     Specialization,
     Constraint,
@@ -1295,7 +1295,7 @@ impl StructureDefinitionDerivation {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureDefinitionFhirVersion {
     Fhir001,
     Fhir005,
@@ -1378,7 +1378,7 @@ impl StructureDefinitionFhirVersion {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureDefinitionKind {
     PrimitiveType,
     ComplexType,
@@ -1407,7 +1407,7 @@ impl StructureDefinitionKind {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureDefinitionStatus {
     Draft,
     Active,

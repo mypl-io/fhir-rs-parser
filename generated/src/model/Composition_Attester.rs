@@ -244,13 +244,13 @@ pub struct Composition_AttesterGraphql {
     _time: Option<ElementGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<Composition_AttesterModeGraphql>,
+    mode: Option<Composition_AttesterMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     party: Option<ReferenceGraphql>,
     time: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Composition_AttesterMode {
     Personal,
     Professional,

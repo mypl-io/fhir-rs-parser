@@ -741,7 +741,7 @@ pub struct Timing_RepeatGraphql {
     day_of_week: Option<Vec<String>>,
     duration: Option<f64>,
     duration_max: Option<f64>,
-    duration_unit: Option<Timing_RepeatDurationUnitGraphql>,
+    duration_unit: Option<Timing_RepeatDurationUnit>,
     extension: Option<Vec<ExtensionGraphql>>,
     frequency: Option<i64>,
     frequency_max: Option<i64>,
@@ -750,11 +750,11 @@ pub struct Timing_RepeatGraphql {
     offset: Option<u64>,
     period: Option<f64>,
     period_max: Option<f64>,
-    period_unit: Option<Timing_RepeatPeriodUnitGraphql>,
+    period_unit: Option<Timing_RepeatPeriodUnit>,
     time_of_day: Option<Vec<String>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Timing_RepeatDurationUnit {
     S,
     Min,
@@ -792,7 +792,7 @@ impl Timing_RepeatDurationUnit {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Timing_RepeatPeriodUnit {
     S,
     Min,

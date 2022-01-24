@@ -797,20 +797,20 @@ pub struct LocationGraphql {
     language: Option<String>,
     managing_organization: Option<ReferenceGraphql>,
     meta: Option<MetaGraphql>,
-    mode: Option<LocationModeGraphql>,
+    mode: Option<LocationMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     operational_status: Option<CodingGraphql>,
     part_of: Option<ReferenceGraphql>,
     physical_type: Option<CodeableConceptGraphql>,
     position: Option<Location_PositionGraphql>,
-    status: Option<LocationStatusGraphql>,
+    status: Option<LocationStatus>,
     telecom: Option<Vec<ContactPointGraphql>>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum LocationMode {
     Instance,
     Kind,
@@ -833,7 +833,7 @@ impl LocationMode {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum LocationStatus {
     Active,
     Suspended,

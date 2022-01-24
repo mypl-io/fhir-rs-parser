@@ -410,18 +410,18 @@ pub struct StructureMap_TargetGraphql {
     _transform: Option<ElementGraphql>,
     _variable: Option<ElementGraphql>,
     context: Option<String>,
-    context_type: Option<StructureMap_TargetContextTypeGraphql>,
+    context_type: Option<StructureMap_TargetContextType>,
     element: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     list_rule_id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     parameter: Option<Vec<StructureMap_ParameterGraphql>>,
-    transform: Option<StructureMap_TargetTransformGraphql>,
+    transform: Option<StructureMap_TargetTransform>,
     variable: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_TargetContextType {
     FhirType,
     Variable,
@@ -444,7 +444,7 @@ impl StructureMap_TargetContextType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_TargetTransform {
     Create,
     Copy,

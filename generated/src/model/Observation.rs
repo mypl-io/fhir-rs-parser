@@ -1331,7 +1331,7 @@ pub struct ObservationGraphql {
     performer: Option<Vec<ReferenceGraphql>>,
     reference_range: Option<Vec<Observation_ReferenceRangeGraphql>>,
     specimen: Option<ReferenceGraphql>,
-    status: Option<ObservationStatusGraphql>,
+    status: Option<ObservationStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     value_boolean: Option<bool>,
@@ -1347,7 +1347,7 @@ pub struct ObservationGraphql {
     value_time: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ObservationStatus {
     Registered,
     Preliminary,

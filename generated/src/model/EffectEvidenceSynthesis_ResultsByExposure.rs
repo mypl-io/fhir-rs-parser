@@ -274,7 +274,7 @@ pub struct EffectEvidenceSynthesis_ResultsByExposureGraphql {
     _description: Option<ElementGraphql>,
     _exposure_state: Option<ElementGraphql>,
     description: Option<String>,
-    exposure_state: Option<EffectEvidenceSynthesis_ResultsByExposureExposureStateGraphql>,
+    exposure_state: Option<EffectEvidenceSynthesis_ResultsByExposureExposureState>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
@@ -282,7 +282,7 @@ pub struct EffectEvidenceSynthesis_ResultsByExposureGraphql {
     variant_state: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EffectEvidenceSynthesis_ResultsByExposureExposureState {
     Exposure,
     ExposureAlternative,

@@ -6,8 +6,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::OperationDefinition_Binding::OperationDefinition_Binding;
 use crate::model::OperationDefinition_Binding::OperationDefinition_BindingGraphql;
-use crate::model::OperationDefinition_Parameter::OperationDefinition_Parameter;
-use crate::model::OperationDefinition_Parameter::OperationDefinition_ParameterGraphql;
 use crate::model::OperationDefinition_ReferencedFrom::OperationDefinition_ReferencedFrom;
 use crate::model::OperationDefinition_ReferencedFrom::OperationDefinition_ReferencedFromGraphql;
 use async_graphql::*;
@@ -530,13 +528,13 @@ pub struct OperationDefinition_ParameterGraphql {
     name: Option<String>,
     part: Option<Vec<OperationDefinition_ParameterGraphql>>,
     referenced_from: Option<Vec<OperationDefinition_ReferencedFromGraphql>>,
-    search_type: Option<OperationDefinition_ParameterSearchTypeGraphql>,
+    search_type: Option<OperationDefinition_ParameterSearchType>,
     target_profile: Option<Vec<String>>,
     fhir_type: Option<String>,
-    fhir_use: Option<OperationDefinition_ParameterUseGraphql>,
+    fhir_use: Option<OperationDefinition_ParameterUse>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationDefinition_ParameterSearchType {
     Number,
     Date,
@@ -580,7 +578,7 @@ impl OperationDefinition_ParameterSearchType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationDefinition_ParameterUse {
     In,
     Out,

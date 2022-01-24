@@ -252,10 +252,10 @@ pub struct TestReport_AssertGraphql {
     id: Option<String>,
     message: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    result: Option<TestReport_AssertResultGraphql>,
+    result: Option<TestReport_AssertResult>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestReport_AssertResult {
     Pass,
     Skip,

@@ -346,10 +346,10 @@ pub struct StructureMap_GroupGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     rule: Vec<StructureMap_RuleGraphql>,
-    type_mode: Option<StructureMap_GroupTypeModeGraphql>,
+    type_mode: Option<StructureMap_GroupTypeMode>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_GroupTypeMode {
     None,
     Types,

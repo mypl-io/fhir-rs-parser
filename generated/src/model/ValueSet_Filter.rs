@@ -255,12 +255,12 @@ pub struct ValueSet_FilterGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    op: Option<ValueSet_FilterOpGraphql>,
+    op: Option<ValueSet_FilterOp>,
     property: Option<String>,
     value: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ValueSet_FilterOp {
     Equal,
     IsA,

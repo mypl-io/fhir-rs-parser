@@ -299,11 +299,11 @@ pub struct BiologicallyDerivedProduct_StorageGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    scale: Option<BiologicallyDerivedProduct_StorageScaleGraphql>,
+    scale: Option<BiologicallyDerivedProduct_StorageScale>,
     temperature: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum BiologicallyDerivedProduct_StorageScale {
     Farenheit,
     Celsius,

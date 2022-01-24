@@ -1094,7 +1094,7 @@ pub struct MessageDefinitionGraphql {
     _version: Option<ElementGraphql>,
     allowed_response: Option<Vec<MessageDefinition_AllowedResponseGraphql>>,
     base: Option<String>,
-    category: Option<MessageDefinitionCategoryGraphql>,
+    category: Option<MessageDefinitionCategory>,
     contact: Option<Vec<ContactDetailGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
     copyright: Option<String>,
@@ -1118,8 +1118,8 @@ pub struct MessageDefinitionGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     replaces: Option<Vec<String>>,
-    response_required: Option<MessageDefinitionResponseRequiredGraphql>,
-    status: Option<MessageDefinitionStatusGraphql>,
+    response_required: Option<MessageDefinitionResponseRequired>,
+    status: Option<MessageDefinitionStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     url: Option<String>,
@@ -1127,7 +1127,7 @@ pub struct MessageDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MessageDefinitionCategory {
     Consequence,
     Currency,
@@ -1153,7 +1153,7 @@ impl MessageDefinitionCategory {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MessageDefinitionResponseRequired {
     Always,
     OnError,
@@ -1182,7 +1182,7 @@ impl MessageDefinitionResponseRequired {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MessageDefinitionStatus {
     Draft,
     Active,

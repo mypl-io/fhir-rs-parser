@@ -8,8 +8,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::Identifier::Identifier;
 use crate::model::Identifier::IdentifierGraphql;
-use crate::model::MedicinalProductAuthorization_Procedure::MedicinalProductAuthorization_Procedure;
-use crate::model::MedicinalProductAuthorization_Procedure::MedicinalProductAuthorization_ProcedureGraphql;
 use crate::model::Period::Period;
 use crate::model::Period::PeriodGraphql;
 use async_graphql::*;

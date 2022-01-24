@@ -622,11 +622,11 @@ pub struct SlotGraphql {
     service_type: Option<Vec<CodeableConceptGraphql>>,
     specialty: Option<Vec<CodeableConceptGraphql>>,
     start: Option<String>,
-    status: Option<SlotStatusGraphql>,
+    status: Option<SlotStatus>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SlotStatus {
     Busy,
     Free,

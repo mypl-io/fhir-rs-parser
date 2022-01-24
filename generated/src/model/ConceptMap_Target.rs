@@ -353,14 +353,14 @@ pub struct ConceptMap_TargetGraphql {
     comment: Option<String>,
     depends_on: Option<Vec<ConceptMap_DependsOnGraphql>>,
     display: Option<String>,
-    equivalence: Option<ConceptMap_TargetEquivalenceGraphql>,
+    equivalence: Option<ConceptMap_TargetEquivalence>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     product: Option<Vec<ConceptMap_DependsOnGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ConceptMap_TargetEquivalence {
     Relatedto,
     Equivalent,

@@ -1314,7 +1314,7 @@ pub struct EffectEvidenceSynthesisGraphql {
     results_by_exposure: Option<Vec<EffectEvidenceSynthesis_ResultsByExposureGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     sample_size: Option<EffectEvidenceSynthesis_SampleSizeGraphql>,
-    status: Option<EffectEvidenceSynthesisStatusGraphql>,
+    status: Option<EffectEvidenceSynthesisStatus>,
     study_type: Option<CodeableConceptGraphql>,
     synthesis_type: Option<CodeableConceptGraphql>,
     text: Option<NarrativeGraphql>,
@@ -1325,7 +1325,7 @@ pub struct EffectEvidenceSynthesisGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EffectEvidenceSynthesisStatus {
     Draft,
     Active,

@@ -575,7 +575,7 @@ pub struct PersonGraphql {
     birth_date: Option<String>,
     contained: Option<Vec<ResourceListGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<PersonGenderGraphql>,
+    gender: Option<PersonGender>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
@@ -590,7 +590,7 @@ pub struct PersonGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PersonGender {
     Male,
     Female,

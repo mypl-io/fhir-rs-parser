@@ -403,14 +403,14 @@ pub struct SpecimenDefinition_TypeTestedGraphql {
     id: Option<String>,
     is_derived: Option<bool>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    preference: Option<SpecimenDefinition_TypeTestedPreferenceGraphql>,
+    preference: Option<SpecimenDefinition_TypeTestedPreference>,
     rejection_criterion: Option<Vec<CodeableConceptGraphql>>,
     requirement: Option<String>,
     retention_time: Option<DurationGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SpecimenDefinition_TypeTestedPreference {
     Preferred,
     Alternate,

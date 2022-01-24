@@ -916,7 +916,7 @@ pub struct ValueSetGraphql {
     name: Option<String>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<ValueSetStatusGraphql>,
+    status: Option<ValueSetStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     url: Option<String>,
@@ -924,7 +924,7 @@ pub struct ValueSetGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ValueSetStatus {
     Draft,
     Active,

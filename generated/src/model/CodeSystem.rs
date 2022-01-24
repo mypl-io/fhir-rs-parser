@@ -1146,7 +1146,7 @@ pub struct CodeSystemGraphql {
     concept: Option<Vec<CodeSystem_ConceptGraphql>>,
     contact: Option<Vec<ContactDetailGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
-    content: Option<CodeSystemContentGraphql>,
+    content: Option<CodeSystemContent>,
     copyright: Option<String>,
     count: Option<u64>,
     date: Option<String>,
@@ -1154,7 +1154,7 @@ pub struct CodeSystemGraphql {
     experimental: Option<bool>,
     extension: Option<Vec<ExtensionGraphql>>,
     filter: Option<Vec<CodeSystem_FilterGraphql>>,
-    hierarchy_meaning: Option<CodeSystemHierarchyMeaningGraphql>,
+    hierarchy_meaning: Option<CodeSystemHierarchyMeaning>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
@@ -1166,7 +1166,7 @@ pub struct CodeSystemGraphql {
     property: Option<Vec<CodeSystem_PropertyGraphql>>,
     publisher: Option<String>,
     purpose: Option<String>,
-    status: Option<CodeSystemStatusGraphql>,
+    status: Option<CodeSystemStatus>,
     supplements: Option<String>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
@@ -1177,7 +1177,7 @@ pub struct CodeSystemGraphql {
     version_needed: Option<bool>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CodeSystemContent {
     NotPresent,
     Example,
@@ -1209,7 +1209,7 @@ impl CodeSystemContent {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CodeSystemHierarchyMeaning {
     GroupedBy,
     IsA,
@@ -1238,7 +1238,7 @@ impl CodeSystemHierarchyMeaning {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CodeSystemStatus {
     Draft,
     Active,

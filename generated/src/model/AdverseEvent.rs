@@ -811,7 +811,7 @@ pub struct AdverseEventGraphql {
     _implicit_rules: Option<ElementGraphql>,
     _language: Option<ElementGraphql>,
     _recorded_date: Option<ElementGraphql>,
-    actuality: Option<AdverseEventActualityGraphql>,
+    actuality: Option<AdverseEventActuality>,
     category: Option<Vec<CodeableConceptGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
     contributor: Option<Vec<ReferenceGraphql>>,
@@ -841,7 +841,7 @@ pub struct AdverseEventGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AdverseEventActuality {
     Actual,
     Potential,

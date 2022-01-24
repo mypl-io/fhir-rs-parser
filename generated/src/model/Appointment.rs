@@ -994,12 +994,12 @@ pub struct AppointmentGraphql {
     slot: Option<Vec<ReferenceGraphql>>,
     specialty: Option<Vec<CodeableConceptGraphql>>,
     start: Option<String>,
-    status: Option<AppointmentStatusGraphql>,
+    status: Option<AppointmentStatus>,
     supporting_information: Option<Vec<ReferenceGraphql>>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AppointmentStatus {
     Proposed,
     Pending,

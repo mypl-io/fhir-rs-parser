@@ -628,7 +628,7 @@ pub struct EvidenceVariable_CharacteristicGraphql {
     description: Option<String>,
     exclude: Option<bool>,
     extension: Option<Vec<ExtensionGraphql>>,
-    group_measure: Option<EvidenceVariable_CharacteristicGroupMeasureGraphql>,
+    group_measure: Option<EvidenceVariable_CharacteristicGroupMeasure>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     participant_effective_date_time: Option<String>,
@@ -639,7 +639,7 @@ pub struct EvidenceVariable_CharacteristicGraphql {
     usage_context: Option<Vec<UsageContextGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EvidenceVariable_CharacteristicGroupMeasure {
     Mean,
     Median,

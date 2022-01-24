@@ -378,12 +378,12 @@ pub struct MolecularSequence_RepositoryGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     readset_id: Option<String>,
-    fhir_type: Option<MolecularSequence_RepositoryTypeGraphql>,
+    fhir_type: Option<MolecularSequence_RepositoryType>,
     url: Option<String>,
     variantset_id: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MolecularSequence_RepositoryType {
     Directlink,
     Openapi,

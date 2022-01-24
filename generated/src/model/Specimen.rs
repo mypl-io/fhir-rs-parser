@@ -645,13 +645,13 @@ pub struct SpecimenGraphql {
     processing: Option<Vec<Specimen_ProcessingGraphql>>,
     received_time: Option<String>,
     request: Option<Vec<ReferenceGraphql>>,
-    status: Option<SpecimenStatusGraphql>,
+    status: Option<SpecimenStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SpecimenStatus {
     Available,
     Unavailable,

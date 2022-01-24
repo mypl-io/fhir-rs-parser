@@ -446,7 +446,7 @@ fn generate_trait(
 
                     if let Some(import) = &type_definition.import {
                         // pending_imports.insert(import.clone());
-                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
+                        pending_imports.insert(format!("{0}Graphql; use {0}", import));
                     }
 
                     write_property(
@@ -480,7 +480,7 @@ fn generate_trait(
 
                     if let Some(import) = &type_definition.import {
                         // pending_imports.insert(import.clone());
-                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
+                        pending_imports.insert(format!("{0}Graphql; use {0}", import));
                     }
 
                     write_property(
@@ -515,7 +515,7 @@ fn generate_trait(
                         );
                         if let Some(import) = &type_definition.import {
                             // pending_imports.insert(import.clone());
-                            pending_imports.insert(format!("{0}; use {0}Graphql", import));
+                            pending_imports.insert(format!("{0}Graphql; use {0}", import));
                         }
                         write_property(
                             &mut inner_string,
@@ -572,7 +572,7 @@ fn generate_trait(
                     );
                     if let Some(import) = &type_definition.import {
                         // pending_imports.insert(import.clone());
-                        pending_imports.insert(format!("{0}; use {0}Graphql", import));
+                        pending_imports.insert(format!("{0}Graphql; use {0}", import));
                     }
                     write_property(
                         &mut inner_string,
@@ -647,7 +647,7 @@ fn generate_trait(
     }
 
     for (enum_name, values) in pending_enums {
-        inner_string.push_str("\n#[derive(Debug)]\n");
+        inner_string.push_str("\n#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]\n");
         inner_string.push_str("pub enum ");
         inner_string.push_str(&enum_name);
         inner_string.push_str(" {\n");
@@ -763,7 +763,7 @@ fn write_property(
     } else {
         graphql_string.push_str(&type_definition.name);
     }
-    if !type_definition.builtin {
+    if !type_definition.builtin && !type_definition.string_enum {
         graphql_string.push_str("Graphql");
     }
     graphql_string.push_str(&right_type_name);

@@ -834,7 +834,7 @@ pub struct PatientGraphql {
     deceased_boolean: Option<bool>,
     deceased_date_time: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<PatientGenderGraphql>,
+    gender: Option<PatientGender>,
     general_practitioner: Option<Vec<ReferenceGraphql>>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
@@ -853,7 +853,7 @@ pub struct PatientGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PatientGender {
     Male,
     Female,

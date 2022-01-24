@@ -605,13 +605,13 @@ pub struct AccountGraphql {
     owner: Option<ReferenceGraphql>,
     part_of: Option<ReferenceGraphql>,
     service_period: Option<PeriodGraphql>,
-    status: Option<AccountStatusGraphql>,
+    status: Option<AccountStatus>,
     subject: Option<Vec<ReferenceGraphql>>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AccountStatus {
     Active,
     Inactive,

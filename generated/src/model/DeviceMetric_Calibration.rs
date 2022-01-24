@@ -256,12 +256,12 @@ pub struct DeviceMetric_CalibrationGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    state: Option<DeviceMetric_CalibrationStateGraphql>,
+    state: Option<DeviceMetric_CalibrationState>,
     time: Option<String>,
-    fhir_type: Option<DeviceMetric_CalibrationTypeGraphql>,
+    fhir_type: Option<DeviceMetric_CalibrationType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceMetric_CalibrationState {
     NotCalibrated,
     CalibrationRequired,
@@ -292,7 +292,7 @@ impl DeviceMetric_CalibrationState {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceMetric_CalibrationType {
     Unspecified,
     Offset,

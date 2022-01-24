@@ -705,12 +705,12 @@ pub struct InsurancePlanGraphql {
     owned_by: Option<ReferenceGraphql>,
     period: Option<PeriodGraphql>,
     plan: Option<Vec<InsurancePlan_PlanGraphql>>,
-    status: Option<InsurancePlanStatusGraphql>,
+    status: Option<InsurancePlanStatus>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum InsurancePlanStatus {
     Draft,
     Active,

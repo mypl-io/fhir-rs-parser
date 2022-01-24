@@ -282,7 +282,7 @@ pub struct QuantityGraphql {
     _unit: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
     code: Option<String>,
-    comparator: Option<QuantityComparatorGraphql>,
+    comparator: Option<QuantityComparator>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     system: Option<String>,
@@ -290,7 +290,7 @@ pub struct QuantityGraphql {
     value: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum QuantityComparator {
     LessThan,
     LessThanOrEqual,

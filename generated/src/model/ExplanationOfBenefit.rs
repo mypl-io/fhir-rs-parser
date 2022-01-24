@@ -1473,7 +1473,7 @@ pub struct ExplanationOfBenefitGraphql {
     provider: ReferenceGraphql,
     referral: Option<ReferenceGraphql>,
     related: Option<Vec<ExplanationOfBenefit_RelatedGraphql>>,
-    status: Option<ExplanationOfBenefitStatusGraphql>,
+    status: Option<ExplanationOfBenefitStatus>,
     sub_type: Option<CodeableConceptGraphql>,
     supporting_info: Option<Vec<ExplanationOfBenefit_SupportingInfoGraphql>>,
     text: Option<NarrativeGraphql>,
@@ -1482,7 +1482,7 @@ pub struct ExplanationOfBenefitGraphql {
     fhir_use: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ExplanationOfBenefitStatus {
     Active,
     Cancelled,

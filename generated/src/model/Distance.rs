@@ -280,7 +280,7 @@ pub struct DistanceGraphql {
     _unit: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
     code: Option<String>,
-    comparator: Option<DistanceComparatorGraphql>,
+    comparator: Option<DistanceComparator>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     system: Option<String>,
@@ -288,7 +288,7 @@ pub struct DistanceGraphql {
     value: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DistanceComparator {
     LessThan,
     LessThanOrEqual,

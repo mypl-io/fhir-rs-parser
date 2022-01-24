@@ -847,12 +847,12 @@ pub struct DiagnosticReportGraphql {
     result: Option<Vec<ReferenceGraphql>>,
     results_interpreter: Option<Vec<ReferenceGraphql>>,
     specimen: Option<Vec<ReferenceGraphql>>,
-    status: Option<DiagnosticReportStatusGraphql>,
+    status: Option<DiagnosticReportStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DiagnosticReportStatus {
     Registered,
     Partial,

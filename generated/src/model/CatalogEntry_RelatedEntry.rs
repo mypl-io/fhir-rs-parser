@@ -201,10 +201,10 @@ pub struct CatalogEntry_RelatedEntryGraphql {
     id: Option<String>,
     item: ReferenceGraphql,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    relationtype: Option<CatalogEntry_RelatedEntryRelationtypeGraphql>,
+    relationtype: Option<CatalogEntry_RelatedEntryRelationtype>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CatalogEntry_RelatedEntryRelationtype {
     Triggers,
     IsReplacedBy,

@@ -689,12 +689,12 @@ pub struct DetectedIssueGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     patient: Option<ReferenceGraphql>,
     reference: Option<String>,
-    severity: Option<DetectedIssueSeverityGraphql>,
+    severity: Option<DetectedIssueSeverity>,
     status: Option<String>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DetectedIssueSeverity {
     High,
     Moderate,

@@ -609,14 +609,14 @@ pub struct EpisodeOfCareGraphql {
     patient: ReferenceGraphql,
     period: Option<PeriodGraphql>,
     referral_request: Option<Vec<ReferenceGraphql>>,
-    status: Option<EpisodeOfCareStatusGraphql>,
+    status: Option<EpisodeOfCareStatus>,
     status_history: Option<Vec<EpisodeOfCare_StatusHistoryGraphql>>,
     team: Option<Vec<ReferenceGraphql>>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<Vec<CodeableConceptGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EpisodeOfCareStatus {
     Planned,
     Waitlist,

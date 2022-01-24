@@ -382,7 +382,7 @@ pub struct OperationOutcome_IssueGraphql {
     _expression: Option<Vec<ElementGraphql>>,
     _location: Option<Vec<ElementGraphql>>,
     _severity: Option<ElementGraphql>,
-    code: Option<OperationOutcome_IssueCodeGraphql>,
+    code: Option<OperationOutcome_IssueCode>,
     details: Option<CodeableConceptGraphql>,
     diagnostics: Option<String>,
     expression: Option<Vec<String>>,
@@ -390,10 +390,10 @@ pub struct OperationOutcome_IssueGraphql {
     id: Option<String>,
     location: Option<Vec<String>>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    severity: Option<OperationOutcome_IssueSeverityGraphql>,
+    severity: Option<OperationOutcome_IssueSeverity>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationOutcome_IssueCode {
     Invalid,
     Structure,
@@ -503,7 +503,7 @@ impl OperationOutcome_IssueCode {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum OperationOutcome_IssueSeverity {
     Fatal,
     Error,

@@ -14,8 +14,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::Period::Period;
 use crate::model::Period::PeriodGraphql;
-use crate::model::PlanDefinition_Action::PlanDefinition_Action;
-use crate::model::PlanDefinition_Action::PlanDefinition_ActionGraphql;
 use crate::model::PlanDefinition_Condition::PlanDefinition_Condition;
 use crate::model::PlanDefinition_Condition::PlanDefinition_ConditionGraphql;
 use crate::model::PlanDefinition_DynamicValue::PlanDefinition_DynamicValue;
@@ -1223,7 +1221,7 @@ pub struct PlanDefinition_ActionGraphql {
     _timing_date_time: Option<ElementGraphql>,
     _title: Option<ElementGraphql>,
     action: Option<Vec<PlanDefinition_ActionGraphql>>,
-    cardinality_behavior: Option<PlanDefinition_ActionCardinalityBehaviorGraphql>,
+    cardinality_behavior: Option<PlanDefinition_ActionCardinalityBehavior>,
     code: Option<Vec<CodeableConceptGraphql>>,
     condition: Option<Vec<PlanDefinition_ConditionGraphql>>,
     definition_canonical: Option<String>,
@@ -1233,19 +1231,19 @@ pub struct PlanDefinition_ActionGraphql {
     dynamic_value: Option<Vec<PlanDefinition_DynamicValueGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
     goal_id: Option<Vec<String>>,
-    grouping_behavior: Option<PlanDefinition_ActionGroupingBehaviorGraphql>,
+    grouping_behavior: Option<PlanDefinition_ActionGroupingBehavior>,
     id: Option<String>,
     input: Option<Vec<DataRequirementGraphql>>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     output: Option<Vec<DataRequirementGraphql>>,
     participant: Option<Vec<PlanDefinition_ParticipantGraphql>>,
-    precheck_behavior: Option<PlanDefinition_ActionPrecheckBehaviorGraphql>,
+    precheck_behavior: Option<PlanDefinition_ActionPrecheckBehavior>,
     prefix: Option<String>,
     priority: Option<String>,
     reason: Option<Vec<CodeableConceptGraphql>>,
     related_action: Option<Vec<PlanDefinition_RelatedActionGraphql>>,
-    required_behavior: Option<PlanDefinition_ActionRequiredBehaviorGraphql>,
-    selection_behavior: Option<PlanDefinition_ActionSelectionBehaviorGraphql>,
+    required_behavior: Option<PlanDefinition_ActionRequiredBehavior>,
+    selection_behavior: Option<PlanDefinition_ActionSelectionBehavior>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     text_equivalent: Option<String>,
@@ -1261,7 +1259,7 @@ pub struct PlanDefinition_ActionGraphql {
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ActionCardinalityBehavior {
     Single,
     Multiple,
@@ -1284,7 +1282,7 @@ impl PlanDefinition_ActionCardinalityBehavior {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ActionGroupingBehavior {
     VisualGroup,
     LogicalGroup,
@@ -1310,7 +1308,7 @@ impl PlanDefinition_ActionGroupingBehavior {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ActionPrecheckBehavior {
     Yes,
     No,
@@ -1333,7 +1331,7 @@ impl PlanDefinition_ActionPrecheckBehavior {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ActionRequiredBehavior {
     Must,
     Could,
@@ -1363,7 +1361,7 @@ impl PlanDefinition_ActionRequiredBehavior {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ActionSelectionBehavior {
     Any,
     All,

@@ -305,10 +305,10 @@ pub struct Subscription_ChannelGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     payload: Option<String>,
-    fhir_type: Option<Subscription_ChannelTypeGraphql>,
+    fhir_type: Option<Subscription_ChannelType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Subscription_ChannelType {
     RestHook,
     Websocket,

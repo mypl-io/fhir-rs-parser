@@ -325,11 +325,11 @@ pub struct RelatedArtifactGraphql {
     id: Option<String>,
     label: Option<String>,
     resource: Option<String>,
-    fhir_type: Option<RelatedArtifactTypeGraphql>,
+    fhir_type: Option<RelatedArtifactType>,
     url: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum RelatedArtifactType {
     Documentation,
     Justification,

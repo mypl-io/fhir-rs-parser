@@ -12,8 +12,6 @@ use crate::model::Questionnaire_EnableWhen::Questionnaire_EnableWhen;
 use crate::model::Questionnaire_EnableWhen::Questionnaire_EnableWhenGraphql;
 use crate::model::Questionnaire_Initial::Questionnaire_Initial;
 use crate::model::Questionnaire_Initial::Questionnaire_InitialGraphql;
-use crate::model::Questionnaire_Item::Questionnaire_Item;
-use crate::model::Questionnaire_Item::Questionnaire_ItemGraphql;
 use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;
@@ -683,7 +681,7 @@ pub struct Questionnaire_ItemGraphql {
     answer_value_set: Option<String>,
     code: Option<Vec<CodingGraphql>>,
     definition: Option<String>,
-    enable_behavior: Option<Questionnaire_ItemEnableBehaviorGraphql>,
+    enable_behavior: Option<Questionnaire_ItemEnableBehavior>,
     enable_when: Option<Vec<Questionnaire_EnableWhenGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
@@ -697,10 +695,10 @@ pub struct Questionnaire_ItemGraphql {
     repeats: Option<bool>,
     required: Option<bool>,
     text: Option<String>,
-    fhir_type: Option<Questionnaire_ItemTypeGraphql>,
+    fhir_type: Option<Questionnaire_ItemType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Questionnaire_ItemEnableBehavior {
     All,
     Any,
@@ -723,7 +721,7 @@ impl Questionnaire_ItemEnableBehavior {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Questionnaire_ItemType {
     Group,
     Display,

@@ -1194,18 +1194,18 @@ pub struct EvidenceVariableGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     short_title: Option<String>,
-    status: Option<EvidenceVariableStatusGraphql>,
+    status: Option<EvidenceVariableStatus>,
     subtitle: Option<String>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     topic: Option<Vec<CodeableConceptGraphql>>,
-    fhir_type: Option<EvidenceVariableTypeGraphql>,
+    fhir_type: Option<EvidenceVariableType>,
     url: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EvidenceVariableStatus {
     Draft,
     Active,
@@ -1234,7 +1234,7 @@ impl EvidenceVariableStatus {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EvidenceVariableType {
     Dichotomous,
     Continuous,

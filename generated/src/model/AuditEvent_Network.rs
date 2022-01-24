@@ -220,10 +220,10 @@ pub struct AuditEvent_NetworkGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    fhir_type: Option<AuditEvent_NetworkTypeGraphql>,
+    fhir_type: Option<AuditEvent_NetworkType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AuditEvent_NetworkType {
     One,
     Two,

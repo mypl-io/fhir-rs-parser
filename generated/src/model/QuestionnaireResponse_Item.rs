@@ -6,8 +6,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::QuestionnaireResponse_Answer::QuestionnaireResponse_Answer;
 use crate::model::QuestionnaireResponse_Answer::QuestionnaireResponse_AnswerGraphql;
-use crate::model::QuestionnaireResponse_Item::QuestionnaireResponse_Item;
-use crate::model::QuestionnaireResponse_Item::QuestionnaireResponse_ItemGraphql;
 use async_graphql::*;
 use serde_json::json;
 use serde_json::value::Value;

@@ -6,8 +6,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::StructureMap_Dependent::StructureMap_Dependent;
 use crate::model::StructureMap_Dependent::StructureMap_DependentGraphql;
-use crate::model::StructureMap_Rule::StructureMap_Rule;
-use crate::model::StructureMap_Rule::StructureMap_RuleGraphql;
 use crate::model::StructureMap_Source::StructureMap_Source;
 use crate::model::StructureMap_Source::StructureMap_SourceGraphql;
 use crate::model::StructureMap_Target::StructureMap_Target;

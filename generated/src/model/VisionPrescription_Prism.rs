@@ -217,13 +217,13 @@ pub struct VisionPrescription_PrismGraphql {
     _amount: Option<ElementGraphql>,
     _base: Option<ElementGraphql>,
     amount: Option<f64>,
-    base: Option<VisionPrescription_PrismBaseGraphql>,
+    base: Option<VisionPrescription_PrismBase>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum VisionPrescription_PrismBase {
     Up,
     Down,

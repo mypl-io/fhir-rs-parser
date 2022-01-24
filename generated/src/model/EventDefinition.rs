@@ -1236,7 +1236,7 @@ pub struct EventDefinitionGraphql {
     purpose: Option<String>,
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
-    status: Option<EventDefinitionStatusGraphql>,
+    status: Option<EventDefinitionStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
@@ -1250,7 +1250,7 @@ pub struct EventDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum EventDefinitionStatus {
     Draft,
     Active,

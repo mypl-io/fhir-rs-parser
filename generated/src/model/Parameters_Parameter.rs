@@ -44,8 +44,6 @@ use crate::model::Money::Money;
 use crate::model::Money::MoneyGraphql;
 use crate::model::ParameterDefinition::ParameterDefinition;
 use crate::model::ParameterDefinition::ParameterDefinitionGraphql;
-use crate::model::Parameters_Parameter::Parameters_Parameter;
-use crate::model::Parameters_Parameter::Parameters_ParameterGraphql;
 use crate::model::Period::Period;
 use crate::model::Period::PeriodGraphql;
 use crate::model::Quantity::Quantity;

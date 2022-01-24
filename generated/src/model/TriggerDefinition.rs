@@ -350,10 +350,10 @@ pub struct TriggerDefinitionGraphql {
     timing_date_time: Option<String>,
     timing_reference: Option<ReferenceGraphql>,
     timing_timing: Option<TimingGraphql>,
-    fhir_type: Option<TriggerDefinitionTypeGraphql>,
+    fhir_type: Option<TriggerDefinitionType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TriggerDefinitionType {
     NamedEvent,
     Periodic,

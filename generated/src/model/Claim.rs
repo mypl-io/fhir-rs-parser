@@ -959,10 +959,10 @@ pub struct ClaimGraphql {
     text: Option<NarrativeGraphql>,
     total: Option<MoneyGraphql>,
     fhir_type: CodeableConceptGraphql,
-    fhir_use: Option<ClaimUseGraphql>,
+    fhir_use: Option<ClaimUse>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ClaimUse {
     Claim,
     Preauthorization,

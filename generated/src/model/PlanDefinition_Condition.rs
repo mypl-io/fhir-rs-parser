@@ -212,11 +212,11 @@ pub struct PlanDefinition_ConditionGraphql {
     expression: Option<ExpressionGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    kind: Option<PlanDefinition_ConditionKindGraphql>,
+    kind: Option<PlanDefinition_ConditionKind>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ConditionKind {
     Applicability,
     Start,

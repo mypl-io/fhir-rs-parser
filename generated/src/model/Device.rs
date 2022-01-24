@@ -1066,7 +1066,7 @@ pub struct DeviceGraphql {
     safety: Option<Vec<CodeableConceptGraphql>>,
     serial_number: Option<String>,
     specialization: Option<Vec<Device_SpecializationGraphql>>,
-    status: Option<DeviceStatusGraphql>,
+    status: Option<DeviceStatus>,
     status_reason: Option<Vec<CodeableConceptGraphql>>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
@@ -1075,7 +1075,7 @@ pub struct DeviceGraphql {
     version: Option<Vec<Device_VersionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DeviceStatus {
     Active,
     Inactive,

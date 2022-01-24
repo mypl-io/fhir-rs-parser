@@ -4,8 +4,6 @@ use crate::model::Element::Element;
 use crate::model::Element::ElementGraphql;
 use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
-use crate::model::ValueSet_Contains::ValueSet_Contains;
-use crate::model::ValueSet_Contains::ValueSet_ContainsGraphql;
 use crate::model::ValueSet_Designation::ValueSet_Designation;
 use crate::model::ValueSet_Designation::ValueSet_DesignationGraphql;
 use async_graphql::*;

@@ -220,14 +220,14 @@ impl ImplementationGuide_ParameterBuilder {
 pub struct ImplementationGuide_ParameterGraphql {
     _code: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
-    code: Option<ImplementationGuide_ParameterCodeGraphql>,
+    code: Option<ImplementationGuide_ParameterCode>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     value: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ImplementationGuide_ParameterCode {
     Apply,
     PathResource,

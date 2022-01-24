@@ -8,8 +8,6 @@ use crate::model::Extension::Extension;
 use crate::model::Extension::ExtensionGraphql;
 use crate::model::Reference::Reference;
 use crate::model::Reference::ReferenceGraphql;
-use crate::model::SubstanceSpecification_Name::SubstanceSpecification_Name;
-use crate::model::SubstanceSpecification_Name::SubstanceSpecification_NameGraphql;
 use crate::model::SubstanceSpecification_Official::SubstanceSpecification_Official;
 use crate::model::SubstanceSpecification_Official::SubstanceSpecification_OfficialGraphql;
 use async_graphql::*;

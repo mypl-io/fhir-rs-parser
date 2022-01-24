@@ -285,13 +285,13 @@ pub struct StructureMap_InputGraphql {
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<StructureMap_InputModeGraphql>,
+    mode: Option<StructureMap_InputMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
     fhir_type: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_InputMode {
     Source,
     Target,

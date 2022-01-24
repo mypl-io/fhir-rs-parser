@@ -294,10 +294,10 @@ pub struct ExplanationOfBenefit_ProcessNoteGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     number: Option<i64>,
     text: Option<String>,
-    fhir_type: Option<ExplanationOfBenefit_ProcessNoteTypeGraphql>,
+    fhir_type: Option<ExplanationOfBenefit_ProcessNoteType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ExplanationOfBenefit_ProcessNoteType {
     Display,
     Print,

@@ -2054,7 +2054,7 @@ pub struct StructureMap_SourceGraphql {
     element: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    list_mode: Option<StructureMap_SourceListModeGraphql>,
+    list_mode: Option<StructureMap_SourceListMode>,
     log_message: Option<String>,
     max: Option<String>,
     min: Option<i64>,
@@ -2063,7 +2063,7 @@ pub struct StructureMap_SourceGraphql {
     variable: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum StructureMap_SourceListMode {
     First,
     NotFirst,

@@ -1318,7 +1318,7 @@ pub struct PlanDefinitionGraphql {
     purpose: Option<String>,
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
-    status: Option<PlanDefinitionStatusGraphql>,
+    status: Option<PlanDefinitionStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
@@ -1332,7 +1332,7 @@ pub struct PlanDefinitionGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinitionStatus {
     Draft,
     Active,

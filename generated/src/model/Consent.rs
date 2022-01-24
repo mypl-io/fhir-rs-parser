@@ -666,12 +666,12 @@ pub struct ConsentGraphql {
     scope: CodeableConceptGraphql,
     source_attachment: Option<AttachmentGraphql>,
     source_reference: Option<ReferenceGraphql>,
-    status: Option<ConsentStatusGraphql>,
+    status: Option<ConsentStatus>,
     text: Option<NarrativeGraphql>,
     verification: Option<Vec<Consent_VerificationGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ConsentStatus {
     Draft,
     Proposed,

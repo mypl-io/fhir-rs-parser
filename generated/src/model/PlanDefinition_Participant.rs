@@ -212,10 +212,10 @@ pub struct PlanDefinition_ParticipantGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     role: Option<CodeableConceptGraphql>,
-    fhir_type: Option<PlanDefinition_ParticipantTypeGraphql>,
+    fhir_type: Option<PlanDefinition_ParticipantType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PlanDefinition_ParticipantType {
     Patient,
     Practitioner,

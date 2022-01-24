@@ -658,16 +658,16 @@ pub struct BiologicallyDerivedProductGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     parent: Option<Vec<ReferenceGraphql>>,
     processing: Option<Vec<BiologicallyDerivedProduct_ProcessingGraphql>>,
-    product_category: Option<BiologicallyDerivedProductProductCategoryGraphql>,
+    product_category: Option<BiologicallyDerivedProductProductCategory>,
     product_code: Option<CodeableConceptGraphql>,
     quantity: Option<i64>,
     request: Option<Vec<ReferenceGraphql>>,
-    status: Option<BiologicallyDerivedProductStatusGraphql>,
+    status: Option<BiologicallyDerivedProductStatus>,
     storage: Option<Vec<BiologicallyDerivedProduct_StorageGraphql>>,
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum BiologicallyDerivedProductProductCategory {
     Organ,
     Tissue,
@@ -701,7 +701,7 @@ impl BiologicallyDerivedProductProductCategory {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum BiologicallyDerivedProductStatus {
     Available,
     Unavailable,

@@ -724,14 +724,14 @@ pub struct CompositionGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     relates_to: Option<Vec<Composition_RelatesToGraphql>>,
     section: Option<Vec<Composition_SectionGraphql>>,
-    status: Option<CompositionStatusGraphql>,
+    status: Option<CompositionStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     fhir_type: CodeableConceptGraphql,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CompositionStatus {
     Preliminary,
     Final,

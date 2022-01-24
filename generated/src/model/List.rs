@@ -649,18 +649,18 @@ pub struct ListGraphql {
     implicit_rules: Option<String>,
     language: Option<String>,
     meta: Option<MetaGraphql>,
-    mode: Option<ListModeGraphql>,
+    mode: Option<ListMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     note: Option<Vec<AnnotationGraphql>>,
     ordered_by: Option<CodeableConceptGraphql>,
     source: Option<ReferenceGraphql>,
-    status: Option<ListStatusGraphql>,
+    status: Option<ListStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ListMode {
     Working,
     Snapshot,
@@ -686,7 +686,7 @@ impl ListMode {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ListStatus {
     Current,
     Retired,

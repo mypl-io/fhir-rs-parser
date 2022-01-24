@@ -237,12 +237,12 @@ pub struct CapabilityStatement_DocumentGraphql {
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
-    mode: Option<CapabilityStatement_DocumentModeGraphql>,
+    mode: Option<CapabilityStatement_DocumentMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     profile: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_DocumentMode {
     Producer,
     Consumer,

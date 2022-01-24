@@ -1498,22 +1498,22 @@ pub struct ResearchElementDefinitionGraphql {
     related_artifact: Option<Vec<RelatedArtifactGraphql>>,
     reviewer: Option<Vec<ContactDetailGraphql>>,
     short_title: Option<String>,
-    status: Option<ResearchElementDefinitionStatusGraphql>,
+    status: Option<ResearchElementDefinitionStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     topic: Option<Vec<CodeableConceptGraphql>>,
-    fhir_type: Option<ResearchElementDefinitionTypeGraphql>,
+    fhir_type: Option<ResearchElementDefinitionType>,
     url: Option<String>,
     usage: Option<String>,
     use_context: Option<Vec<UsageContextGraphql>>,
-    variable_type: Option<ResearchElementDefinitionVariableTypeGraphql>,
+    variable_type: Option<ResearchElementDefinitionVariableType>,
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchElementDefinitionStatus {
     Draft,
     Active,
@@ -1542,7 +1542,7 @@ impl ResearchElementDefinitionStatus {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchElementDefinitionType {
     Population,
     Exposure,
@@ -1568,7 +1568,7 @@ impl ResearchElementDefinitionType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ResearchElementDefinitionVariableType {
     Dichotomous,
     Continuous,

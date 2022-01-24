@@ -996,7 +996,7 @@ pub struct ConceptMapGraphql {
     purpose: Option<String>,
     source_canonical: Option<String>,
     source_uri: Option<String>,
-    status: Option<ConceptMapStatusGraphql>,
+    status: Option<ConceptMapStatus>,
     target_canonical: Option<String>,
     target_uri: Option<String>,
     text: Option<NarrativeGraphql>,
@@ -1006,7 +1006,7 @@ pub struct ConceptMapGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ConceptMapStatus {
     Draft,
     Active,

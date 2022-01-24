@@ -632,14 +632,14 @@ pub struct SupplyDeliveryGraphql {
     part_of: Option<Vec<ReferenceGraphql>>,
     patient: Option<ReferenceGraphql>,
     receiver: Option<Vec<ReferenceGraphql>>,
-    status: Option<SupplyDeliveryStatusGraphql>,
+    status: Option<SupplyDeliveryStatus>,
     supplied_item: Option<SupplyDelivery_SuppliedItemGraphql>,
     supplier: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum SupplyDeliveryStatus {
     InProgress,
     Completed,

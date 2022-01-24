@@ -192,10 +192,10 @@ pub struct Patient_LinkGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     other: ReferenceGraphql,
-    fhir_type: Option<Patient_LinkTypeGraphql>,
+    fhir_type: Option<Patient_LinkType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Patient_LinkType {
     ReplacedBy,
     Replaces,

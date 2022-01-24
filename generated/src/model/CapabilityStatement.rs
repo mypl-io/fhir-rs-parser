@@ -1200,7 +1200,7 @@ pub struct CapabilityStatementGraphql {
     document: Option<Vec<CapabilityStatement_DocumentGraphql>>,
     experimental: Option<bool>,
     extension: Option<Vec<ExtensionGraphql>>,
-    fhir_version: Option<CapabilityStatementFhirVersionGraphql>,
+    fhir_version: Option<CapabilityStatementFhirVersion>,
     format: Option<Vec<String>>,
     id: Option<String>,
     implementation: Option<CapabilityStatement_ImplementationGraphql>,
@@ -1209,7 +1209,7 @@ pub struct CapabilityStatementGraphql {
     imports: Option<Vec<String>>,
     instantiates: Option<Vec<String>>,
     jurisdiction: Option<Vec<CodeableConceptGraphql>>,
-    kind: Option<CapabilityStatementKindGraphql>,
+    kind: Option<CapabilityStatementKind>,
     language: Option<String>,
     messaging: Option<Vec<CapabilityStatement_MessagingGraphql>>,
     meta: Option<MetaGraphql>,
@@ -1220,7 +1220,7 @@ pub struct CapabilityStatementGraphql {
     purpose: Option<String>,
     rest: Option<Vec<CapabilityStatement_RestGraphql>>,
     software: Option<CapabilityStatement_SoftwareGraphql>,
-    status: Option<CapabilityStatementStatusGraphql>,
+    status: Option<CapabilityStatementStatus>,
     text: Option<NarrativeGraphql>,
     title: Option<String>,
     url: Option<String>,
@@ -1228,7 +1228,7 @@ pub struct CapabilityStatementGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatementFhirVersion {
     Fhir001,
     Fhir005,
@@ -1311,7 +1311,7 @@ impl CapabilityStatementFhirVersion {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatementKind {
     Instance,
     Capability,
@@ -1337,7 +1337,7 @@ impl CapabilityStatementKind {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatementStatus {
     Draft,
     Active,

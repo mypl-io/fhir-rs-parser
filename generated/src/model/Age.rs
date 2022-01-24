@@ -280,7 +280,7 @@ pub struct AgeGraphql {
     _unit: Option<ElementGraphql>,
     _value: Option<ElementGraphql>,
     code: Option<String>,
-    comparator: Option<AgeComparatorGraphql>,
+    comparator: Option<AgeComparator>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     system: Option<String>,
@@ -288,7 +288,7 @@ pub struct AgeGraphql {
     value: Option<f64>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AgeComparator {
     LessThan,
     LessThanOrEqual,

@@ -787,8 +787,8 @@ pub struct CapabilityStatement_ResourceGraphql {
     _update_create: Option<ElementGraphql>,
     _versioning: Option<ElementGraphql>,
     conditional_create: Option<bool>,
-    conditional_delete: Option<CapabilityStatement_ResourceConditionalDeleteGraphql>,
-    conditional_read: Option<CapabilityStatement_ResourceConditionalReadGraphql>,
+    conditional_delete: Option<CapabilityStatement_ResourceConditionalDelete>,
+    conditional_read: Option<CapabilityStatement_ResourceConditionalRead>,
     conditional_update: Option<bool>,
     documentation: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
@@ -804,10 +804,10 @@ pub struct CapabilityStatement_ResourceGraphql {
     supported_profile: Option<Vec<String>>,
     fhir_type: Option<String>,
     update_create: Option<bool>,
-    versioning: Option<CapabilityStatement_ResourceVersioningGraphql>,
+    versioning: Option<CapabilityStatement_ResourceVersioning>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_ResourceConditionalDelete {
     NotSupported,
     Single,
@@ -835,7 +835,7 @@ impl CapabilityStatement_ResourceConditionalDelete {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_ResourceConditionalRead {
     NotSupported,
     ModifiedSince,
@@ -868,7 +868,7 @@ impl CapabilityStatement_ResourceConditionalRead {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_ResourceVersioning {
     NoVersion,
     Versioned,

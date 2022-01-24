@@ -726,7 +726,7 @@ pub struct PaymentReconciliationGraphql {
     language: Option<String>,
     meta: Option<MetaGraphql>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
-    outcome: Option<PaymentReconciliationOutcomeGraphql>,
+    outcome: Option<PaymentReconciliationOutcome>,
     payment_amount: MoneyGraphql,
     payment_date: Option<String>,
     payment_identifier: Option<IdentifierGraphql>,
@@ -739,7 +739,7 @@ pub struct PaymentReconciliationGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PaymentReconciliationOutcome {
     Queued,
     Complete,

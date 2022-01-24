@@ -290,10 +290,10 @@ pub struct CapabilityStatement_SearchParamGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     name: Option<String>,
-    fhir_type: Option<CapabilityStatement_SearchParamTypeGraphql>,
+    fhir_type: Option<CapabilityStatement_SearchParamType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_SearchParamType {
     Number,
     Date,

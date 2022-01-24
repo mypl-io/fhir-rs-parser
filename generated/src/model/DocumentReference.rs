@@ -766,13 +766,13 @@ pub struct DocumentReferenceGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     relates_to: Option<Vec<DocumentReference_RelatesToGraphql>>,
     security_label: Option<Vec<CodeableConceptGraphql>>,
-    status: Option<DocumentReferenceStatusGraphql>,
+    status: Option<DocumentReferenceStatus>,
     subject: Option<ReferenceGraphql>,
     text: Option<NarrativeGraphql>,
     fhir_type: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum DocumentReferenceStatus {
     Current,
     Superseded,

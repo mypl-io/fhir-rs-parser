@@ -241,7 +241,7 @@ impl MessageHeader_ResponseBuilder {
 pub struct MessageHeader_ResponseGraphql {
     _code: Option<ElementGraphql>,
     _identifier: Option<ElementGraphql>,
-    code: Option<MessageHeader_ResponseCodeGraphql>,
+    code: Option<MessageHeader_ResponseCode>,
     details: Option<ReferenceGraphql>,
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
@@ -249,7 +249,7 @@ pub struct MessageHeader_ResponseGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MessageHeader_ResponseCode {
     Ok,
     TransientError,

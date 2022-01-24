@@ -957,7 +957,7 @@ pub struct TestScript_AssertGraphql {
     compare_to_source_path: Option<String>,
     content_type: Option<String>,
     description: Option<String>,
-    direction: Option<TestScript_AssertDirectionGraphql>,
+    direction: Option<TestScript_AssertDirection>,
     expression: Option<String>,
     extension: Option<Vec<ExtensionGraphql>>,
     header_field: Option<String>,
@@ -966,12 +966,12 @@ pub struct TestScript_AssertGraphql {
     minimum_id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     navigation_links: Option<bool>,
-    operator: Option<TestScript_AssertOperatorGraphql>,
+    operator: Option<TestScript_AssertOperator>,
     path: Option<String>,
-    request_method: Option<TestScript_AssertRequestMethodGraphql>,
+    request_method: Option<TestScript_AssertRequestMethod>,
     request_u_r_l: Option<String>,
     resource: Option<String>,
-    response: Option<TestScript_AssertResponseGraphql>,
+    response: Option<TestScript_AssertResponse>,
     response_code: Option<String>,
     source_id: Option<String>,
     validate_profile_id: Option<String>,
@@ -979,7 +979,7 @@ pub struct TestScript_AssertGraphql {
     warning_only: Option<bool>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScript_AssertDirection {
     Response,
     Request,
@@ -1002,7 +1002,7 @@ impl TestScript_AssertDirection {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScript_AssertOperator {
     Equals,
     NotEquals,
@@ -1052,7 +1052,7 @@ impl TestScript_AssertOperator {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScript_AssertRequestMethod {
     Delete,
     Get,
@@ -1090,7 +1090,7 @@ impl TestScript_AssertRequestMethod {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScript_AssertResponse {
     Okay,
     Created,

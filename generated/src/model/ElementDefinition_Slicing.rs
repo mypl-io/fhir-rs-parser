@@ -296,10 +296,10 @@ pub struct ElementDefinition_SlicingGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     ordered: Option<bool>,
-    rules: Option<ElementDefinition_SlicingRulesGraphql>,
+    rules: Option<ElementDefinition_SlicingRules>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum ElementDefinition_SlicingRules {
     Closed,
     Open,

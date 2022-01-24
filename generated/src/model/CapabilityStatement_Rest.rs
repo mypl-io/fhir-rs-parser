@@ -400,7 +400,7 @@ pub struct CapabilityStatement_RestGraphql {
     extension: Option<Vec<ExtensionGraphql>>,
     id: Option<String>,
     interaction: Option<Vec<CapabilityStatement_Interaction1Graphql>>,
-    mode: Option<CapabilityStatement_RestModeGraphql>,
+    mode: Option<CapabilityStatement_RestMode>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     operation: Option<Vec<CapabilityStatement_OperationGraphql>>,
     resource: Option<Vec<CapabilityStatement_ResourceGraphql>>,
@@ -408,7 +408,7 @@ pub struct CapabilityStatement_RestGraphql {
     security: Option<CapabilityStatement_SecurityGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum CapabilityStatement_RestMode {
     Client,
     Server,

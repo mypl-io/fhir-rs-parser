@@ -599,7 +599,7 @@ pub struct PractitionerGraphql {
     communication: Option<Vec<CodeableConceptGraphql>>,
     contained: Option<Vec<ResourceListGraphql>>,
     extension: Option<Vec<ExtensionGraphql>>,
-    gender: Option<PractitionerGenderGraphql>,
+    gender: Option<PractitionerGender>,
     id: Option<String>,
     identifier: Option<Vec<IdentifierGraphql>>,
     implicit_rules: Option<String>,
@@ -613,7 +613,7 @@ pub struct PractitionerGraphql {
     text: Option<NarrativeGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum PractitionerGender {
     Male,
     Female,

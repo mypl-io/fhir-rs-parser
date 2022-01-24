@@ -1057,7 +1057,7 @@ pub struct TestScriptGraphql {
     publisher: Option<String>,
     purpose: Option<String>,
     setup: Option<TestScript_SetupGraphql>,
-    status: Option<TestScriptStatusGraphql>,
+    status: Option<TestScriptStatus>,
     teardown: Option<TestScript_TeardownGraphql>,
     test: Option<Vec<TestScript_TestGraphql>>,
     text: Option<NarrativeGraphql>,
@@ -1068,7 +1068,7 @@ pub struct TestScriptGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum TestScriptStatus {
     Draft,
     Active,

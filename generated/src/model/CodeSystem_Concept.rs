@@ -1,7 +1,5 @@
 #![allow(unused_imports, non_camel_case_types)]
 
-use crate::model::CodeSystem_Concept::CodeSystem_Concept;
-use crate::model::CodeSystem_Concept::CodeSystem_ConceptGraphql;
 use crate::model::CodeSystem_Designation::CodeSystem_Designation;
 use crate::model::CodeSystem_Designation::CodeSystem_DesignationGraphql;
 use crate::model::CodeSystem_Property1::CodeSystem_Property1;

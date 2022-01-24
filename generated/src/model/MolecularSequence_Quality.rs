@@ -662,10 +662,10 @@ pub struct MolecularSequence_QualityGraphql {
     start: Option<i64>,
     truth_f_n: Option<f64>,
     truth_t_p: Option<f64>,
-    fhir_type: Option<MolecularSequence_QualityTypeGraphql>,
+    fhir_type: Option<MolecularSequence_QualityType>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MolecularSequence_QualityType {
     Indel,
     Snp,

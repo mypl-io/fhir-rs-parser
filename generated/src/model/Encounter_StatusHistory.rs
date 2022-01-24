@@ -198,10 +198,10 @@ pub struct Encounter_StatusHistoryGraphql {
     id: Option<String>,
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: PeriodGraphql,
-    status: Option<Encounter_StatusHistoryStatusGraphql>,
+    status: Option<Encounter_StatusHistoryStatus>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum Encounter_StatusHistoryStatus {
     Planned,
     Arrived,

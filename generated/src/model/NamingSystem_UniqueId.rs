@@ -318,11 +318,11 @@ pub struct NamingSystem_UniqueIdGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     period: Option<PeriodGraphql>,
     preferred: Option<bool>,
-    fhir_type: Option<NamingSystem_UniqueIdTypeGraphql>,
+    fhir_type: Option<NamingSystem_UniqueIdType>,
     value: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum NamingSystem_UniqueIdType {
     Oid,
     Uuid,

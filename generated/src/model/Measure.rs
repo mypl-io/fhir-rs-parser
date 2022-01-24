@@ -1650,7 +1650,7 @@ pub struct MeasureGraphql {
     reviewer: Option<Vec<ContactDetailGraphql>>,
     risk_adjustment: Option<String>,
     scoring: Option<CodeableConceptGraphql>,
-    status: Option<MeasureStatusGraphql>,
+    status: Option<MeasureStatus>,
     subject_codeable_concept: Option<CodeableConceptGraphql>,
     subject_reference: Option<ReferenceGraphql>,
     subtitle: Option<String>,
@@ -1665,7 +1665,7 @@ pub struct MeasureGraphql {
     version: Option<String>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum MeasureStatus {
     Draft,
     Active,

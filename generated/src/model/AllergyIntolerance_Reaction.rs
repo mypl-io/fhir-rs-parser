@@ -377,11 +377,11 @@ pub struct AllergyIntolerance_ReactionGraphql {
     modifier_extension: Option<Vec<ExtensionGraphql>>,
     note: Option<Vec<AnnotationGraphql>>,
     onset: Option<String>,
-    severity: Option<AllergyIntolerance_ReactionSeverityGraphql>,
+    severity: Option<AllergyIntolerance_ReactionSeverity>,
     substance: Option<CodeableConceptGraphql>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Enum, Copy, Clone, Eq, PartialEq)]
 pub enum AllergyIntolerance_ReactionSeverity {
     Mild,
     Moderate,
